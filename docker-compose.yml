@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: node-backend
+    restart: unless-stopped
+    ports:
+      - "6969:6969"
+    environment:
+      - NODE_ENV=development
+      - ME_URL=http://localhost:6969
+      - FRONT_SECRET=FRONT_SECRET
+      - PORT=6969
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/business_russia?authSource=admin
+      - MONGO_DB_NAME=business_russia
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+      - ./server/.env:/app/.env:ro
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: next-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - server
+    networks:
+      - app-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  app-network:
+    driver: bridge

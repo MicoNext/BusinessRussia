@@ -1,6 +1,3 @@
-// src/app/dream/[id]/route.ts
-import { execute } from '@/utils/db/db'
-import { SelectResponseDBT } from '@/utils/db/types'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
