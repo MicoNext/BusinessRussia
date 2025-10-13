@@ -27,10 +27,10 @@ export default function Header({ type, hiddenTitile }: HeaderProps) {
 						<Logo />
 					</div>
 
-					<div className='flex items-center gap-4'>
-						<SearchButton />
+					<SearchButton />
+					<div className='hidden sm:flex items-center gap-4'>
 						<div
-							className='hidden sm:flex items-center gap-2'
+							className='flex items-center gap-2'
 							aria-label='Quick actions'
 						>
 							<JoinButton />

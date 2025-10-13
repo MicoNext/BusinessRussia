@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/buttons';
+import { Search } from 'lucide-react';
 
 function SearchButton() {
 	return (
@@ -6,18 +7,12 @@ function SearchButton() {
 			variant='outline'
 			size='md'
 			aria-label='Показать поиск'
-			className='gap-2'
+			className='w-full max-w-96 sm:gap-2 '
 			leftSection={
-				<svg
-					className='w-4 h-4'
-					viewBox='0 0 17 17'
-					aria-hidden='true'
-				>
-					<path
-						d='M16.709,16.719a1,1,0,0,1-1.412,0l-3.256-3.287A7.475,7.475,0,1,1,15,7.5a7.433,7.433,0,0,1-1.549,4.518l3.258,3.289A1,1,0,0,1,16.709,16.719ZM7.5,2A5.5,5.5,0,1,0,13,7.5,5.5,5.5,0,0,0,7.5,2Z'
-						fill='currentColor'
-					/>
-				</svg>
+				<Search
+					width={18}
+					height={18}
+				/>
 			}
 		>
 			<span className='hidden sm:inline'>Поиск</span>

@@ -32,7 +32,7 @@ function composeClasses({
 	className,
 }: ButtonStyleProps): string {
 	return clsx(
-		'inline-flex items-center justify-center rounded-md font-medium focus:outline-none focus-visible:ring-2 transition',
+		'inline-flex rounded-md font-medium focus:outline-none focus-visible:ring-2 transition',
 		baseSizes[size],
 		variants[variant],
 		fullWidth && 'w-full',
