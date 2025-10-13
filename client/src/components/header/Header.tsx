@@ -20,7 +20,7 @@ export default function Header({ type, hiddenTitile }: HeaderProps) {
 			<SkipToContent />
 			<div className='container mx-auto px-4'>
 				<div
-					className='flex items-center justify-between h-16'
+					className='flex items-center justify-between gap-4 h-16'
 					aria-label='Top bar'
 				>
 					<div className='flex items-center gap-3'>

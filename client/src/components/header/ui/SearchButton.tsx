@@ -7,7 +7,7 @@ function SearchButton() {
 			variant='outline'
 			size='md'
 			aria-label='Показать поиск'
-			className='w-full max-w-96 sm:gap-2 '
+			className='sm:w-full sm:max-w-96 sm:gap-2 '
 			leftSection={
 				<Search
 					width={18}

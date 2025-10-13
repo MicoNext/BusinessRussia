@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Logo() {
 	return (
-		<div className='logo-wrapper'>
+		<div className='logo-wrapper flex-1'>
 			<Link href='/'>
 				<Image
 					width={174}
