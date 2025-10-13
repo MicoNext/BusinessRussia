@@ -3,12 +3,12 @@ import NavDropdown from './NavDropdown';
 import NavItem from './NavItem';
 import { MENU } from '../constants/menu.data';
 
-function PrimaryNav() {
+function Menu() {
 	return (
 		<nav
 			id='site-navigation'
 			aria-label='Основная навигация'
-			className='relative self-stretch'
+			className='relative self-stretch h-12 px-4'
 		>
 			<ul className='flex flex-wrap gap-x-6 gap-y-2 h-full'>
 				{MENU.map(item =>
@@ -38,4 +38,4 @@ function PrimaryNav() {
 	);
 }
 
-export default PrimaryNav;
+export default Menu;

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/buttons';
 import JoinButton from './ui/JoinButton';
 import PayFeeButton from './ui/PayFeeButton';
 import SearchButton from './ui/SearchButton';
-import PrimaryNav from './ui/PrimaryNav';
+import Menu from './ui/Menu';
 
 interface HeaderProps {
 	type?: 'help';
@@ -27,7 +27,6 @@ export default function Header({ type, hiddenTitile }: HeaderProps) {
 						<Logo />
 					</div>
 
-					<PrimaryNav />
 					<div className='flex items-center gap-4'>
 						<SearchButton />
 						<div
@@ -39,6 +38,7 @@ export default function Header({ type, hiddenTitile }: HeaderProps) {
 						</div>
 					</div>
 				</div>
+				<Menu />
 			</div>
 		</header>
 	);
