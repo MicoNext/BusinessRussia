@@ -10,6 +10,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ISliderMain } from '@/../../package/types/models/sliderMain.d';
 import { EmblaSlide } from './EmblaSlide';
+import clsx from 'clsx';
 
 type PropType = {
 	slides: ISliderMain[];
@@ -45,12 +46,12 @@ const EmblaCarousel: React.FC<PropType> = props => {
 	} = usePrevNextButtons(emblaApi, onNavButtonClick);
 
 	return (
-		<section className='embla w-full mx-auto flex flex-col gap-4'>
+		<section className='embla relative w-full mx-auto flex flex-col gap-4'>
 			<div
 				className='embla__viewport overflow-hidden'
 				ref={emblaRef}
 			>
-				<div className='embla__container flex gap-4'>
+				<div className='embla__container flex'>
 					{slides.map(slide => (
 						<EmblaSlide
 							key={slide._id}
@@ -60,34 +61,45 @@ const EmblaCarousel: React.FC<PropType> = props => {
 				</div>
 			</div>
 
-			<div className='embla__controls flex justify-between items-center gap-4 container mx-auto px-4'>
-				<div className='embla__buttons flex gap-2'>
-					<PrevButton
-						onClick={onPrevButtonClick}
-						disabled={prevBtnDisabled}
-						className='embla__arrow bg-white border border-gray-200 rounded-full p-2 shadow transition hover:bg-brand-primary hover:text-white disabled:opacity-40 disabled:cursor-not-allowed'
-					/>
-					<NextButton
-						onClick={onNextButtonClick}
-						disabled={nextBtnDisabled}
-						className='embla__arrow bg-white border border-gray-200 rounded-full p-2 shadow transition hover:bg-brand-primary hover:text-white disabled:opacity-40 disabled:cursor-not-allowed'
-					/>
-				</div>
-
-				<div className='embla__dots flex gap-2 mt-2'>
-					{scrollSnaps.map((_, index) => (
-						<DotButton
-							key={index}
-							onClick={() => onDotButtonClick(index)}
-							className={
-								'embla__dot w-3 h-3 rounded-full transition-all duration-200 cursor-pointer border-2 border-transparent ' +
-								(index === selectedIndex
-									? 'bg-brand-primary border-brand-primary scale-125'
-									: 'bg-gray-300 hover:bg-brand-primary/60')
-							}
-							aria-label={`Перейти на слайд ${index + 1}`}
+			<div
+				className={clsx('absolute px-4 bottom-6 w-full', 'flex justify-center')}
+			>
+				<div
+					className={clsx(
+						'embla__controls relative container px-4',
+						'flex flex-col justify-end items-center gap-4'
+					)}
+				>
+					<div
+						className={clsx('embla__buttons flex gap-2', 'absolute right-0')}
+					>
+						<PrevButton
+							onClick={onPrevButtonClick}
+							disabled={prevBtnDisabled}
+							className='embla__arrow bg-white border border-gray-200 rounded-full p-2 shadow transition hover:bg-brand-primary hover:text-white disabled:opacity-40 disabled:cursor-not-allowed'
 						/>
-					))}
+						<NextButton
+							onClick={onNextButtonClick}
+							disabled={nextBtnDisabled}
+							className='embla__arrow bg-white border border-gray-200 rounded-full p-2 shadow transition hover:bg-brand-primary hover:text-white disabled:opacity-40 disabled:cursor-not-allowed'
+						/>
+					</div>
+
+					<div className='embla__dots flex gap-2'>
+						{scrollSnaps.map((_, index) => (
+							<DotButton
+								key={index}
+								onClick={() => onDotButtonClick(index)}
+								className={
+									'embla__dot w-3 h-3 rounded-full transition-all duration-200 cursor-pointer border-2 border-transparent ' +
+									(index === selectedIndex
+										? 'bg-brand-primary border-brand-primary scale-125'
+										: 'bg-gray-300 hover:bg-brand-primary/60')
+								}
+								aria-label={`Перейти на слайд ${index + 1}`}
+							/>
+						))}
+					</div>
 				</div>
 			</div>
 		</section>

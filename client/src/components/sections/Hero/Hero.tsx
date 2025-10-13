@@ -8,7 +8,7 @@ const OPTIONS: EmblaOptionsType = { align: 'start', loop: true };
 
 function Hero() {
 	return (
-		<section className='w-full py-4'>
+		<section className='w-full'>
 			<EmblaCarousel
 				slides={sliderMainMock}
 				options={OPTIONS}
