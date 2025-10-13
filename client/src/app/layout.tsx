@@ -20,7 +20,9 @@ export default function RootLayout({
 			className='light'
 			suppressHydrationWarning
 		>
-			<body className={`${inter.className} text-gray-900`}>{children}</body>
+			<body className={`${inter.className} antialiased text-gray-900`}>
+				{children}
+			</body>
 		</html>
 	);
 }

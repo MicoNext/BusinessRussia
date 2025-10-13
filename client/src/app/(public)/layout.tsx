@@ -7,7 +7,7 @@ function layout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<div className=''>
+		<div className='min-h-screen flex flex-col justify-between'>
 			<Header />
 			{children}
 			<Footer />
