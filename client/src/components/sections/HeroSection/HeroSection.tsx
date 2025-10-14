@@ -6,7 +6,7 @@ import { sliderMainMock } from '@/shared/data/hero.mock';
 
 const OPTIONS: EmblaOptionsType = { align: 'start', loop: true };
 
-function Hero() {
+function HeroSection() {
 	return (
 		<section className='w-full'>
 			<EmblaCarousel
@@ -17,4 +17,4 @@ function Hero() {
 	);
 }
 
-export default Hero;
+export default HeroSection;
