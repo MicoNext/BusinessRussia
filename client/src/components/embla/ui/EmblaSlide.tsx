@@ -15,7 +15,7 @@ export const EmblaSlide = ({ slide }: EmblaSlideProps) => {
 			className={clsx(
 				'embla__slide relative flex-shrink-0 flex-grow-0 basis-full min-w-0',
 				'py-14',
-				'min-h-[320px] lg:min-h-[540px] xl:min-h-[620px]',
+				'min-h-[320px] lg:min-h-[540px] xl:min-h-[620px] 2xl:min-h-[720px]',
 				'flex items-center'
 			)}
 		>
