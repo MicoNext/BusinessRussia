@@ -13,6 +13,7 @@ import { useDotButton } from '@/components/EmblaCarousel/hooks/useDotButton';
 import { usePrevNextButtons } from '@/components/EmblaCarousel/hooks/usePrevNextButtons';
 import useEmblaCarousel from 'embla-carousel-react';
 import React, { useCallback } from 'react';
+import { HeroSlide } from './HeroSlide';
 
 export function HeroSlider({
 	slides,
@@ -52,7 +53,7 @@ export function HeroSlider({
 			>
 				<div className='embla__container flex'>
 					{slides.map(slide => (
-						<EmblaSlide
+						<HeroSlide
 							key={slide._id}
 							slide={slide}
 						/>
