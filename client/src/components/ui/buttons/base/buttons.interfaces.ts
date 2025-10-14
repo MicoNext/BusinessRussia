@@ -36,3 +36,16 @@ export interface IIconButtonProps
 	size?: 'sm' | 'md' | 'lg';
 	disabled?: boolean;
 }
+
+export interface IUnstyledButtonProps
+	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	children: React.ReactNode;
+	rightSection?: React.ReactNode;
+	leftSection?: React.ReactNode;
+	classNames?: {
+		container?: string;
+		leftSection?: string;
+		content?: string;
+		rightSection?: string;
+	};
+}

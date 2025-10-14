@@ -71,7 +71,6 @@ function GridRoot({
 	...rest
 }: GridProps) {
 	const items = React.Children.toArray(children);
-	const total = items.length;
 
 	return (
 		<div

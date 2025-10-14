@@ -15,7 +15,7 @@ export default function ProjectsSection() {
 	);
 	return (
 		<section
-			className='container mx-auto flex flex-col gap-4 md:gap-8 px-4'
+			className='container mx-auto flex flex-col gap-4 md:gap-8 px-4 md:px-8 lg:px-12'
 			aria-label='Проекты'
 		>
 			<SectionBar

@@ -56,7 +56,7 @@ export function HeroSlide({ slide }: { slide: ISliderMain }) {
 
 			{slide.overlay && <div className='absolute inset-0 bg-black/50 z-10' />}
 
-			<div className='container relative mx-auto px-4 z-20'>
+			<div className='container relative mx-auto px-4 md:px-8 lg:px-12 z-20'>
 				<div className='max-w-2xl'>
 					<Headline
 						titleHtml={slide.title}
