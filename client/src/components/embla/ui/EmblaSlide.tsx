@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { ISliderMain } from '@/../../package/types/models/sliderMain.d';
 import clsx from 'clsx';
+import { Headline } from '@/components/ui/Headline';
 
 interface EmblaSlideProps {
 	slide: ISliderMain;
@@ -61,20 +62,15 @@ export const EmblaSlide = ({ slide }: EmblaSlideProps) => {
 
 			<div className='container relative mx-auto px-4 z-20'>
 				<div className='max-w-2xl'>
-					{slide.subtitle && (
-						<div className='text-sm uppercase tracking-wider text-white/80 mb-2'>
-							{slide.subtitle}
-						</div>
-					)}
-
-					<div
-						className='text-3xl leading-8 md:text-4xl font-bold text-white mb-4'
-						dangerouslySetInnerHTML={{ __html: slide.title }}
-					></div>
-
-					{slide.text && (
-						<p className='text-lg text-white/90 mb-6'>{slide.text}</p>
-					)}
+					<Headline
+						titleHtml={slide.title}
+						subtitle={slide.subtitle}
+						description={slide.text}
+						variant='light'
+						classNames={{
+							container: 'text-white flex flex-col gap-4 mb-6',
+						}}
+					/>
 					{slide.sourse && (
 						<a
 							href={slide.sourse.url}
