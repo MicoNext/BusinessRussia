@@ -1,17 +1,14 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { Grid } from '@/components/ui/Grid';
 import type { INews } from '@/../../package/types/models/news';
-import { Card } from '@/components/ui/Card';
 import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline';
 import { Button } from '@/components/ui/buttons';
 import { MailCheck } from 'lucide-react';
+import { NewsGrid } from './NewsGrid';
 
-export default function NewsGrid({ items }: { items: INews[] }) {
+export default function NewsSection({ items }: { items: INews[] }) {
 	return (
 		<section
-			className='container mx-auto flex flex-col gap-8'
+			className='container mx-auto flex flex-col gap-8 px-4'
 			aria-label='Новости'
 		>
 			<SectionBar
@@ -31,22 +28,7 @@ export default function NewsGrid({ items }: { items: INews[] }) {
 					</Button>
 				}
 			/>
-			<Grid
-				cols={3}
-				gap={8}
-			>
-				{items.map(item => (
-					<Grid.Col key={item._id}>
-						<Card
-							link={item.slug}
-							image={item.media.imagesUrl[0]}
-							subtitle={item.category}
-							title={item.header.title}
-							time={item.createdAt}
-						/>
-					</Grid.Col>
-				))}
-			</Grid>
+			<NewsGrid items={items} />
 		</section>
 	);
 }

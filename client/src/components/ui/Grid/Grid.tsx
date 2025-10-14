@@ -4,6 +4,9 @@ import clsx from 'clsx';
 interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
 	cols?: 1 | 2 | 3 | 4 | 5 | 6;
 	gap?: 0 | 2 | 4 | 6 | 8 | 10 | 12;
+	classNames?: {
+		root?: string;
+	};
 }
 
 interface GridColProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -64,6 +67,7 @@ function GridRoot({
 	gap = 8,
 	className,
 	children,
+	classNames,
 	...rest
 }: GridProps) {
 	const items = React.Children.toArray(children);
@@ -71,25 +75,18 @@ function GridRoot({
 
 	return (
 		<div
-			className={clsx('grid', colsClassMap[cols], gapClassMap[gap], className)}
+			className={clsx(
+				'grid',
+				colsClassMap[cols],
+				gapClassMap[gap],
+				className,
+				classNames?.root
+			)}
 			{...rest}
 		>
 			{items.map((child, index) => {
-				if (!React.isValidElement(child)) return child;
+				if (!React.isValidElement<GridColProps>(child)) return child;
 
-				const isFirst = index === 0;
-				const isLast = index === total - 1;
-				const childProps = child.props as Partial<GridColProps> & {
-					className?: string;
-				};
-				const childSpan: number | undefined = childProps.span;
-				const autoSpan = childSpan ?? (isFirst || isLast ? 2 : undefined);
-
-				if (autoSpan !== undefined) {
-					return React.cloneElement(child as React.ReactElement<any>, {
-						className: clsx(spanClass(autoSpan), childProps.className),
-					});
-				}
 				return child;
 			})}
 		</div>

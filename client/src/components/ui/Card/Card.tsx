@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
 import { Headline } from '@/components/ui/Headline';
+import clsx from 'clsx';
 
 interface ICardProps {
 	link: string;
@@ -9,12 +10,42 @@ interface ICardProps {
 	subtitle?: string;
 	title?: string;
 	time?: string | Date;
+	direction?: 'column' | 'row';
+	classNames?: {
+		container?: string;
+		image?: string;
+		title?: string;
+		subtitle?: string;
+		time?: string;
+		textbox?: string;
+	};
 }
 
-export function Card({ link, image, subtitle, title, time }: ICardProps) {
+export function Card({
+	link,
+	image,
+	subtitle,
+	title,
+	time,
+	direction = 'column',
+	classNames,
+}: ICardProps) {
+	const isRow = direction === 'row';
 	return (
-		<article className='relative flex flex-col  border rounded-lg overflow-hidden h-full bg-white hover:shadow-md hover:translate-y-[-2px] transition-all duration-300'>
-			<figure className='relative aspect-[4/3]'>
+		<article
+			className={clsx(
+				`relative flex ${
+					isRow ? 'flex-row' : 'flex-col'
+				} border rounded-lg overflow-hidden h-full bg-white hover:shadow-md hover:translate-y-[-2px] transition-all duration-300`,
+				classNames?.container
+			)}
+		>
+			<figure
+				className={clsx(
+					isRow ? 'relative w-1/2 min-h-[180px]' : 'relative aspect-[4/3]',
+					classNames?.image
+				)}
+			>
 				<Link
 					href={link}
 					aria-label={title}
@@ -24,17 +55,27 @@ export function Card({ link, image, subtitle, title, time }: ICardProps) {
 							src={image}
 							alt={title || 'изображение'}
 							fill
-							className='object-cover'
-							sizes='(max-width: 768px) 50vw, 33vw'
+							className='object-cover rounded-lg'
+							sizes={'(max-width: 768px) 50vw, 33vw'}
 						/>
 					)}
 				</Link>
 			</figure>
-			<div className='p-4 flex flex-col justify-between gap-2 flex-1'>
+			<div
+				className={clsx(
+					`p-4 flex flex-col justify-between gap-2 flex-1`,
+					classNames?.textbox
+				)}
+			>
 				<Headline
 					subtitle={subtitle}
 					titleNode={
-						<h3 className='text-sm font-medium leading-5'>
+						<h3
+							className={clsx(
+								'text-sm font-medium leading-5',
+								classNames?.title
+							)}
+						>
 							<Link
 								href={link}
 								className='text-gray-900 hover:text-brand-primary'
@@ -44,8 +85,11 @@ export function Card({ link, image, subtitle, title, time }: ICardProps) {
 					}
 					order={3}
 					classNames={{
-						subtitle: 'text-xs tracking-wide text-brand-primary',
-						title: 'text-sm font-medium leading-5',
+						subtitle: clsx(
+							'text-xs tracking-wide text-brand-primary',
+							classNames?.subtitle
+						),
+						title: clsx('text-sm font-medium leading-5', classNames?.title),
 					}}
 				/>
 
