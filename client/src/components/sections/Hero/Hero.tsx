@@ -1,7 +1,7 @@
 'use client';
 
-import { EmblaOptionsType } from '@/components/embla';
-import EmblaCarousel from '@/components/embla/ui/EmblaCarousel';
+import { EmblaOptionsType } from '@/components/EmblaCarousel';
+import EmblaCarousel from '@/components/EmblaCarousel';
 import { sliderMainMock } from '@/shared/data/hero.mock';
 
 const OPTIONS: EmblaOptionsType = { align: 'start', loop: true };
