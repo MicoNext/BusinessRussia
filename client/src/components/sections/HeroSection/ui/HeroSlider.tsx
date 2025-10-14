@@ -63,7 +63,7 @@ export function HeroSlider({
 
 			<div className='absolute px-4 bottom-6 w-full flex justify-center'>
 				<div className='embla__controls relative container px-4 flex flex-col justify-end items-center gap-4'>
-					<div className='embla__buttons flex gap-2 absolute right-0'>
+					<div className='embla__buttons flex gap-2 absolute md:right-4 right-0'>
 						<PrevButton
 							onClick={onPrevButtonClick}
 							disabled={prevBtnDisabled}

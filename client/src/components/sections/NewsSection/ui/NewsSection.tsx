@@ -10,7 +10,7 @@ import { newsMock } from '@/shared/data/news.mock';
 export default function NewsSection() {
 	return (
 		<section
-			className='container mx-auto flex flex-col gap-8 px-4'
+			className='container mx-auto flex flex-col gap-4 md:gap-8 px-4'
 			aria-label='Новости'
 		>
 			<SectionBar
@@ -26,7 +26,7 @@ export default function NewsSection() {
 						}
 						className='gap-1 hover:bg-brand-primary/10'
 					>
-						Подписаться на рассылку
+						Подписаться <span className='hidden md:inline'>на рассылку</span>
 					</Button>
 				}
 			/>
