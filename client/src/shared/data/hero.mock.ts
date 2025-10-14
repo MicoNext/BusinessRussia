@@ -1,13 +1,11 @@
 import { ISliderMain } from '@/../../package/types/models/sliderMain.d';
-
-const MOCK_DOMAIN = 'https://deloros-perm.ru';
-
+import { API_MOCK } from './api.mock';
 export const sliderMainMock: ISliderMain[] = [
 	{
 		_id: '1',
 		createdAt: new Date(),
 		type: 'img',
-		url: `${MOCK_DOMAIN}/upload/iblock/1fb/mn1m5hpw3buor8bclb1cy6zqatfm50as/U3yQvzlYLmM.jpg`,
+		url: `${API_MOCK.domain}/upload/iblock/1fb/mn1m5hpw3buor8bclb1cy6zqatfm50as/U3yQvzlYLmM.jpg`,
 		title:
 			'<h1>Эксклюзивный контент, удобство, интерактивность - все в нашем Телеграм-канале</h1>',
 		overlay: true,
@@ -35,7 +33,7 @@ export const sliderMainMock: ISliderMain[] = [
 		_id: '3',
 		createdAt: new Date(),
 		type: 'img',
-		url: `${MOCK_DOMAIN}/upload/iblock/2da/ra9bjad3am1v2o3te6u2gj4erffmyssj/grgtsg.png`,
+		url: `${API_MOCK.domain}/upload/iblock/2da/ra9bjad3am1v2o3te6u2gj4erffmyssj/grgtsg.png`,
 		subtitle: 'В рамках пленарного заседания XX съезда «Деловой России»',
 		title:
 			'<h2>Президент России Владимир Путин дал ряд поручений по итогам встречи с членами «Деловой России»</h2>',
@@ -51,7 +49,7 @@ export const sliderMainMock: ISliderMain[] = [
 		_id: '4',
 		createdAt: new Date(),
 		type: 'video',
-		url: `${MOCK_DOMAIN}/upload/iblock/c98/kci1xde2vvs4y3hn151j241uid2y3jqt/Интервью Скрипников_Trimopi.mp4`,
+		url: `${API_MOCK.domain}/upload/iblock/c98/kci1xde2vvs4y3hn151j241uid2y3jqt/Интервью Скрипников_Trimopi.mp4`,
 		subtitle: 'Кейс',
 		title:
 			'<h2>«Благодаря «Деловой России» доходы предприятия выросли до 100 миллионов рублей»</h2>',

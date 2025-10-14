@@ -4,7 +4,7 @@ interface ISectionBarProps {
 	leftSection?: React.ReactNode;
 	middleSection?: React.ReactNode;
 	rightSection?: React.ReactNode;
-	Element: 'header' | 'div' | 'section' | 'nav';
+	Element?: 'header' | 'div' | 'section' | 'nav';
 	className?: string;
 	ariaLabel?: string;
 }
@@ -13,7 +13,7 @@ export function SectionBar({
 	leftSection,
 	middleSection,
 	rightSection,
-	Element,
+	Element = 'header',
 	className,
 	ariaLabel,
 }: ISectionBarProps) {
