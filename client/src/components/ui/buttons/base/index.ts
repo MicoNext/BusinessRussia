@@ -5,5 +5,10 @@ export type {
 	IButtonProps,
 	IAnchorButtonProps,
 	ILinkButtonProps,
+	IIconButtonProps,
 } from './buttons.interfaces';
-export type { TButtonSize, TButtonVariant } from './buttons.tokens';
+export type {
+	TButtonSize,
+	TSquareButtonSize,
+	TButtonVariant,
+} from './buttons.tokens';

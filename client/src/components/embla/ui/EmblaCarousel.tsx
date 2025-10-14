@@ -76,12 +76,12 @@ const EmblaCarousel: React.FC<PropType> = props => {
 						<PrevButton
 							onClick={onPrevButtonClick}
 							disabled={prevBtnDisabled}
-							className='embla__arrow bg-white border border-gray-200 rounded-full p-2 shadow transition hover:bg-brand-primary hover:text-white disabled:opacity-40 disabled:cursor-not-allowed'
+							className='embla__arrow items-center justify-center bg-white border border-gray-200 rounded-full shadow transition hover:bg-brand-primary hover:text-white disabled:opacity-40 disabled:cursor-not-allowed'
 						/>
 						<NextButton
 							onClick={onNextButtonClick}
 							disabled={nextBtnDisabled}
-							className='embla__arrow bg-white border border-gray-200 rounded-full p-2 shadow transition hover:bg-brand-primary hover:text-white disabled:opacity-40 disabled:cursor-not-allowed'
+							className='embla__arrow items-center justify-center bg-white border border-gray-200 rounded-full shadow transition hover:bg-brand-primary hover:text-white disabled:opacity-40 disabled:cursor-not-allowed'
 						/>
 					</div>
 
