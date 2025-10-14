@@ -8,7 +8,7 @@ function Menu() {
 		<nav
 			id='site-navigation'
 			aria-label='Основная навигация'
-			className='relative flex min-h-12 px-4'
+			className='relative hidden md:flex min-h-12 px-4'
 		>
 			<ul className='flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2'>
 				{MENU.map(item =>
