@@ -3,7 +3,7 @@ import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline';
 import { Button } from '@/components/ui/buttons';
 import { MailCheck } from 'lucide-react';
-import { ProjectSlider } from './ProjectSlider';
+// import { ProjectSlider } from './ProjectSlider';
 
 import { projectsMock } from '@/shared/data/projects.mock';
 
@@ -30,7 +30,7 @@ export default function ProjectsSection() {
 					</Button>
 				}
 			/>
-			<ProjectSlider items={projectsMock} />
+			{/* <ProjectSlider items={projectsMock} /> */}
 		</section>
 	);
 }
