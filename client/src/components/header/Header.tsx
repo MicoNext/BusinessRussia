@@ -1,6 +1,4 @@
 import Logo from '@/components/ui/Logo';
-import Link from 'next/link';
-import { Button } from '@/components/ui/buttons';
 import JoinButton from './ui/JoinButton';
 import PayFeeButton from './ui/PayFeeButton';
 import SearchButton from './ui/SearchButton';
@@ -21,7 +19,7 @@ export default function Header({ type, hiddenTitile }: HeaderProps) {
 			<div className='container mx-auto px-4'>
 				<div
 					className='flex items-center justify-between h-16'
-					aria-label='Top bar'
+					aria-label='Верхняя панель'
 				>
 					<div className='flex items-center gap-3'>
 						<Logo />
@@ -31,7 +29,7 @@ export default function Header({ type, hiddenTitile }: HeaderProps) {
 					<div className='hidden sm:flex items-center gap-4'>
 						<div
 							className='flex items-center gap-2'
-							aria-label='Quick actions'
+							aria-label='Быстрые действия'
 						>
 							<JoinButton />
 							<PayFeeButton />

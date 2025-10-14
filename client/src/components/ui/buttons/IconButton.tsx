@@ -15,24 +15,26 @@ const baseSizes: Record<'sm' | 'md' | 'lg', string> = {
 	lg: 'w-12 h-12',
 };
 
-export const IconButton: React.FC<IconButtonProps> = ({
+export function IconButton({
 	icon,
 	className,
 	size = 'md',
 	disabled,
 	...rest
-}) => (
-	<button
-		type='button'
-		className={clsx(
-			'inline-flex items-center justify-center rounded-full transition active:translate-y-[1px]',
-			baseSizes[size],
-			'bg-white border border-gray-200 shadow hover:bg-brand-primary hover:text-white disabled:opacity-40 disabled:cursor-not-allowed',
-			className
-		)}
-		disabled={disabled}
-		{...rest}
-	>
-		{icon}
-	</button>
-);
+}: IconButtonProps) {
+	return (
+		<button
+			type='button'
+			className={clsx(
+				'inline-flex items-center justify-center rounded-full transition active:translate-y-[1px]',
+				baseSizes[size],
+				'bg-white border border-gray-200 shadow hover:bg-brand-primary hover:text-white disabled:opacity-40 disabled:cursor-not-allowed',
+				className
+			)}
+			disabled={disabled}
+			{...rest}
+		>
+			{icon}
+		</button>
+	);
+}

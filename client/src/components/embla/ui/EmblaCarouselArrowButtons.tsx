@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { EmblaCarouselType } from 'embla-carousel';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { IconButton } from '@/components/ui/buttons/IconButton';
+import { IconButton } from '@/components/ui/buttons';
 
 type UsePrevNextButtonsType = {
 	prevBtnDisabled: boolean;
