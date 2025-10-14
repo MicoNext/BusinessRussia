@@ -1,7 +1,7 @@
 export interface IHeadlineProps {
 	title?: string;
-	titleHtml?: string; // when title contains HTML
-	titleNode?: React.ReactNode; // fully custom title node
+	titleHtml?: string;
+	titleNode?: React.ReactNode;
 	subtitle?: string;
 	description?: string;
 	order?: 1 | 2 | 3 | 4 | 5 | 6;

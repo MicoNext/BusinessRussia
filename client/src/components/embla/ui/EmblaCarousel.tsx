@@ -91,10 +91,10 @@ const EmblaCarousel: React.FC<PropType> = props => {
 								key={index}
 								onClick={() => onDotButtonClick(index)}
 								className={
-									'embla__dot w-3 h-3 rounded-full transition-all duration-200 cursor-pointer border-2 border-transparent ' +
+									'embla__dot h-1 rounded-full transition-all duration-200 cursor-pointer border-2 border-transparent ' +
 									(index === selectedIndex
-										? 'bg-brand-primary border-brand-primary scale-125'
-										: 'bg-gray-300 hover:bg-brand-primary/60')
+										? 'bg-brand-primary border-brand-primary scale-125 w-6'
+										: 'bg-gray-300 hover:bg-brand-primary/60 w-4')
 								}
 								aria-label={`Перейти на слайд ${index + 1}`}
 							/>
