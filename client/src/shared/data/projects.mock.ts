@@ -7,7 +7,6 @@ export const projectsMock: IProject[] = [
 		slug: 'predlozhit-invest-proekt',
 		url: '/projects/',
 		createdAt: new Date('2025-10-14T00:00:00Z'),
-		header: { title: 'Предложить свой инвестиционный проект' },
 		media: {
 			imagesUrl: [
 				`${API_MOCK.domain}/upload/iblock/4dd/4dd7ddacb909a7c6e9854952e82b09d1.png`,
@@ -24,7 +23,6 @@ export const projectsMock: IProject[] = [
 		slug: 'stat-partnerom',
 		url: 'https://deloros-perm.ru/organization/partners/',
 		createdAt: new Date('2025-10-13T00:00:00Z'),
-		header: { title: 'Стать партнером' },
 		media: {
 			imagesUrl: [
 				`${API_MOCK.domain}/upload/iblock/be3/be373072a5f68d560de8448da19bb7ae.png`,
@@ -41,7 +39,6 @@ export const projectsMock: IProject[] = [
 		slug: 'podat-anons',
 		url: 'https://docs.google.com/forms/d/e/1FAIpQLScvLoeWKutwsQkZahg0dgiEb_WBlJQt5JZlU_tcEBJXNOVeKQ/viewform',
 		createdAt: new Date('2025-10-11T00:00:00Z'),
-		header: { title: 'Подать анонс' },
 		media: {
 			imagesUrl: [
 				`${API_MOCK.domain}/upload/iblock/9ee/9ee3779146f59815bf661d97d58545ff.png`,
@@ -58,9 +55,6 @@ export const projectsMock: IProject[] = [
 		slug: 'prisoedinyaytes',
 		url: 'https://deloros-perm.ru/organization/kak-vstupit/',
 		createdAt: new Date('2025-10-10T00:00:00Z'),
-		header: {
-			title: 'Присоединяйтесь к крупнейшему сообществу предпринимателей',
-		},
 		media: {
 			imagesUrl: [
 				`${API_MOCK.domain}/upload/iblock/e1c/e1c790588ceb33d0318c162daaef5fd2.png`,
@@ -78,7 +72,6 @@ export const projectsMock: IProject[] = [
 		slug: 'voyti-v-sovet',
 		url: 'https://deloros-perm.ru/boards/',
 		createdAt: new Date('2025-10-09T00:00:00Z'),
-		header: { title: 'Войти в совет' },
 		media: {
 			imagesUrl: [
 				`${API_MOCK.domain}/upload/iblock/891/89144ebafb1f9dfccd82660194fd715e.png`,
@@ -95,7 +88,6 @@ export const projectsMock: IProject[] = [
 		slug: 'poluchit-lgotnoe-finansirovanie',
 		url: 'https://deloros-perm.ru/services/obshchie-uslugi/finansovyy-ekonomicheskiy-audit/',
 		createdAt: new Date('2025-10-08T00:00:00Z'),
-		header: { title: 'Получить льготное финансирование' },
 		media: {
 			imagesUrl: [
 				`${API_MOCK.domain}/upload/iblock/179/179aa1553d0b536559ca9c0c46cec26e.png`,
@@ -112,7 +104,6 @@ export const projectsMock: IProject[] = [
 		slug: 'zakazat-meropriyatie',
 		url: 'https://docs.google.com/forms/d/e/1FAIpQLSfV_fcpd6Adr6XcB7OU-9RhZp8M1l56rUqBA73h56E2pfgSJA/viewform',
 		createdAt: new Date('2025-10-07T00:00:00Z'),
-		header: { title: 'Заказать мероприятие' },
 		media: {
 			imagesUrl: [
 				`${API_MOCK.domain}/upload/iblock/1c3/photo_2021-11-23_18-21-39.jpg`,
@@ -130,7 +121,6 @@ export const projectsMock: IProject[] = [
 		slug: 'servisy',
 		url: 'https://deloros-perm.ru/services/',
 		createdAt: new Date('2025-10-06T00:00:00Z'),
-		header: { title: 'Сервисы' },
 		media: {
 			imagesUrl: [
 				`${API_MOCK.domain}/upload/iblock/a77/a77bb61c485a71a8cdd715a17e3cbb3a.png`,

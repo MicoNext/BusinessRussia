@@ -25,7 +25,7 @@ export function NewsGrid({ items }: { items: INews[] }) {
 						link={item.slug}
 						image={item.media.imagesUrl[0]}
 						subtitle={item.category}
-						title={item.header.title}
+						title={item.title}
 						time={item.createdAt}
 						classNames={{
 							container: clsx(

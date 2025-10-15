@@ -3,9 +3,6 @@ export interface IProject {
 	createdAt: Date;
 	slug: string;
 	url: string;
-	header: {
-		title: string;
-	};
 	media: {
 		imagesUrl: string[];
 		videoUrl: string[];

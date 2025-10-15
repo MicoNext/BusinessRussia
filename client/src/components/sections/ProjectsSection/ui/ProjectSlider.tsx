@@ -32,17 +32,17 @@ export function ProjectSlider({
 				ref={emblaRef}
 			>
 				<div className='embla__container flex gap-4 md:gap-6'>
-					{items.map(p => (
+					{items.map(project => (
 						<div
-							key={p._id}
+							key={project._id}
 							className='embla__slide basis-full md:basis-1/2 lg:basis-1/3 shrink-0 min-w-0'
 						>
 							<Card
-								link={p.url}
-								image={p.media.imagesUrl[0]}
-								subtitle={p.category}
-								title={p.header.title}
-								time={p.createdAt}
+								link={project.url}
+								image={project.media.imagesUrl[0]}
+								subtitle={project.category}
+								title={project.title}
+								time={project.createdAt}
 								direction='column'
 							/>
 						</div>
