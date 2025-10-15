@@ -1,9 +1,12 @@
 class Pages {
 	HOME = '/';
 	NEWS = '/news';
+	EVENTS = '/events';
+	PROJECTS = '/projects';
+	CONTACTS = '/contacts';
 
-	NEWSSINGLE(id: string) {
-		return `${this.NEWS}/${id}`;
+	SINGLE(category: string, id: string) {
+		return `${category}/${id}`;
 	}
 }
 

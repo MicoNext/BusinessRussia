@@ -9,10 +9,12 @@ const OPTIONS: EmblaOptionsType = { align: 'start', loop: true };
 function HeroSection() {
 	return (
 		<section className='w-full'>
-			<HeroSlider
-				slides={sliderMainMock}
-				options={OPTIONS}
-			/>
+			<div className=''>
+				<HeroSlider
+					slides={sliderMainMock}
+					options={OPTIONS}
+				/>
+			</div>
 		</section>
 	);
 }

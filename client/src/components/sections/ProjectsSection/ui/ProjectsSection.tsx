@@ -15,32 +15,34 @@ export default function ProjectsSection() {
 	);
 	return (
 		<section
-			className='container mx-auto flex flex-col gap-4 md:gap-8 px-4 md:px-8 lg:px-12'
+			className='px-4 md:px-8 lg:px-12'
 			aria-label='Проекты'
 		>
-			<SectionBar
-				leftSection={<Headline title='Проекты' />}
-				rightSection={
-					<div className='flex gap-2'>
-						<IconButton
-							onClick={() => emblaApi?.scrollPrev()}
-							aria-label='Предыдущие проекты'
-							icon={<ChevronLeft className='w-5 h-5' />}
-							className='items-center justify-center bg-white border border-gray-200 rounded-full shadow hover:bg-brand-primary hover:text-white'
-						/>
-						<IconButton
-							onClick={() => emblaApi?.scrollNext()}
-							aria-label='Следующие проекты'
-							icon={<ChevronRight className='w-5 h-5' />}
-							className='items-center justify-center bg-white border border-gray-200 rounded-full shadow hover:bg-brand-primary hover:text-white'
-						/>
-					</div>
-				}
-			/>
-			<ProjectSlider
-				items={projectsMock.slice(0, 9)}
-				onApi={api => setEmblaApi(api)}
-			/>
+			<div className='container mx-auto flex flex-col gap-4 md:gap-8 '>
+				<SectionBar
+					leftSection={<Headline title='Проекты' />}
+					rightSection={
+						<div className='flex gap-2'>
+							<IconButton
+								onClick={() => emblaApi?.scrollPrev()}
+								aria-label='Предыдущие проекты'
+								icon={<ChevronLeft className='w-5 h-5' />}
+								className='items-center justify-center bg-white border border-gray-200 rounded-full shadow hover:bg-brand-primary hover:text-white'
+							/>
+							<IconButton
+								onClick={() => emblaApi?.scrollNext()}
+								aria-label='Следующие проекты'
+								icon={<ChevronRight className='w-5 h-5' />}
+								className='items-center justify-center bg-white border border-gray-200 rounded-full shadow hover:bg-brand-primary hover:text-white'
+							/>
+						</div>
+					}
+				/>
+				<ProjectSlider
+					items={projectsMock.slice(0, 9)}
+					onApi={api => setEmblaApi(api)}
+				/>
+			</div>
 		</section>
 	);
 }

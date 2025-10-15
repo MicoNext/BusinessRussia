@@ -46,7 +46,7 @@ export function HeroSlider({
 	} = usePrevNextButtons(emblaApi, onNavButtonClick);
 
 	return (
-		<section className='embla relative w-full mx-auto flex flex-col gap-4'>
+		<div className='embla relative w-full mx-auto flex flex-col gap-4'>
 			<div
 				className='embla__viewport overflow-hidden'
 				ref={emblaRef}
@@ -63,7 +63,7 @@ export function HeroSlider({
 
 			<div className='absolute px-4 md:px-8 lg:px-12 bottom-6 w-full flex justify-center'>
 				<div className='embla__controls relative container flex flex-col justify-end items-center gap-4'>
-					<div className='embla__buttons flex gap-2 absolute right-0 md:right-8 lg:right-12 '>
+					<div className='embla__buttons flex gap-2 absolute right-0'>
 						<PrevButton
 							onClick={onPrevButtonClick}
 							disabled={prevBtnDisabled}
@@ -92,6 +92,6 @@ export function HeroSlider({
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
 	);
 }

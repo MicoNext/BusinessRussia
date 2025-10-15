@@ -12,11 +12,11 @@ interface HeaderProps {
 export default function Header({ type, hiddenTitile }: HeaderProps) {
 	return (
 		<header
-			className='border-b border-gray-200 text-brand-grayText'
+			className='border-b border-gray-200 text-brand-grayText px-4 md:px-8 lg:px-12'
 			role='banner'
 		>
 			<SkipToContent />
-			<div className='container mx-auto px-4'>
+			<div className='container mx-auto'>
 				<div
 					className='flex items-center justify-between h-16 gap-3'
 					aria-label='Верхняя панель'
