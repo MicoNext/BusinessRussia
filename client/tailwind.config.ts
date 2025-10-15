@@ -18,6 +18,7 @@ export default {
 					primary: '#2b7de0',
 					accent: '#e5020b',
 					grayText: '#333333',
+					grayBg: '#2f3338',
 				},
 			},
 		},

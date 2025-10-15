@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
+import clsx from 'clsx';
 
 interface IPropType {
 	options?: EmblaOptionsType;
@@ -9,26 +12,30 @@ interface IPropType {
 	className?: string;
 	viewportClassName?: string;
 	containerClassName?: string;
+
+	classNames?: {
+		root?: string;
+		container?: string;
+		viewport?: string;
+	};
 }
 
 function EmblaCarousel({
 	options,
 	plugins = [],
 	children,
-	className,
-	viewportClassName = 'embla__viewport overflow-hidden',
-	containerClassName = 'embla__container flex',
+	classNames,
 }: IPropType) {
 	const [emblaRef] = useEmblaCarousel(options, plugins);
 	return (
-		<section className={className}>
+		<div className={clsx(classNames?.root)}>
 			<div
-				className={viewportClassName}
+				className={clsx(classNames?.viewport)}
 				ref={emblaRef}
 			>
-				<div className={containerClassName}>{children}</div>
+				<div className={clsx(classNames?.container)}>{children}</div>
 			</div>
-		</section>
+		</div>
 	);
 }
 

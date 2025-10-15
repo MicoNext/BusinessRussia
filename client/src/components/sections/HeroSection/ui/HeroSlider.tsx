@@ -3,14 +3,10 @@
 import Autoplay from 'embla-carousel-autoplay';
 import { EmblaOptionsType } from 'embla-carousel';
 import { ISliderMain } from '@/../../package/types/models/sliderMain.d';
-import { EmblaSlide } from '@/components/EmblaCarousel/ui/EmblaSlide';
-import { DotButton } from '@/components/EmblaCarousel/ui/EmblaCarouselDotButton';
-import {
-	PrevButton,
-	NextButton,
-} from '@/components/EmblaCarousel/ui/EmblaCarouselArrowButtons';
-import { useDotButton } from '@/components/EmblaCarousel/hooks/useDotButton';
-import { usePrevNextButtons } from '@/components/EmblaCarousel/hooks/usePrevNextButtons';
+import { DotButton } from '@/components/EmblaCarousel';
+import { PrevButton, NextButton } from '@/components/EmblaCarousel';
+import { useDotButton } from '@/components/EmblaCarousel';
+import { usePrevNextButtons } from '@/components/EmblaCarousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import React, { useCallback } from 'react';
 import { HeroSlide } from './HeroSlide';

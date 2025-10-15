@@ -41,17 +41,17 @@ export function Card({
 				classNames?.container
 			)}
 		>
-			<figure
-				className={clsx(
-					isRow ? 'relative w-1/2 min-h-[180px]' : 'relative aspect-[4/3]',
-					classNames?.image
-				)}
-			>
-				<Link
-					href={link}
-					aria-label={title}
+			{image && (
+				<figure
+					className={clsx(
+						isRow ? 'relative w-1/2 min-h-[180px]' : 'relative aspect-[4/3]',
+						classNames?.image
+					)}
 				>
-					{image && (
+					<Link
+						href={link}
+						aria-label={title}
+					>
 						<Image
 							src={image}
 							alt={title || 'изображение'}
@@ -59,9 +59,10 @@ export function Card({
 							className='object-cover rounded-2xl'
 							sizes={'(max-width: 768px) 50vw, 33vw'}
 						/>
-					)}
-				</Link>
-			</figure>
+					</Link>
+				</figure>
+			)}
+
 			<div
 				className={clsx(
 					`p-4 md:p-7 flex flex-col items-start justify-between gap-2 flex-1`,
