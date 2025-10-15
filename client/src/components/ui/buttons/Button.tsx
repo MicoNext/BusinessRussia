@@ -14,7 +14,6 @@ export function Button({
 	const classes = composeClasses({ className, size, variant, fullWidth });
 	return (
 		<button
-			type={rest.type ?? 'button'}
 			{...rest}
 			className={classes}
 		>
