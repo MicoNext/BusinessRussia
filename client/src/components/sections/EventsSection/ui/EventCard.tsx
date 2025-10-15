@@ -44,20 +44,26 @@ export const EventCard: React.FC<EventCardProps> = ({ event, classNames }) => {
 		>
 			<Link
 				href={href}
-				className='absolute inset-0'
+				className='absolute inset-0 z-10'
 				aria-label={title}
 			/>
-			<div className='flex flex-col gap-3 p-4'>
-				<div className='flex items-center gap-2'>
-					<span className='inline-flex items-center rounded-md bg-brand-primary/10 px-2 py-1 text-xs font-medium text-brand-primary'>
-						{formatDateRange(startDate, endDate)}
-					</span>
-					{time ? <span className='text-xs text-gray-500'>{time}</span> : null}
+			<div className='flex flex-col justify-between gap-3 p-4 h-full'>
+				<div className='flex flex-col gap-2'>
+					<div className='flex items-center gap-2'>
+						<span className='inline-flex items-center rounded-md bg-brand-primary/10 px-2 py-1 text-xs font-medium text-brand-primary'>
+							{formatDateRange(startDate, endDate)}
+						</span>
+						{time ? (
+							<span className='text-xs text-gray-500'>{time}</span>
+						) : null}
+					</div>
+					<h3 className='text-base font-semibold text-gray-900 group-hover:text-brand-primary'>
+						{title}
+					</h3>
+					{location ? (
+						<p className='text-sm text-gray-600'>{location}</p>
+					) : null}
 				</div>
-				<h3 className='text-base font-semibold text-gray-900 group-hover:text-brand-primary'>
-					{title}
-				</h3>
-				{location ? <p className='text-sm text-gray-600'>{location}</p> : null}
 
 				<UnstyledButton
 					classNames={{
