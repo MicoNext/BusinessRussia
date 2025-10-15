@@ -3,7 +3,6 @@ import { IHeadlineProps, Title } from './base';
 import {
 	composeDescriptionClasses,
 	composeSubtitleClasses,
-	composeTitleClasses,
 } from './base/headlineBase';
 
 export function Headline({

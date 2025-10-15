@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { Headline } from '@/components/ui/Headline';
 import clsx from 'clsx';
+import { Badge } from '@/components/ui/Badge';
 
 interface ICardProps {
 	link: string;
@@ -36,7 +37,7 @@ export function Card({
 			className={clsx(
 				`relative flex ${
 					isRow ? 'flex-row' : 'flex-col'
-				} border rounded-lg overflow-hidden h-full bg-white hover:shadow-md hover:translate-y-[-2px] transition-all duration-300`,
+				} border rounded-2xl overflow-hidden h-full bg-neutral-50 hover:shadow-md hover:translate-y-[-2px] transition-all duration-300`,
 				classNames?.container
 			)}
 		>
@@ -55,7 +56,7 @@ export function Card({
 							src={image}
 							alt={title || 'изображение'}
 							fill
-							className='object-cover rounded-lg'
+							className='object-cover rounded-2xl'
 							sizes={'(max-width: 768px) 50vw, 33vw'}
 						/>
 					)}
@@ -63,7 +64,7 @@ export function Card({
 			</figure>
 			<div
 				className={clsx(
-					`p-4 flex flex-col justify-between gap-2 flex-1`,
+					`p-4 md:p-7 flex flex-col items-start justify-between gap-2 flex-1`,
 					classNames?.textbox
 				)}
 			>
@@ -72,7 +73,7 @@ export function Card({
 					titleNode={
 						<h3
 							className={clsx(
-								'text-sm font-medium leading-5',
+								'text-lg font-medium leading-snug line-clamp-2',
 								classNames?.title
 							)}
 						>
@@ -84,26 +85,33 @@ export function Card({
 						</h3>
 					}
 					order={3}
+					ariaLabel={title}
 					classNames={{
+						container: clsx('flex flex-col gap-2'),
 						subtitle: clsx(
 							'text-xs tracking-wide text-brand-primary',
 							classNames?.subtitle
 						),
-						title: clsx('text-sm font-medium leading-5', classNames?.title),
+						title: clsx('text-sm font-medium leading-5'),
 					}}
 				/>
 
 				{time && (
-					<time
-						dateTime={new Date(time).toISOString()}
-						className='text-xs text-gray-500'
+					<Badge
+						size='sm'
+						radius='sm'
 					>
-						{new Date(time).toLocaleDateString('ru-RU', {
-							day: '2-digit',
-							month: 'long',
-							year: 'numeric',
-						})}
-					</time>
+						<time
+							dateTime={new Date(time).toISOString()}
+							className='text-xs text-gray-500'
+						>
+							{new Date(time).toLocaleDateString('ru-RU', {
+								day: '2-digit',
+								month: 'long',
+								year: 'numeric',
+							})}
+						</time>
+					</Badge>
 				)}
 			</div>
 		</article>

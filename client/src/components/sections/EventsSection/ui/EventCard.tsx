@@ -4,6 +4,7 @@ import type { IEvent } from '@/../../package/types/models/events';
 import clsx from 'clsx';
 import { ArrowRight } from 'lucide-react';
 import { LinkButton, UnstyledButton } from '@/components/ui/buttons';
+import { Badge } from '@/components/ui/Badge';
 
 interface EventCardProps {
 	event: IEvent;
@@ -50,9 +51,12 @@ export const EventCard: React.FC<EventCardProps> = ({ event, classNames }) => {
 			<div className='flex flex-col justify-between gap-3 p-4 h-full'>
 				<div className='flex flex-col gap-2'>
 					<div className='flex items-center gap-2'>
-						<span className='inline-flex items-center rounded-md bg-brand-primary/10 px-2 py-1 text-xs font-medium text-brand-primary'>
+						<Badge
+							size='sm'
+							radius='sm'
+						>
 							{formatDateRange(startDate, endDate)}
-						</span>
+						</Badge>
 						{time ? (
 							<span className='text-xs text-gray-500'>{time}</span>
 						) : null}
