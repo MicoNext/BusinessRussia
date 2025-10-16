@@ -1,3 +1,6 @@
+import { SOCIAL_MEDIA } from '@/constants/socialMedia';
+import { SocialMedia } from '../SocialMedia';
+
 const currentYear = new Date().getFullYear();
 
 export default function Footer() {
@@ -10,22 +13,27 @@ export default function Footer() {
 							Оплата происходит через ПАО СБЕРБАНК с использованием банковских
 							карт следующих платежных систем: МИР, Visa, Mastercard.
 						</p>
-
-						<address className='not-italic'>
-							<div>
-								<a
-									href='mailto:example@deloros.ru'
-									className='text-sm hover:underline'
-								>
-									example@deloros.ru
-								</a>
-							</div>
-							<div className='text-sm'>
-								г. Черкесск, ул. Партизанская, 20
-								<br />
-								офис 406, БЦ «Кредо»
-							</div>
-						</address>
+						<div className='flex flex-col gap-4'>
+							<address className='not-italic'>
+								<div>
+									<a
+										href='mailto:example@deloros.ru'
+										className='text-sm hover:underline'
+									>
+										example@deloros.ru
+									</a>
+								</div>
+								<div className='text-sm'>
+									г. Черкесск, ул. Партизанская, 20
+									<br />
+									офис 406, БЦ «Кредо»
+								</div>
+							</address>
+							<SocialMedia
+								items={SOCIAL_MEDIA}
+								className='text-[#08041a]'
+							/>
+						</div>
 					</div>
 
 					<div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-16'>
