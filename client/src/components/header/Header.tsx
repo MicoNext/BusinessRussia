@@ -3,6 +3,7 @@ import JoinButton from './ui/JoinButton';
 import PayFeeButton from './ui/PayFeeButton';
 import SearchButton from './ui/SearchButton';
 import Menu from './ui/Menu';
+import { HeaderSidebar } from './ui/HeaderSidebar';
 
 interface HeaderProps {
 	type?: 'help';
@@ -15,13 +16,13 @@ export default function Header({ type, hiddenTitile }: HeaderProps) {
 			className='border-b border-gray-200 text-brand-grayText px-4 md:px-8 lg:px-12'
 			role='banner'
 		>
-			<SkipToContent />
 			<div className='container mx-auto'>
 				<div
 					className='flex items-center justify-between h-16 gap-3'
 					aria-label='Верхняя панель'
 				>
 					<div className='flex items-center gap-3'>
+						<HeaderSidebar />
 						<Logo />
 					</div>
 
