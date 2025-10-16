@@ -201,7 +201,7 @@ export default function Footer() {
 			</section>
 
 			<section>
-				<div className='container mx-auto px-4 md:px-8 lg:px-12 py-10 flex items-center justify-between text-xs text-white/60'>
+				<div className='container mx-auto py-10 flex items-center justify-between text-xs text-white/60'>
 					<span>© {currentYear} Деловая Россия — Карачаево-Черкессия</span>
 					<span>Все права защищены</span>
 				</div>
