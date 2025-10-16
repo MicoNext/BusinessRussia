@@ -3,10 +3,70 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;700&display=swap');
 
-body {
-  font-family: 'Poppins', sans-serif;
+:root {
+	--font-sans: Inter, system-ui, -apple-system, 'Segoe UI', Roboto,
+		'Helvetica Neue', Arial, sans-serif;
+	--emoji-fallback: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+html {
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	box-sizing: border-box;
+}
+
+html,
+body,
+#__next {
+	height: 100%;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+body {
+	font-family: var(--font-sans);
+}
+
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Playfair Display', serif;
+} */
+
+*::-webkit-scrollbar {
+	height: 10px;
+	width: 10px;
+}
+*::-webkit-scrollbar-track {
+	border-radius: 5px;
+	background-color: #dfe9eb;
+}
+
+*::-webkit-scrollbar-track:hover {
+	background-color: #dfe9eb;
+}
+
+*::-webkit-scrollbar-track:active {
+	background-color: #dfe9eb;
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background-color: #2f3338;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background-color: #2f3338;
+}
+
+*::-webkit-scrollbar-thumb:active {
+	background-color: #2f3338;
 }
