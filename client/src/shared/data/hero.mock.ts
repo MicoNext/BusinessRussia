@@ -12,7 +12,7 @@ export const sliderMainMock: ISliderMain[] = [
 		tags: [],
 		sourse: {
 			buttonName: 'Подробнее',
-			url: 'https://deloros-perm.ru/news/regional-office/eksklyuzivnyy-konten/',
+			url: '/news/regional-office/eksklyuzivnyy-konten/',
 		},
 	},
 	{
@@ -26,7 +26,7 @@ export const sliderMainMock: ISliderMain[] = [
 		tags: [],
 		sourse: {
 			buttonName: 'Подробнее',
-			url: 'https://deloros-perm.ru/news/regional-office/permskoe-otdelenie-dfhhh/',
+			url: '/news/regional-office/permskoe-otdelenie-dfhhh/',
 		},
 	},
 	{
@@ -41,7 +41,7 @@ export const sliderMainMock: ISliderMain[] = [
 		tags: [],
 		sourse: {
 			buttonName: 'Подробнее',
-			url: 'https://deloros-perm.ru/news/partners/prezident-utverdil-p/',
+			url: '/news/partners/prezident-utverdil-p/',
 		},
 		text: 'В рамках пленарного заседания XX съезда «Деловой России»',
 	},
@@ -58,7 +58,7 @@ export const sliderMainMock: ISliderMain[] = [
 		overlay: true,
 		sourse: {
 			buttonName: 'Подробнее',
-			url: 'https://deloros-perm.ru/news/regional-office/blagodarya-delovoy-r/',
+			url: '/news/regional-office/blagodarya-delovoy-r/',
 		},
 	},
 ];

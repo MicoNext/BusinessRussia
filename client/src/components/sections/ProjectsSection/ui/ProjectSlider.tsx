@@ -17,7 +17,7 @@ export function ProjectSlider({
 }) {
 	const [emblaRef, emblaApi] = useEmblaCarousel({
 		align: 'start',
-		loop: true,
+		loop: false,
 		...options,
 	});
 

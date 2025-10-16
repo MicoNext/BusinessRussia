@@ -9,6 +9,7 @@ export function ContactusPay() {
 				variant='light'
 				title='Оплатить взнос'
 				description='Выбрать систему оплаты'
+				order={4}
 				classNames={{
 					container: 'flex flex-col gap-2',
 					subtitle: 'text-white/80',
@@ -16,7 +17,7 @@ export function ContactusPay() {
 					description: 'text-white/80',
 				}}
 			/>
-			<div className='flex flex-wrap justify-between gap-4'>
+			<div className='flex-1 flex flex-wrap justify-between gap-4'>
 				<CardBase
 					head={
 						<h4 className='text-lg font-medium leading-snug line-clamp-2'>
@@ -30,7 +31,7 @@ export function ContactusPay() {
 						</div>
 					}
 					classNames={{
-						root: 'flex-1 min-w-[300px] min-h-[200px] bg-white/10 border border-white/10 rounded-2xl p-4',
+						root: 'flex-1 bg-white/10 border border-white/10 rounded-2xl p-4 max-h-[160px] md:h-full',
 						container: 'flex-1 flex flex-col gap-2 justify-between',
 					}}
 				/>
@@ -47,7 +48,7 @@ export function ContactusPay() {
 						</div>
 					}
 					classNames={{
-						root: 'flex-1 flex min-w-[300px] min-h-[200px] bg-white/10 border border-white/10 rounded-2xl p-4',
+						root: 'flex-1 flex bg-white/10 border border-white/10 rounded-2xl p-4 max-h-[160px] md:h-full',
 						container: 'flex-1 flex flex-col gap-2 justify-between ',
 					}}
 				/>
