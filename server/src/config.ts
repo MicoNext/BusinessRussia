@@ -9,4 +9,7 @@ export default {
     PORT: Number(valueOrError(process.env.PORT)),
     MONGODB_URI: valueOrError(process.env.MONGODB_URI),
     DB_NAME: valueOrError(process.env.MONGO_DB_NAME),
+    JWT_SECRET: valueOrError(process.env.JWT_SECRET),
+    ADMIN_LOGIN: valueOrError(process.env.ADMIN_LOGIN),
+    ADMIN_PASSWORD: valueOrError(process.env.ADMIN_PASSWORD),
 }
