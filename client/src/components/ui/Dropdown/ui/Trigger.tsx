@@ -1,7 +1,7 @@
 'use client';
 
 import { cloneElement, isValidElement, MouseEventHandler } from 'react';
-import { useDropdownContext } from './DropdownContext';
+import { useDropdownContext } from '../context/DropdownContext';
 import type { AsChildProps } from '../types';
 
 export function Trigger({ asChild, children }: AsChildProps) {
@@ -15,25 +15,34 @@ export function Trigger({ asChild, children }: AsChildProps) {
 		closeTimerRef,
 	} = useDropdownContext();
 
-	const handleMouseEnter: React.MouseEventHandler = () => {
+	const handleMouseEnter = (e: React.MouseEvent<Element>) => {
+		const target = e.currentTarget;
+		if (target instanceof HTMLElement) triggerRef.current = target;
 		if (!openOnHover) return;
-		if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+		if (closeTimerRef.current != null)
+			window.clearTimeout(closeTimerRef.current);
 		openTimerRef.current = window.setTimeout(
 			() => setOpen(true),
 			hoverOpenDelay
 		);
 	};
 
-	const handleMouseLeave: React.MouseEventHandler = () => {
+	const handleMouseLeave = (e: React.MouseEvent<Element>) => {
+		const target = e.currentTarget;
+		if (target instanceof HTMLElement) triggerRef.current = target;
 		if (!openOnHover) return;
-		if (openTimerRef.current) window.clearTimeout(openTimerRef.current);
+		if (openTimerRef.current != null) window.clearTimeout(openTimerRef.current);
 		closeTimerRef.current = window.setTimeout(
 			() => setOpen(false),
 			hoverCloseDelay
 		);
 	};
 
-	const handleClick: MouseEventHandler = () => setOpen(true);
+	const handleClick = (e: React.MouseEvent<Element>) => {
+		const target = e.currentTarget;
+		if (target instanceof HTMLElement) triggerRef.current = target;
+		setOpen(true);
+	};
 
 	if (
 		asChild &&
@@ -41,7 +50,6 @@ export function Trigger({ asChild, children }: AsChildProps) {
 			onClick?: MouseEventHandler;
 			onMouseEnter?: React.MouseEventHandler;
 			onMouseLeave?: React.MouseEventHandler;
-			ref?: any;
 		}>(children)
 	) {
 		return cloneElement(children, {
@@ -57,13 +65,11 @@ export function Trigger({ asChild, children }: AsChildProps) {
 				children.props.onMouseLeave?.(e);
 				handleMouseLeave(e);
 			},
-			ref: triggerRef,
 		});
 	}
 
 	return (
 		<button
-			ref={triggerRef as any}
 			type='button'
 			onClick={handleClick}
 			onMouseEnter={handleMouseEnter}

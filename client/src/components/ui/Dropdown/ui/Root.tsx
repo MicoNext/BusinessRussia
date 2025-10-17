@@ -1,13 +1,18 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import {
 	DropdownContext,
 	useDropdownRefs,
 	useDropdownTimers,
 	type DropdownContextValue,
-} from './DropdownContext';
-import type { DropdownProps } from '../types';
+} from '@/components/ui/Dropdown/context/DropdownContext';
+import type { DropdownProps } from '@/components/ui/Dropdown/types';
+import {
+	useCloseOnOutsideClick,
+	useCloseOnEsc,
+	useControllableOpen,
+} from '@/components/ui/Dropdown/lib/hooks';
 
 export function Root({
 	children,
@@ -20,43 +25,24 @@ export function Root({
 	closeOnEsc = true,
 	closeOnClickOutside = true,
 }: DropdownProps) {
-	const isControlled = controlledOpen !== undefined;
-	const [uncontrolledOpen, setUncontrolledOpen] =
-		useState<boolean>(initialOpen);
-	const open = isControlled ? (controlledOpen as boolean) : uncontrolledOpen;
-	const setOpen = (next: boolean) => {
-		if (isControlled) return onOpenChange?.(next);
-		setUncontrolledOpen(next);
-	};
+	const { open, setOpen } = useControllableOpen({
+		controlledOpen,
+		onOpenChange,
+		initialOpen,
+	});
 
 	const { triggerRef, contentRef } = useDropdownRefs();
 	const { openTimerRef, closeTimerRef } = useDropdownTimers();
 
-	useEffect(() => {
-		if (!closeOnClickOutside) return;
-		function onDocClick(e: MouseEvent) {
-			const t = e.target as Node;
-			if (
-				triggerRef.current &&
-				!triggerRef.current.contains(t) &&
-				contentRef.current &&
-				!contentRef.current.contains(t)
-			) {
-				setOpen(false);
-			}
-		}
-		if (open) document.addEventListener('mousedown', onDocClick);
-		return () => document.removeEventListener('mousedown', onDocClick);
-	}, [open, closeOnClickOutside]);
+	useCloseOnOutsideClick({
+		enabled: closeOnClickOutside,
+		open,
+		setOpen,
+		triggerRef,
+		contentRef,
+	});
 
-	useEffect(() => {
-		if (!closeOnEsc || !open) return;
-		function onKey(e: KeyboardEvent) {
-			if (e.key === 'Escape') setOpen(false);
-		}
-		document.addEventListener('keydown', onKey);
-		return () => document.removeEventListener('keydown', onKey);
-	}, [open, closeOnEsc]);
+	useCloseOnEsc({ enabled: closeOnEsc, open, setOpen });
 
 	const value = useMemo<DropdownContextValue>(
 		() => ({
