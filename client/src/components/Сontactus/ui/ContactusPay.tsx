@@ -27,7 +27,7 @@ export function ContactusPay() {
 					content={
 						<div className='flex gap-2 align-center justify-between'>
 							<p className='align-center'>Оплата 1</p>
-							<Button variant='accent'>Перейти к оплате</Button>
+							<Button variant='primary'>Перейти к оплате</Button>
 						</div>
 					}
 					classNames={{
@@ -44,7 +44,7 @@ export function ContactusPay() {
 					content={
 						<div className='flex gap-2 justify-between'>
 							<p>Оплата 2</p>
-							<Button variant='accent'>Перейти к оплате</Button>
+							<Button variant='primary'>Перейти к оплате</Button>
 						</div>
 					}
 					classNames={{

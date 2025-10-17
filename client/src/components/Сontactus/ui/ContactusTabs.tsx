@@ -11,7 +11,7 @@ export function ContactusTabs({ activeTab, setActiveTab }: ContactusTabsProps) {
 		'border-brand-primary/30 bg-brand-primary  cursor-not-allowed';
 	const normalClasses = clsx(
 		'bg-white/10 border-white/40',
-		'hover:bg-brand-accent/30 hover:border-brand-accent/60'
+		'hover:bg-brand-primary/40 hover:border-brand-primary/90'
 	);
 	const buttonClassNames = {
 		general: clsx(

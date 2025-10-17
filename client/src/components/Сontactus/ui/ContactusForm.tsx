@@ -66,7 +66,7 @@ export function ContactusForm() {
 				</section>
 				<footer>
 					<Button
-						variant='accent'
+						variant='primary'
 						size='lg'
 						fullWidth
 						type='submit'
