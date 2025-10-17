@@ -13,6 +13,7 @@ export const MENU: MenuItem[] = [
 	{ label: 'Книга', href: '/projects/154' },
 	{
 		label: '«Деловая Россия»',
+		href: '/organization',
 		children: [
 			{ label: 'О «Деловой России»', href: '/organization/about' },
 			{ label: 'Лица РО', href: '/organization/team' },

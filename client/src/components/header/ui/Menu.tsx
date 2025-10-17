@@ -16,6 +16,7 @@ function Menu() {
 						<NavDropdown
 							key={item.label}
 							label={item.label}
+							parentHref={item.href ?? '#'}
 						>
 							{item.children.map(child => (
 								<DropdownLink

@@ -2,7 +2,6 @@ import { ArrowRight } from 'lucide-react';
 import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline';
 import { Button, LinkButton } from '@/components/ui/buttons';
-import { MailCheck } from 'lucide-react';
 import { NewsGrid } from './NewsGrid';
 
 import { newsMock } from '@/shared/data/news.mock';
@@ -14,23 +13,7 @@ export default function NewsSection() {
 			aria-label='Новости'
 		>
 			<div className='container mx-auto flex flex-col gap-4 md:gap-8'>
-				<SectionBar
-					leftSection={<Headline title='Новости' />}
-					rightSection={
-						<Button
-							variant='ghost'
-							leftSection={
-								<MailCheck
-									width={18}
-									height={18}
-								/>
-							}
-							className='gap-1 hover:bg-brand-primary/10'
-						>
-							Подписаться <span className='hidden md:inline'>на рассылку</span>
-						</Button>
-					}
-				/>
+				<SectionBar leftSection={<Headline title='Новости' />} />
 				<NewsGrid items={newsMock} />
 				<footer className='flex md:justify-end'>
 					<LinkButton

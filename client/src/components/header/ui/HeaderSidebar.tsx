@@ -20,11 +20,11 @@ export function HeaderSidebar() {
 			</Sidebar.Trigger>
 
 			<Sidebar.Portal>
-				<Sidebar.Overlay />
+				<Sidebar.Overlay className='animate-fade-in' />
 				<Sidebar.Content
 					side='left'
 					size='md'
-					className='flex flex-col'
+					className='flex flex-col animate-slide-in-left'
 				>
 					<Sidebar.Header>
 						<div className='flex items-center justify-between'>
