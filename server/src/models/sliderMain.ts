@@ -1,15 +1,15 @@
-import { Schema, model, Model, Document } from 'mongoose'
-import type {ISliderMain } from "../../../package/types/models/sliderMain"
+import { Schema, model, Model } from 'mongoose'
+import { SliderMainDocType } from './types'
 
-const sliderMainSchema = new Schema<ISliderMain & Document>({
+const sliderMainSchema = new Schema<SliderMainDocType>({
   createdAt: { type: Date, default: Date.now },
 })
 
-interface ICliderModel extends Model<ISliderMain & Document> {
+interface ICliderModel extends Model<SliderMainDocType> {
 }
 
 class SliderMainService {
-  public model = model<ISliderMain & Document, ICliderModel>('SliderMain', sliderMainSchema)
+  public model = model<SliderMainDocType, ICliderModel>('SliderMain', sliderMainSchema)
 }
 
 export const SliderMain = new SliderMainService().model

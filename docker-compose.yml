@@ -30,6 +30,9 @@ services:
       - PORT=6969
       - MONGODB_URI=mongodb://admin:password123@mongodb:27017/business_russia?authSource=admin
       - MONGO_DB_NAME=business_russia
+      - JWT_SECRET=JWT_SECRET
+      - ADMIN_LOGIN=login
+      - ADMIN_PASSWORD=password
     volumes:
       - ./server:/app
       - /app/node_modules

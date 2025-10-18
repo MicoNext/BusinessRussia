@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from "fastify"
-import { News } from "../../models/news"
 import { errorResponse, successResponse } from "../../package/response.utils"
-import { NewsDocType } from "../../models/types"
+import type { SliderMainDocType } from "../../models/types"
 import { paginate } from "../../package/paginate/paginate"
+import { SliderMain } from "../../models/sliderMain"
 
-class NewsController {
+class SliderMainController {
 public async GET(req: FastifyRequest<{ 
   Querystring: { 
     name?: string, 
@@ -20,7 +20,7 @@ public async GET(req: FastifyRequest<{
     const sortOptions = sort ? { createdAt: sort.createdAt } : { createdAt: -1 }
 
     const result = await paginate(
-      News,
+      SliderMain,
       filter,
       sortOptions, 
       { page, limit }
@@ -35,17 +35,17 @@ public async GET(req: FastifyRequest<{
   }
 }
 
-  public async POST(req: FastifyRequest<{ Body: { data: Partial<NewsDocType> } }>, reply: FastifyReply) {
+  public async POST(req: FastifyRequest<{ Body: { data: Partial<SliderMainDocType> } }>, reply: FastifyReply) {
     try {
-      return successResponse("success", { data: await News.create(req.body.data) }, reply)
+      return successResponse("success", { data: await SliderMain.create(req.body.data) }, reply)
     } catch (e) {
       return errorResponse(e, reply)
     }
   }
 
-  public async PUT(req: FastifyRequest<{ Body: { data: Partial<NewsDocType> } }>, reply: FastifyReply) {
+  public async PUT(req: FastifyRequest<{ Body: { data: Partial<SliderMainDocType> } }>, reply: FastifyReply) {
     try {
-      return successResponse("success", { data: await News.updateOne(req.body.data) }, reply)
+      return successResponse("success", { data: await SliderMain.updateOne(req.body.data) }, reply)
     } catch (e) {
       return errorResponse(e, reply)
     }
@@ -53,11 +53,11 @@ public async GET(req: FastifyRequest<{
   
   public async DELETE(req: FastifyRequest<{ Params: { _id: string } }>, reply: FastifyReply) {
     try {
-      return successResponse("success", { data: await News.deleteOne({ _id: req.params._id }) }, reply)
+      return successResponse("success", { data: await SliderMain.deleteOne({ _id: req.params._id }) }, reply)
     } catch (e) {
       return errorResponse(e, reply)
     }
   }
 }
 
-export default new NewsController()
+export default new SliderMainController()
