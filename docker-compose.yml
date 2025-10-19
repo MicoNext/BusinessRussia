@@ -24,7 +24,7 @@ services:
     ports:
       - "6969:6969"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=development_docker
       - ME_URL=http://localhost:6969
       - FRONT_SECRET=FRONT_SECRET
       - PORT=6969

@@ -9,7 +9,7 @@ declare module 'fastify' {
   }
   
   interface FastifyRequest {
-    jwtVerify<T = { secret: string }>(): Promise<T>
+    jwtVerify<T = { login: string }>(): Promise<T>
   }
 }
 

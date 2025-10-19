@@ -43,9 +43,9 @@ public async GET(req: FastifyRequest<{
     }
   }
 
-  public async PUT(req: FastifyRequest<{ Body: { data: Partial<SliderMainDocType> } }>, reply: FastifyReply) {
+  public async PUT(req: FastifyRequest<{ Params: {_id: string }, Body: { data: Partial<SliderMainDocType> } }>, reply: FastifyReply) {
     try {
-      return successResponse("success", { data: await SliderMain.updateOne(req.body.data) }, reply)
+      return successResponse("success", { data: await SliderMain.updateOne({ _id: req.params._id }, { "$set": req.body.data }) }, reply)
     } catch (e) {
       return errorResponse(e, reply)
     }

@@ -1,8 +1,13 @@
+import { config } from "dotenv"
+
+if(process.env.MODE === "development_docker") {    
+} else {
+    config()
+}
 const valueOrError = (value: any): string  => {
     if(!value) throw new Error('Invalid env value')
     return value as string
 }
-
 export default {
     ME_URL: valueOrError(process.env.ME_URL),
     FRONT_SECRET: valueOrError(process.env.FRONT_SECRET),
