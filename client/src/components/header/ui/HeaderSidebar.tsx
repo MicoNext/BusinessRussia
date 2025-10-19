@@ -6,6 +6,9 @@ import { MENU } from '../constants/menu.data';
 import NavItem from './NavItem';
 import { Menu, X } from 'lucide-react';
 import Logo from '@/components/ui/Logo';
+import JoinButton from './JoinButton';
+import PayFeeButton from './PayFeeButton';
+import SearchButton from './SearchButton';
 
 export function HeaderSidebar() {
 	return (
@@ -21,6 +24,7 @@ export function HeaderSidebar() {
 
 			<Sidebar.Portal>
 				<Sidebar.Overlay className='animate-fade-in' />
+
 				<Sidebar.Content
 					side='left'
 					size='md'
@@ -43,15 +47,28 @@ export function HeaderSidebar() {
 						</div>
 					</Sidebar.Header>
 
-					<nav className='p-4 space-y-3'>
-						{MENU.map(item => (
-							<NavItem
-								key={item.label}
-								label={item.label}
-								href={item.href ?? '#'}
-							/>
-						))}
-					</nav>
+					<div className='flex-1 p-4 flex flex-col gap-4'>
+						<SearchButton />
+
+						<nav className='flex-1 flex flex-col gap-2'>
+							{MENU.map(item => (
+								<NavItem
+									key={item.label}
+									label={item.label}
+									href={item.href ?? '#'}
+								/>
+							))}
+						</nav>
+					</div>
+					<Sidebar.Footer>
+						<div
+							className='flex items-center gap-2'
+							aria-label='Быстрые действия'
+						>
+							<JoinButton className='w-full justify-center' />
+							<PayFeeButton className='w-full justify-center' />
+						</div>
+					</Sidebar.Footer>
 				</Sidebar.Content>
 			</Sidebar.Portal>
 		</Sidebar>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-function DropdownLink({ href, label }: { href: string; label: string }) {
+function DropdownLink({ href = '#', label }: { href?: string; label: string }) {
 	return (
 		<li>
 			<Link
