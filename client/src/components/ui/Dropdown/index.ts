@@ -1,3 +1,2 @@
 export { default } from './ui/Dropdown';
-export * from './ui/Dropdown';
-export * from './types';
+export { Root, Trigger, Content, Portal } from './ui/Dropdown';

@@ -2,7 +2,8 @@
 
 import { cloneElement, isValidElement, MouseEventHandler } from 'react';
 import { useDropdownContext } from '../context/DropdownContext';
-import type { AsChildProps } from '../types';
+import type { AsChildProps } from '@/components/ui/Dropdown/base';
+import { Button } from '@/components/ui/buttons';
 
 export function Trigger({ asChild, children }: AsChildProps) {
 	const {
@@ -69,13 +70,13 @@ export function Trigger({ asChild, children }: AsChildProps) {
 	}
 
 	return (
-		<button
+		<Button
 			type='button'
 			onClick={handleClick}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 		>
 			{children}
-		</button>
+		</Button>
 	);
 }

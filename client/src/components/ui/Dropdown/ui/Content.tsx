@@ -5,7 +5,7 @@ import { useDropdownContext } from '@/components/ui/Dropdown/context/DropdownCon
 import { Portal } from '@/shared/lib/hooks';
 import { dropdownTokens } from '@/components/ui/Dropdown/base';
 import { useDropdownContent } from '@/components/ui/Dropdown/lib/hooks';
-import type { ContentProps } from '@/components/ui/Dropdown/types';
+import type { ContentProps } from '@/components/ui/Dropdown/base';
 import { ElementType } from 'react';
 
 export function Content({

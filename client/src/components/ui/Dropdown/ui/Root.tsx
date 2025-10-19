@@ -3,14 +3,13 @@
 import { useMemo } from 'react';
 import { DropdownContext } from '@/components/ui/Dropdown/context/DropdownContext';
 import type { DropdownContextValue } from '@/components/ui/Dropdown/base';
-import type { DropdownProps } from '@/components/ui/Dropdown/types';
+import type { DropdownProps } from '@/components/ui/Dropdown/base';
 import {
-	useCloseOnOutsideClick,
-	useCloseOnEsc,
-	useControllableOpen,
 	useDropdownRefs,
 	useDropdownTimers,
 } from '@/components/ui/Dropdown/lib/hooks';
+
+import { useControllableOpen, useClose } from '@/shared/lib/hooks';
 
 export function Root({
 	children,
@@ -32,15 +31,7 @@ export function Root({
 	const { triggerRef, contentRef } = useDropdownRefs();
 	const { openTimerRef, closeTimerRef } = useDropdownTimers();
 
-	useCloseOnOutsideClick({
-		enabled: closeOnClickOutside,
-		open,
-		setOpen,
-		triggerRef,
-		contentRef,
-	});
-
-	useCloseOnEsc({ enabled: closeOnEsc, open, setOpen });
+	useClose({ enabled: closeOnEsc, open, setOpen, triggerRef, contentRef });
 
 	const value = useMemo<DropdownContextValue>(
 		() => ({

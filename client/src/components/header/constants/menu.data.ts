@@ -1,12 +1,7 @@
-export interface MenuLink {
-	label: string;
-	href: string;
-}
-
 export interface MenuItem {
 	label: string;
 	href?: string;
-	children?: MenuLink[];
+	children?: MenuItem[];
 }
 
 export const MENU: MenuItem[] = [

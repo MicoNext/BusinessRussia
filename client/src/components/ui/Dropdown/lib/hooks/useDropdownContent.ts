@@ -1,10 +1,10 @@
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDropdownContext } from '@/components/ui/Dropdown/context/DropdownContext';
 import {
 	computePosition,
 	scheduleRecompute,
 } from '@/components/ui/Dropdown/lib/helpers';
-import { usePresence } from './usePresence';
+import { usePresence } from '@/shared/lib/hooks';
 
 export function useDropdownContent(options: {
 	offset: number;
@@ -29,9 +29,7 @@ export function useDropdownContent(options: {
 		const content = contentRef.current;
 		if (!trigger || !content) return;
 		const tRect = trigger.getBoundingClientRect();
-		content.style.visibility = 'hidden';
-		content.style.maxHeight = '384px';
-		content.style.overflowY = 'auto';
+
 		const { left, top, align } = computePosition({
 			triggerRect: tRect,
 			contentEl: content,
@@ -40,7 +38,6 @@ export function useDropdownContent(options: {
 		});
 		setAlign(align);
 		setStyle({ position: 'fixed', left, top, zIndex: 50 });
-		content.style.visibility = '';
 	}, [present, offset, avoidCollisions]);
 
 	useEffect(() => {
@@ -62,10 +59,7 @@ export function useDropdownContent(options: {
 		return dispose;
 	}, [present, offset, avoidCollisions]);
 
-	const classesState = useMemo(
-		() => ({ present, entered }),
-		[present, entered]
-	);
+	const classesState = { present, entered };
 
 	const handlers = {
 		onTransitionEnd: () => {

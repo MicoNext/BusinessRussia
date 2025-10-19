@@ -1,23 +1,22 @@
 'use client';
 
-import type { DropdownProps } from '@/components/ui/Dropdown/base';
 import { Root } from './Root';
 import { Trigger } from './Trigger';
 import { Content } from './Content';
 import { Portal } from '@/shared/lib/hooks';
+import type { IModalProps } from '../base';
 
-type DropdownCompound = React.FC<DropdownProps> & {
+type ModalCompound = React.FC<IModalProps> & {
 	Trigger: typeof Trigger;
 	Content: typeof Content;
 	Portal: typeof Portal;
 };
 
-export const Dropdown: DropdownCompound = Object.assign(Root, {
+export const Modal: ModalCompound = Object.assign(Root, {
 	Trigger,
 	Content,
 	Portal,
 });
 
 export { Root, Trigger, Content, Portal };
-export type { DropdownProps };
-export default Dropdown;
+export default Modal;

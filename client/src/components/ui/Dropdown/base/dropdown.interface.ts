@@ -1,10 +1,4 @@
-import type { ReactNode } from 'react';
-import type { RefObject } from 'react';
-
-export interface DropdownBaseProps {
-	className?: string;
-	children: ReactNode;
-}
+import type { ReactNode, RefObject } from 'react';
 
 export interface DropdownContextValue {
 	open: boolean;
@@ -18,4 +12,34 @@ export interface DropdownContextValue {
 	closeOnClickOutside: boolean;
 	openTimerRef: RefObject<number | null>;
 	closeTimerRef: RefObject<number | null>;
+}
+
+export interface DropdownBaseProps {
+	className?: string;
+	children: ReactNode;
+}
+
+export interface DropdownProps {
+	children: ReactNode;
+	open?: boolean;
+	onOpenChange?: (next: boolean) => void;
+	initialOpen?: boolean;
+	openOnHover?: boolean;
+	hoverOpenDelay?: number;
+	hoverCloseDelay?: number;
+	closeOnEsc?: boolean;
+	closeOnClickOutside?: boolean;
+}
+
+export interface AsChildProps {
+	asChild?: boolean;
+	children: ReactNode;
+}
+
+export interface ContentProps {
+	className?: string;
+	children: ReactNode;
+	tag?: 'ul' | 'div' | 'nav';
+	offset?: number;
+	avoidCollisions?: boolean;
 }
