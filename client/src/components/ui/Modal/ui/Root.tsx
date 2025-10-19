@@ -6,7 +6,7 @@ import { IModalContextValue, IModalProps } from '../base';
 
 export function Root({
 	children,
-	open: controlledOpen,
+	open: controlledOpen = false,
 	onOpenChange,
 	initialOpen = false,
 	openDelay = 100,

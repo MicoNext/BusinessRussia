@@ -2,8 +2,8 @@ import type { ReactNode, RefObject } from 'react';
 
 export interface IModalProps {
 	children: React.ReactNode;
-	open: boolean;
-	onOpenChange: (open: boolean) => void;
+	open?: boolean;
+	onOpenChange?: (open: boolean) => void;
 	initialOpen?: boolean;
 	openDelay?: number;
 	closeDelay?: number;

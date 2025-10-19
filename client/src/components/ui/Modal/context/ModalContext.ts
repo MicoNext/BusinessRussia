@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { IModalContextValue } from '@/components/Modal/base';
+import { IModalContextValue } from '../base';
 
 export const ModalContext = createContext<IModalContextValue | null>(null);
 

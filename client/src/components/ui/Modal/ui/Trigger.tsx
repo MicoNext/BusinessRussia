@@ -40,4 +40,13 @@ export function Trigger({ asChild, children }: ITriggerProps) {
 			},
 		});
 	}
+
+	return (
+		<button
+			type='button'
+			onClick={handleClick}
+		>
+			{children}
+		</button>
+	);
 }
