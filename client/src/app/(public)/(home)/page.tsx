@@ -1,7 +1,7 @@
-import { EventsSection } from '@/components/sections/EventsSection';
-import HeroSection from '@/components/sections/HeroSection';
-import { NewsSection } from '@/components/sections/NewsSection';
-import { ProjectsSection } from '@/components/sections/ProjectsSection';
+import { EventsSection } from './_sections/EventsSection';
+import HeroSection from './_sections/HeroSection';
+import { NewsSection } from './_sections/NewsSection';
+import { ProjectsSection } from './_sections/ProjectsSection';
 import { Сontactus } from '@/components/Сontactus';
 
 export default function HomePage() {

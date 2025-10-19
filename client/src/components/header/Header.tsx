@@ -5,7 +5,7 @@ import SearchButton from './ui/SearchButton';
 import Menu from './ui/Menu';
 import { HeaderSidebar } from './ui/HeaderSidebar';
 import { SocialMedia } from '../SocialMedia';
-import { SOCIAL_MEDIA } from '@/constants/socialMedia';
+import { SOCIAL_MEDIA } from '@/shared/constants/socialMedia';
 
 interface HeaderProps {}
 

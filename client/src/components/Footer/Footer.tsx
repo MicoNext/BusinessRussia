@@ -1,4 +1,4 @@
-import { SOCIAL_MEDIA } from '@/constants/socialMedia';
+import { SOCIAL_MEDIA } from '@/shared/constants/socialMedia';
 import { SocialMedia } from '../SocialMedia';
 
 const currentYear = new Date().getFullYear();
