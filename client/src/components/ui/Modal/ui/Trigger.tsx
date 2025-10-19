@@ -24,7 +24,9 @@ export function Trigger({ asChild, children }: ITriggerProps) {
 	const handleClick = (e: React.MouseEvent<Element>) => {
 		const target = e.currentTarget;
 		if (target instanceof HTMLElement) triggerRef.current = target;
-		setOpen(true);
+		if (closeTimerRef.current != null)
+			window.clearTimeout(closeTimerRef.current);
+		openTimerRef.current = window.setTimeout(() => setOpen(true), openDelay);
 	};
 
 	if (

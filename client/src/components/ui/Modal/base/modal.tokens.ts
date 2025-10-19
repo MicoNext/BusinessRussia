@@ -1,8 +1,15 @@
 export const modalTokens = {
 	container: 'fixed inset-0 flex items-center justify-center p-4 z-[60]',
+	containerAnimationBase: 'transition-opacity',
+	containerEnter:
+		'data-[state=open]:duration-100 data-[state=open]:ease-in data-[state=open]:opacity-1',
+	containerExit:
+		'data-[state=closed]:duration-150 data-[state=closed]:ease-in data-[state=closed]:opacity-0',
+
 	panel: 'bg-white rounded-md shadow-xl outline-none',
-	animationBase: 'transform transition',
-	enter:
-		'data-[state=open]:duration-220 data-[state=open]:ease-out data-[state=open]:opacity-100 data-[state=open]:scale-100',
-	exit: 'data-[state=closed]:duration-140 data-[state=closed]:ease-in data-[state=closed]:opacity-0 data-[state=closed]:scale-95',
+	contentAnimationBase: 'transform transition',
+	contentEnter:
+		'data-[state=open]:duration-100 data-[state=open]:ease-in data-[state=open]:translate-y-0',
+	contentExit:
+		'data-[state=closed]:duration-150 data-[state=closed]:ease-in data-[state=closed]:translate-y-3',
 } as const;
