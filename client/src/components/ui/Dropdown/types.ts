@@ -20,7 +20,7 @@ export interface AsChildProps {
 export interface ContentProps {
 	className?: string;
 	children: ReactNode;
-	Element?: 'ul' | 'div' | 'nav';
+	tag?: 'ul' | 'div' | 'nav';
 	offset?: number; // px, default: 4
 	avoidCollisions?: boolean; // default: true
 }

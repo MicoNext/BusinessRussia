@@ -1,17 +1,15 @@
 'use client';
 
 import { useMemo } from 'react';
-import {
-	DropdownContext,
-	useDropdownRefs,
-	useDropdownTimers,
-	type DropdownContextValue,
-} from '@/components/ui/Dropdown/context/DropdownContext';
+import { DropdownContext } from '@/components/ui/Dropdown/context/DropdownContext';
+import type { DropdownContextValue } from '@/components/ui/Dropdown/base';
 import type { DropdownProps } from '@/components/ui/Dropdown/types';
 import {
 	useCloseOnOutsideClick,
 	useCloseOnEsc,
 	useControllableOpen,
+	useDropdownRefs,
+	useDropdownTimers,
 } from '@/components/ui/Dropdown/lib/hooks';
 
 export function Root({

@@ -1,2 +1,5 @@
 export { dropdownTokens } from './dropdown.tokens';
-export type { DropdownBaseProps } from './dropdown.interface';
+export type {
+	DropdownBaseProps,
+	DropdownContextValue,
+} from './dropdown.interface';

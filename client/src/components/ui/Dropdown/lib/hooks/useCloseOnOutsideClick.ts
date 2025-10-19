@@ -15,16 +15,27 @@ export function useCloseOnOutsideClick(params: {
 		function onDocClick(e: MouseEvent) {
 			const target = e.target;
 			if (!(target instanceof Node)) return;
-			if (
-				triggerRef.current &&
-				!triggerRef.current.contains(target) &&
-				contentRef.current &&
-				!contentRef.current.contains(target)
-			) {
+			if (isOutsideClick(target, triggerRef, contentRef)) {
 				setOpen(false);
 			}
 		}
 		if (open) document.addEventListener('mousedown', onDocClick);
 		return () => document.removeEventListener('mousedown', onDocClick);
 	}, [enabled, open, setOpen, triggerRef, contentRef]);
+}
+
+function isOutsideClick(
+	target: Node,
+	triggerRef: RefObject<HTMLElement | null>,
+	contentRef: RefObject<HTMLElement | null>
+) {
+	if (
+		triggerRef.current &&
+		!triggerRef.current.contains(target) &&
+		contentRef.current &&
+		!contentRef.current.contains(target)
+	) {
+		return true;
+	}
+	return false;
 }

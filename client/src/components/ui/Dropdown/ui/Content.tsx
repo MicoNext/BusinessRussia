@@ -2,15 +2,16 @@
 
 import clsx from 'clsx';
 import { useDropdownContext } from '@/components/ui/Dropdown/context/DropdownContext';
-import type { ContentProps } from '@/components/ui/Dropdown/types';
 import { Portal } from '@/shared/lib/hooks';
 import { dropdownTokens } from '@/components/ui/Dropdown/base';
 import { useDropdownContent } from '@/components/ui/Dropdown/lib/hooks';
+import type { ContentProps } from '@/components/ui/Dropdown/types';
+import { ElementType } from 'react';
 
 export function Content({
 	className,
 	children,
-	Element = 'ul',
+	tag = 'ul',
 	offset = 4,
 	avoidCollisions = true,
 }: ContentProps) {
@@ -20,6 +21,7 @@ export function Content({
 		avoidCollisions,
 	});
 	const { present, entered } = classesState;
+	const TagName: ElementType = tag;
 
 	if (!present) return null;
 
@@ -37,8 +39,10 @@ export function Content({
 
 	return (
 		<Portal>
-			<Element
-				ref={contentRef as any}
+			<TagName
+				ref={(node: HTMLElement | null) => {
+					contentRef.current = node;
+				}}
 				className={classes}
 				style={style}
 				role='menu'
@@ -48,7 +52,7 @@ export function Content({
 				onMouseLeave={handlers.onMouseLeave}
 			>
 				{children}
-			</Element>
+			</TagName>
 		</Portal>
 	);
 }

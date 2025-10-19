@@ -42,12 +42,7 @@ function NavDropdown({
 	parentHref: string;
 }) {
 	return (
-		<Dropdown
-			initialOpen={false}
-			openOnHover
-			hoverOpenDelay={100}
-			hoverCloseDelay={150}
-		>
+		<Dropdown>
 			<Dropdown.Trigger asChild>
 				<Link
 					href={parentHref}
