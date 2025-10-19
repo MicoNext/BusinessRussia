@@ -30,7 +30,9 @@ export interface ILinkButtonProps extends IButtonStyleProps {
 }
 
 export interface IIconButtonProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	extends React.ComponentProps<React.ElementType>,
+		IButtonStyleProps {
+	component: React.ElementType;
 	icon: React.ReactNode;
 	className?: string;
 	size?: 'sm' | 'md' | 'lg';

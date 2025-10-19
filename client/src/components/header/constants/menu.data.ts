@@ -1,18 +1,14 @@
-export interface MenuLink {
-	label: string;
-	href: string;
-}
-
 export interface MenuItem {
 	label: string;
 	href?: string;
-	children?: MenuLink[];
+	children?: MenuItem[];
 }
 
 export const MENU: MenuItem[] = [
 	{ label: 'Книга', href: '/projects/154' },
 	{
 		label: '«Деловая Россия»',
+		href: '/organization',
 		children: [
 			{ label: 'О «Деловой России»', href: '/organization/about' },
 			{ label: 'Лица РО', href: '/organization/team' },

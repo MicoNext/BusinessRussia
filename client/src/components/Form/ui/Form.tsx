@@ -1,17 +1,48 @@
-import React from 'react';
 import { Button } from '@/components/ui/buttons';
+import { Headline, IHeadlineProps } from '@/components/ui/Headline';
 import { TextInput, PhoneNumberInput, Switch } from '@/components/ui/inputs';
-import { Headline } from '@/components/ui/Headline';
+import { formTokens } from '../base';
+import clsx from 'clsx';
 
-export function ContactusForm() {
+interface IFormProps {
+	header?: React.ReactNode;
+	footer?: React.ReactNode;
+	variant?: 'light' | 'dark';
+	headline?: IHeadlineProps;
+	button?: React.ReactNode;
+}
+
+export function Form({
+	variant = 'light',
+	headline = {
+		title: 'Вступить',
+		variant: 'light',
+		order: 4,
+	},
+	button = (
+		<Button
+			variant='primary'
+			size='lg'
+			fullWidth
+			type='submit'
+			className='justify-center'
+		>
+			Сохранить
+		</Button>
+	),
+}: IFormProps) {
 	return (
-		<form className='flex flex-col gap-12'>
+		<form
+			className={clsx(
+				formTokens.variants[variant].container,
+				'flex flex-col gap-12'
+			)}
+		>
 			<div className='flex flex-col gap-4 md:gap-6'>
 				<header>
 					<Headline
-						title='Вступить'
-						variant='light'
-						order={4}
+						{...headline}
+						variant={variant === 'light' ? 'dark' : 'light'}
 					/>
 				</header>
 				<section className='flex flex-col gap-3'>
@@ -21,7 +52,7 @@ export function ContactusForm() {
 						label='Имя'
 						required
 						placeholder='Иван Иванов'
-						variant='light'
+						variant={variant === 'light' ? 'dark' : 'light'}
 					/>
 					<PhoneNumberInput
 						id='contactus_phone'
@@ -29,16 +60,21 @@ export function ContactusForm() {
 						label='Телефон'
 						required
 						placeholder='+7 (999) 999-99-99'
-						variant='light'
+						variant={variant === 'light' ? 'dark' : 'light'}
 					/>
 					<TextInput
 						id='contactus_email'
 						name='email'
 						label='E-mail'
 						placeholder='example@mail.com'
-						variant='light'
+						variant={variant === 'light' ? 'dark' : 'light'}
 					/>
-					<p className='text-xs text-gray-500'>
+					<p
+						className={clsx(
+							formTokens.variants[variant].description,
+							'text-xs'
+						)}
+					>
 						<span className='text-brand-accent'>*</span> — Обязательные поля
 					</p>
 				</section>
@@ -55,26 +91,19 @@ export function ContactusForm() {
 								<a
 									href='/include/licenses_detail.php'
 									target='_blank'
-									className=' text-white/80 underline'
+									className={clsx(
+										formTokens.variants[variant].consent,
+										'underline'
+									)}
 								>
 									персональных данных
 								</a>
 							</>
 						}
-						variant='light'
+						variant={variant === 'light' ? 'dark' : 'light'}
 					/>
 				</section>
-				<footer>
-					<Button
-						variant='accent'
-						size='lg'
-						fullWidth
-						type='submit'
-						className='justify-center'
-					>
-						Сохранить
-					</Button>
-				</footer>
+				<footer>{button}</footer>
 			</div>
 		</form>
 	);

@@ -1,6 +1,7 @@
 import { composeClasses, IIconButtonProps } from './base';
 
 export function IconButton({
+	component: Component = 'button',
 	icon,
 	className,
 	size = 'md',
@@ -15,13 +16,12 @@ export function IconButton({
 	});
 
 	return (
-		<button
-			type='button'
+		<Component
 			className={classes}
 			disabled={disabled}
 			{...rest}
 		>
 			{icon}
-		</button>
+		</Component>
 	);
 }
