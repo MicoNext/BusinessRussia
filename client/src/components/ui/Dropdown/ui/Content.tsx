@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import { useDropdownContext } from '@/components/ui/Dropdown/context/DropdownContext';
 import type { ContentProps } from '@/components/ui/Dropdown/types';
-import { Portal } from './Portal';
+import { Portal } from '@/shared/lib/hooks';
 import { dropdownTokens } from '@/components/ui/Dropdown/base';
 import { useDropdownContent } from '@/components/ui/Dropdown/lib/hooks';
 

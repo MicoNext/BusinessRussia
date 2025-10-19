@@ -4,7 +4,7 @@ import type { SidebarProps } from '../types';
 import { Root } from './Root';
 import { Trigger } from './Trigger';
 import { Close } from './Close';
-import { Portal } from './Portal';
+import { Portal } from '@/shared/lib/hooks';
 import { Overlay } from './Overlay';
 import { Content } from './Content';
 import { Header } from './Header';

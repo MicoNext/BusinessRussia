@@ -4,7 +4,7 @@ import type { DropdownProps } from '../types';
 import { Root } from './Root';
 import { Trigger } from './Trigger';
 import { Content } from './Content';
-import { Portal } from './Portal';
+import { Portal } from '@/shared/lib/hooks';
 
 type DropdownCompound = React.FC<DropdownProps> & {
 	Trigger: typeof Trigger;
