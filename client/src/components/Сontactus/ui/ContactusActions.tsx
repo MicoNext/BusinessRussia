@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ContactusTabs } from './ContactusTabs';
 import { ContactusForm } from './ContactusForm';
 import { ContactusPay } from './ContactusPay';
+import { Form } from '@/components/Form';
 
 interface ContactusActionsProps {}
 
@@ -18,7 +19,7 @@ export function ContactusActions() {
 					setActiveTab={setActiveTab}
 				/>
 			</div>
-			{activeTab === 'form' && <ContactusForm />}
+			{activeTab === 'form' && <Form variant='dark' />}
 			{activeTab === 'pay' && <ContactusPay />}
 		</>
 	);
