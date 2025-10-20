@@ -3,7 +3,10 @@ import { ParticipantDocType } from './types'
 
 const ParticipantSchema = new Schema<ParticipantDocType>({
   createdAt: { type: Date, default: Date.now },
-  imgUrl: { type: String, required: true },
+  media: {
+    imagesUrl: [{ type: String }],
+    videoUrl: [{ type: String }],
+  },
   name: { type: String, required: true },
   jobTitle: { type: String, required: true },
   organization: { type: String, required: false, default: null },
