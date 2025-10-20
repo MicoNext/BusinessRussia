@@ -7,16 +7,16 @@ import { SliderMain } from "../../models/sliderMain"
 class SliderMainController {
 public async GET(req: FastifyRequest<{ 
   Querystring: { 
-    name?: string, 
+    title?: string, 
     sort?: { createdAt: 1 | -1 },
     page?: number,
     limit?: number
   } 
 }>, reply: FastifyReply) {
   try {
-    const { name, sort, page, limit } = req.query
+    const { title, sort, page, limit } = req.query
     
-    const filter = name ? { name } : {}
+    const filter = title ? { title } : {}
     const sortOptions = sort ? { createdAt: sort.createdAt } : { createdAt: -1 }
 
     const result = await paginate(
