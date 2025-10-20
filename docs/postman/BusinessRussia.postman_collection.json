@@ -1,0 +1,2649 @@
+{
+	"info": {
+		"_postman_id": "20168bf7-17ed-451e-b147-1c8db478ac94",
+		"name": "BusinessRussia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38238859"
+	},
+	"item": [
+		{
+			"name": "News",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/news?page=2&limit=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"news"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/news?page=2&limit=1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"news"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "1217"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:10:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": [\n        {\n            \"media\": {\n                \"imagesUrl\": [\n                    \"http://localhost:6969/public/posty-1760876359250.png\"\n                ],\n                \"videoUrl\": []\n            },\n            \"_id\": \"68f4d961f97e35fa5037d5ba\",\n            \"slug\": \"new\",\n            \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n            \"tags\": [\n                \"it\"\n            ],\n            \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n            \"category\": \"it\",\n            \"createdAt\": \"2025-10-19T12:28:17.932Z\",\n            \"__v\": 0\n        }\n    ],\n    \"pagination\": {\n        \"page\": 2,\n        \"limit\": 1,\n        \"total\": 3,\n        \"totalPages\": 3,\n        \"hasNext\": true,\n        \"hasPrev\": true,\n        \"nextPage\": 3,\n        \"prevPage\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"sludg\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/news",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"news"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/news",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"news"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "1100"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:10:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\",\n        \"_id\": \"68f68928642c8c9dc7f4f3c2\",\n        \"createdAt\": \"2025-10-20T19:10:32.795Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "NOT AUTH",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"sludg\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/news",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"news"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "71"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:11:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"state\": \"NOT AUTH\",\n    \"error\": {\n        \"message\": \"Не авторизован!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"slug\": \"updated slug\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"1.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/news/68f4d961f97e35fa5037d5ba",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"68f4d961f97e35fa5037d5ba"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"slug\": \"updated slug\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"1.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/news/68f4d961f97e35fa5037d5ba",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"news",
+										"68f4d961f97e35fa5037d5ba"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "136"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:12:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"modifiedCount\": 1,\n        \"upsertedId\": null,\n        \"upsertedCount\": 0,\n        \"matchedCount\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/news/68f4d8b8f97e35fa5037d5a9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"68f4d8b8f97e35fa5037d5a9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/news/68f4d8b8f97e35fa5037d5a9",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"news",
+										"68f4d8b8f97e35fa5037d5a9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "82"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:12:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"deletedCount\": 0\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Project",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/project?page=2&limit=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"project"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/project?page=2&limit=1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "1296"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:12:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": [\n        {\n            \"media\": {\n                \"imagesUrl\": [\n                    \"http://localhost:6969/public/posty-1760876359250.png\"\n                ],\n                \"videoUrl\": []\n            },\n            \"_id\": \"68f67fe43745fe79bacb2c99\",\n            \"slug\": \"new\",\n            \"url\": \"http://localhost:6969/public/posty-1760876359250.png\",\n            \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n            \"tags\": [\n                \"it\"\n            ],\n            \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n            \"category\": \"it\",\n            \"isBig\": false,\n            \"createdAt\": \"2025-10-20T18:31:00.806Z\",\n            \"__v\": 0\n        }\n    ],\n    \"pagination\": {\n        \"page\": 2,\n        \"limit\": 1,\n        \"total\": 2,\n        \"totalPages\": 2,\n        \"hasNext\": false,\n        \"hasPrev\": true,\n        \"nextPage\": null,\n        \"prevPage\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"url\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/project",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"project"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"url\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/project",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "1175"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:13:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"slug\": \"new\",\n        \"url\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\",\n        \"isBig\": false,\n        \"_id\": \"68f689bc642c8c9dc7f4f3cf\",\n        \"createdAt\": \"2025-10-20T19:13:00.825Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/project/68f4d961f97e35fa5037d5ba",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"project",
+								"68f4d961f97e35fa5037d5ba"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/project/68f4d961f97e35fa5037d5ba",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										"68f4d961f97e35fa5037d5ba"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "136"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:13:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"modifiedCount\": 0,\n        \"upsertedId\": null,\n        \"upsertedCount\": 0,\n        \"matchedCount\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/project/68f4d8b8f97e35fa5037d5a9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"project",
+								"68f4d8b8f97e35fa5037d5a9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/68f4d8b8f97e35fa5037d5a9",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										"68f4d8b8f97e35fa5037d5a9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "82"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:13:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"deletedCount\": 0\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/event?page=1&limit=8",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"event"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/event?page=2&limit=1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"event"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "1267"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:17:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"68f68a38642c8c9dc7f4f3db\",\n            \"slug\": \"new\",\n            \"url\": \"http://localhost:6969/public/posty-1760876359250.png\",\n            \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n            \"tags\": [\n                \"it\"\n            ],\n            \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n            \"startDate\": \"1970-01-21T09:09:47.705Z\",\n            \"endDate\": null,\n            \"location\": null,\n            \"time\": null,\n            \"category\": \"it\",\n            \"createdAt\": \"2025-10-20T19:15:04.898Z\",\n            \"__v\": 0\n        }\n    ],\n    \"pagination\": {\n        \"page\": 2,\n        \"limit\": 1,\n        \"total\": 4,\n        \"totalPages\": 4,\n        \"hasNext\": true,\n        \"hasPrev\": true,\n        \"nextPage\": 3,\n        \"prevPage\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"url\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\",\n        \"startDate\": {{$timestamp}}\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/event",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"event"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"url\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\",\n        \"startDate\": {{$timestamp}}\n    }\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/event",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"event"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "1150"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:18:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"slug\": \"new\",\n        \"url\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"startDate\": \"1970-01-21T09:09:47.893Z\",\n        \"endDate\": null,\n        \"location\": null,\n        \"time\": null,\n        \"category\": \"it\",\n        \"_id\": \"68f68af4642c8c9dc7f4f3e6\",\n        \"createdAt\": \"2025-10-20T19:18:12.989Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/event/68f4d961f97e35fa5037d5ba",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"event",
+								"68f4d961f97e35fa5037d5ba"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/event/68f4d961f97e35fa5037d5ba",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"event",
+										"68f4d961f97e35fa5037d5ba"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "136"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:17:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"modifiedCount\": 0,\n        \"upsertedId\": null,\n        \"upsertedCount\": 0,\n        \"matchedCount\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/event/68f4d8b8f97e35fa5037d5a9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"event",
+								"68f4d8b8f97e35fa5037d5a9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Committee",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/committee?page=2&limit=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"committee"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/committee?page=2&limit=1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"committee"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "1286"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:29:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": [\n        {\n            \"media\": {\n                \"imagesUrl\": [\n                    \"http://localhost:6969/public/posty-1760876359250.png\"\n                ],\n                \"videoUrl\": []\n            },\n            \"_id\": \"68f684c43745fe79bacb2cae\",\n            \"slug\": \"it\",\n            \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n            \"description\": \"http://localhost:6969/public/posty-1760876359250.png\",\n            \"tags\": [\n                \"it\"\n            ],\n            \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n            \"participant\": [],\n            \"createdAt\": \"2025-10-20T18:51:48.843Z\",\n            \"__v\": 0\n        }\n    ],\n    \"pagination\": {\n        \"page\": 2,\n        \"limit\": 1,\n        \"total\": 3,\n        \"totalPages\": 3,\n        \"hasNext\": true,\n        \"hasPrev\": true,\n        \"nextPage\": 3,\n        \"prevPage\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"slug\": \"it\",\n        \"description\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\",\n        \"startDate\": {{$timestamp}},\n        \"participant\": []\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/committee",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"committee"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"slug\": \"it\",\n        \"description\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\",\n        \"startDate\": {{$timestamp}},\n        \"participant\": []\n    }\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/committee",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"committee"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "1169"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:29:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"slug\": \"it\",\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"description\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"participant\": [],\n        \"_id\": \"68f68da35d4f38f36e54ed58\",\n        \"createdAt\": \"2025-10-20T19:29:39.749Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/committee/68f4d961f97e35fa5037d5ba",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"committee",
+								"68f4d961f97e35fa5037d5ba"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/committee/68f4d961f97e35fa5037d5ba",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"committee",
+										"68f4d961f97e35fa5037d5ba"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "136"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:30:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"modifiedCount\": 0,\n        \"upsertedId\": null,\n        \"upsertedCount\": 0,\n        \"matchedCount\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/committee/68f4d8b8f97e35fa5037d5a9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"committee",
+								"68f4d8b8f97e35fa5037d5a9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/committee/68f4d8b8f97e35fa5037d5a9",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"committee",
+										"68f4d8b8f97e35fa5037d5a9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "82"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:30:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"deletedCount\": 0\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Participant",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/participant?page=2&limit=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"participant"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/participant?page=2&limit=1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"participant"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "1051"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:30:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": [\n        {\n            \"media\": {\n                \"imagesUrl\": [\n                    \"http://localhost:6969/public/posty-1760876359250.png\"\n                ],\n                \"videoUrl\": []\n            },\n            \"_id\": \"68f68641d2cd1d364ad242ea\",\n            \"name\": \"it\",\n            \"jobTitle\": \"http://localhost:6969/public/posty-1760876359250.png\",\n            \"organization\": null,\n            \"role\": \"invited\",\n            \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n            \"createdAt\": \"2025-10-20T18:58:09.853Z\",\n            \"__v\": 0\n        }\n    ],\n    \"pagination\": {\n        \"page\": 2,\n        \"limit\": 1,\n        \"total\": 4,\n        \"totalPages\": 4,\n        \"hasNext\": true,\n        \"hasPrev\": true,\n        \"nextPage\": 3,\n        \"prevPage\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"name\": \"it\",\n        \"jobTitle\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"role\": \"invited\"\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/participant",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"participant"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"name\": \"it\",\n        \"jobTitle\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"role\": \"invited\"\n    }\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/participant",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"participant"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "934"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:30:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"name\": \"it\",\n        \"jobTitle\": \"http://localhost:6969/public/posty-1760876359250.png\",\n        \"organization\": null,\n        \"role\": \"invited\",\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"_id\": \"68f68df25d4f38f36e54ed5e\",\n        \"createdAt\": \"2025-10-20T19:30:58.139Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/participant/68f4d961f97e35fa5037d5ba",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"participant",
+								"68f4d961f97e35fa5037d5ba"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/participant/68f4d961f97e35fa5037d5ba",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"participant",
+										"68f4d961f97e35fa5037d5ba"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "136"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:31:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"modifiedCount\": 0,\n        \"upsertedId\": null,\n        \"upsertedCount\": 0,\n        \"matchedCount\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/participant/68f4d8b8f97e35fa5037d5a9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"participant",
+								"68f4d8b8f97e35fa5037d5a9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"slug\": \"new\",\n        \"media\": {\n            \"imagesUrl\": [\n                \"http://localhost:6969/public/posty-1760876359250.png\"\n            ],\n            \"videoUrl\": []\n        },\n        \"title\": \"Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений.\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"html\": \"<h1>Товарищи! постоянный количественный рост и сфера нашей активности способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. </h1>\",\n        \"category\": \"it\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/participant/68f4d8b8f97e35fa5037d5a9",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"participant",
+										"68f4d8b8f97e35fa5037d5a9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "82"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:40:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"deletedCount\": 0\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SliderMain",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/slider-main?page=1&limit=10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"slider-main"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/slider-main?page=1&limit=10",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"slider-main"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "412"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:48:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": [\n        {\n            \"sourse\": {\n                \"url\": null,\n                \"buttonName\": null\n            },\n            \"_id\": \"68f6918e5d4f38f36e54ed67\",\n            \"type\": \"img\",\n            \"url\": \"urltopost\",\n            \"title\": \"new title\",\n            \"subtitle\": \"new subtitle\",\n            \"text\": \"text\",\n            \"tags\": [\n                \"it\"\n            ],\n            \"overlay\": false,\n            \"createdAt\": \"2025-10-20T19:46:22.334Z\",\n            \"__v\": 0\n        }\n    ],\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1,\n        \"hasNext\": false,\n        \"hasPrev\": false,\n        \"nextPage\": null,\n        \"prevPage\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"type\": \"img\",\n        \"url\": \"urltopost\",\n        \"title\": \"new title\",\n        \"subtitle\": \"new subtitle\",\n        \"text\": \"text\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"overlay\": false\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/slider-main",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"slider-main"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"type\": \"img\",\n        \"url\": \"urltopost\",\n        \"title\": \"new title\",\n        \"subtitle\": \"new subtitle\",\n        \"text\": \"text\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"overlay\": false\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/slider-main",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"slider-main"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "286"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:46:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"type\": \"img\",\n        \"url\": \"urltopost\",\n        \"title\": \"new title\",\n        \"subtitle\": \"new subtitle\",\n        \"text\": \"text\",\n        \"tags\": [\n            \"it\"\n        ],\n        \"overlay\": false,\n        \"sourse\": {\n            \"url\": null,\n            \"buttonName\": null\n        },\n        \"_id\": \"68f6918e5d4f38f36e54ed67\",\n        \"createdAt\": \"2025-10-20T19:46:22.334Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"title\": \"new title\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/slider-main/68f4d961f97e35fa5037d5ba",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"slider-main",
+								"68f4d961f97e35fa5037d5ba"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"title\": \"new title\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/slider-main/68f4d961f97e35fa5037d5ba",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"slider-main",
+										"68f4d961f97e35fa5037d5ba"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "136"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:42:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"modifiedCount\": 0,\n        \"upsertedId\": null,\n        \"upsertedCount\": 0,\n        \"matchedCount\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/slider-main/68f4d961f97e35fa5037d5ba",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"slider-main",
+								"68f4d961f97e35fa5037d5ba"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/slider-main/68f4d961f97e35fa5037d5ba",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"slider-main",
+										"68f4d961f97e35fa5037d5ba"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "82"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:48:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"data\": {\n        \"acknowledged\": true,\n        \"deletedCount\": 0\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"login\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/signin",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"signin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "signin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"login\": \"login\",\n    \"password\": \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/signin",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"signin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "set-cookie",
+									"value": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJsb2dpbiIsImlhdCI6MTc2MDk4OTc1NywiZXhwIjoxNzY2OTUxMzU3fQ.t4v9F7zppcLt9vMYau1YWprlGsWzUnWwg56bzmr5Cts; Max-Age=5961600; Path=/; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "content-length",
+									"value": "369"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:49:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"auth\": true,\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJsb2dpbiIsImlhdCI6MTc2MDk4OTc1NywiZXhwIjoxNzYzNTgxNzU3fQ.u_Cwse_ekRSz8_AGM0zyTqGr63QqeYTNIGhW8p8a3rY\",\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJsb2dpbiIsImlhdCI6MTc2MDk4OTc1NywiZXhwIjoxNzY2OTUxMzU3fQ.t4v9F7zppcLt9vMYau1YWprlGsWzUnWwg56bzmr5Cts\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/file/posty-1760989786817.png",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"file",
+								"posty-1760989786817.png"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/file/posty-1760989786817.png",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"file",
+										"posty-1760989786817.png"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "85"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:50:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"message\": \"Файл успешно удален\"\n}"
+						}
+					]
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1ef6c4d0-ca90-45e0-af80-3d06cf49ba5b"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/file",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"file"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1ef6c4d0-ca90-45e0-af80-3d06cf49ba5b"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/file",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"file"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "258"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Oct 2025 19:49:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"msg\": \"success\",\n    \"message\": \"Файл успешно загружен\",\n    \"data\": {\n        \"filename\": \"posty-1760989786817.png\",\n        \"originalName\": \"posty.png\",\n        \"mimetype\": \"image/png\",\n        \"size\": 5870,\n        \"url\": \"http://localhost:6969/public/posty-1760989786817.png\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

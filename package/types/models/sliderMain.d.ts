@@ -8,8 +8,8 @@ export interface ISliderMain {
 	text?: string;
 	tags: string[];
 	overlay: boolean;
-	sourse?: {
-		url: string;
-		buttonName: string;
-	};
+	sourse: {
+		url: string | null
+		buttonName: string | null
+	}
 }
