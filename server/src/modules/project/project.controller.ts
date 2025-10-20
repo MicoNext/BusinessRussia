@@ -1,26 +1,26 @@
 import { FastifyReply, FastifyRequest } from "fastify"
-import { News } from "../../models/news"
+import { Project } from "../../models/project"
 import { errorResponse, successResponse } from "../../package/response.utils"
-import { NewsDocType } from "../../models/types"
+import { ProjectDocType } from "../../models/types"
 import { paginate } from "../../package/paginate/paginate"
 
-class NewsController {
+class ProjectController {
   public async GET(req: FastifyRequest<{
     Querystring: {
-      title?: string,
+      title: string,
       sort?: { createdAt: 1 | -1 },
       page?: number,
       limit?: number
     }
   }>, reply: FastifyReply) {
     try {
-      const { title, sort, page, limit } = req.query
+      const { sort, page, limit, title } = req.query
 
       const filter = title ? { title } : {}
       const sortOptions = sort ? { createdAt: sort.createdAt } : { createdAt: -1 }
 
       const result = await paginate(
-        News,
+        Project,
         filter,
         sortOptions,
         { page, limit }
@@ -35,17 +35,17 @@ class NewsController {
     }
   }
 
-  public async POST(req: FastifyRequest<{ Body: { data: Partial<NewsDocType> } }>, reply: FastifyReply) {
+  public async POST(req: FastifyRequest<{ Body: { data: Partial<ProjectDocType> } }>, reply: FastifyReply) {
     try {
-      return successResponse("success", { data: await News.create(req.body.data) }, reply)
+      return successResponse("success", { data: await Project.create(req.body.data) }, reply)
     } catch (e) {
       return errorResponse(e, reply)
     }
   }
 
-  public async PUT(req: FastifyRequest<{ Params: { _id: string }, Body: { data: Partial<NewsDocType> } }>, reply: FastifyReply) {
+  public async PUT(req: FastifyRequest<{ Params: { _id: string }, Body: { data: Partial<ProjectDocType> } }>, reply: FastifyReply) {
     try {
-      return successResponse("success", { data: await News.updateOne({ _id: req.params._id }, { "$set": req.body.data }) }, reply)
+      return successResponse("success", { data: await Project.updateOne({ _id: req.params._id }, { "$set": req.body.data }) }, reply)
     } catch (e) {
       return errorResponse(e, reply)
     }
@@ -53,11 +53,11 @@ class NewsController {
 
   public async DELETE(req: FastifyRequest<{ Params: { _id: string } }>, reply: FastifyReply) {
     try {
-      return successResponse("success", { data: await News.deleteOne({ _id: req.params._id }) }, reply)
+      return successResponse("success", { data: await Project.deleteOne({ _id: req.params._id }) }, reply)
     } catch (e) {
       return errorResponse(e, reply)
     }
   }
 }
 
-export default new NewsController()
+export default new ProjectController()
