@@ -14,6 +14,10 @@ import AuthController from "../modules/auth/auth.controller"
 import sliderMainController from "../modules/sliderMain/sliderMain.controller"
 import mePaths from "../package/mePaths"
 import fileController from "../modules/file/file.controller"
+import committeeController from "../modules/committee/committee.controller"
+import eventController from "../modules/event/event.controller"
+import participantController from "../modules/participant/participant.controller"
+import projectController from "../modules/project/project.controller"
 
 const startServer = async () => {
   const server = fastify({ logger: true })
@@ -49,9 +53,18 @@ const startServer = async () => {
   server.post('/api/ping', async (_, reply) => reply.send({ msg: "pong" }))
   server.put('/api/ping', async (_, reply) => reply.send({ msg: "pong" }))
   server.delete('/api/ping', async (_, reply) => reply.send({ msg: "pong" }))
+  
   server.post('/api/signin', {
     handler: authController.signin
   })
+
+  server.post('/api/file', {
+    handler: fileController.CREATE
+  })
+  server.delete('/api/file/:filename', {
+    handler: fileController.DELETE
+  })
+
   server.get('/api/news', {
     handler: newsController.GET
   })
@@ -67,6 +80,7 @@ const startServer = async () => {
     preHandler: cheackJwtInHeader,
     handler: newsController.DELETE
   })
+
   server.get('/api/slider-main', {
     handler: sliderMainController.GET
   })
@@ -82,11 +96,69 @@ const startServer = async () => {
     preHandler: cheackJwtInHeader,
     handler: sliderMainController.DELETE
   })
-  server.post('/api/file', {
-    handler: fileController.CREATE
+
+  server.get('/api/committee', {
+    handler: committeeController.GET
   })
-  server.delete('/api/file/:filename', {
-    handler: fileController.DELETE
+  server.post('/api/committee', {
+    preHandler: cheackJwtInHeader,
+    handler: committeeController.POST
+  })
+  server.put('/api/committee/:_id', {
+    preHandler: cheackJwtInHeader,
+    handler: committeeController.PUT
+  })
+  server.delete('/api/committee/:_id', {
+    preHandler: cheackJwtInHeader,
+    handler: committeeController.DELETE
+  })
+
+  server.get('/api/event', {
+    handler: eventController.GET
+  })
+  server.post('/api/event', {
+    preHandler: cheackJwtInHeader,
+    handler: eventController.POST
+  })
+  server.put('/api/event/:_id', {
+    preHandler: cheackJwtInHeader,
+    handler: eventController.PUT
+  })
+  server.delete('/api/event/:_id', {
+    preHandler: cheackJwtInHeader,
+    handler: eventController.DELETE
+  })
+  
+  server.get('/api/participant', {
+    handler: participantController.GET
+  })
+  server.post('/api/participant', {
+    preHandler: cheackJwtInHeader,
+    handler: participantController.POST
+  })
+  server.put('/api/participant/:_id', {
+    preHandler: cheackJwtInHeader,
+    handler: participantController.PUT
+  })
+  server.delete('/api/participant/:_id', {
+    preHandler: cheackJwtInHeader,
+    handler: participantController.DELETE
+  })
+
+  server.get('/api/project', {
+    handler: projectController.GET
+  })
+  server.post('/api/project', {
+    preHandler: cheackJwtInHeader,
+    handler: projectController.POST
+  })
+  server.put('/api/project/:_id', {
+    preHandler: cheackJwtInHeader,
+    handler: projectController.PUT
+  })
+  server.delete('/api/project/:_id', {
+    preHandler: cheackJwtInHeader,
+    handler: projectController.DELETE
   })
   
   try {

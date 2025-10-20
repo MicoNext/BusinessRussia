@@ -8,7 +8,7 @@ import type { ICommittees } from "../../../package/types/models/committee"
 
 export type NewsDocType = INews & Document  
 export type SliderMainDocType = ISliderMain & Document
-export type EventnDocType = IEvent & Document
+export type EventDocType = IEvent & Document
 export type ProjectDocType = IProject & Document
 export type ParticipantDocType = IParticipant & Document
 export type CommitteeDocType = ICommittees & Document

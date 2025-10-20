@@ -1,25 +1,28 @@
 import { Schema, model, Model } from 'mongoose'
-import { EventnDocType } from './types'
+import { ProjectDocType } from './types'
 
-const EventSchema = new Schema<EventnDocType>({
+const ProjectSchema = new Schema<ProjectDocType>({
   createdAt: { type: Date, default: Date.now },
   slug: { type: String, required: true },
   url: { type: String, required: true },
   title: { type: String, required: true },
   tags: [{ type: String }],
+  media: {
+    imagesUrl: [{ type: String }],
+    videoUrl: [{ type: String }],
+  },
   html: { type: String, required: true },
-  startDate: { type: Date, default: Date.now },
-  endDate: { type: Date, required: false, default: null },
-  location: { type: String, required: false, default: null },
-  time: { type: String, required: false, default: null },
 	category: { type: String, required: false, default: null },
+  isBig: { type: Boolean, required: false, default: false },
 })
 
-interface IEventModel extends Model<EventnDocType> {
+
+interface IProjectModel extends Model<ProjectDocType> {
 }
 
-class EventService {
-  public model = model<EventnDocType, IEventModel>('Event', EventSchema)
+class ProjectService {
+  public model = model<ProjectDocType, IProjectModel>('Project', ProjectSchema)
 }
 
-export const News = new EventService().model
+export const Project = new ProjectService().model
+
