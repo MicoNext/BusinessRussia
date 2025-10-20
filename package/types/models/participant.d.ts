@@ -4,7 +4,10 @@ export interface IParticipant {
     name: string
     jobTitle: string
     organization?: string
-    imgUrl: string
+	media: {
+		imagesUrl: string[];
+		videoUrl: string[];
+	};
     html: string
     role: "manager" | "boardMember" | "invited"
 }
