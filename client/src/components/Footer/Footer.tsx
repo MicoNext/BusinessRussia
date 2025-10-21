@@ -1,5 +1,6 @@
-import { SOCIAL_MEDIA } from '@/shared/constants/socialMedia';
 import { SocialMedia } from '../SocialMedia';
+import { companyInfoMock } from '@/shared/data/companyInfo.mock';
+import { SOCIAL_MEDIA } from '@/shared/constants/socialMedia';
 
 const currentYear = new Date().getFullYear();
 
@@ -15,24 +16,26 @@ export default function Footer() {
 						</p>
 						<div className='flex flex-col gap-4'>
 							<address className='not-italic'>
-								<div>
-									<a
-										href='mailto:example@deloros.ru'
-										className='text-sm hover:underline'
-									>
-										example@deloros.ru
-									</a>
-								</div>
-								<div className='text-sm'>
-									г. Черкесск, ул. Партизанская, 20
-									<br />
-									офис 406, БЦ «Кредо»
-								</div>
+								{companyInfoMock.email && (
+									<div>
+										<a
+											href={`mailto:${companyInfoMock.email}`}
+											className='text-sm hover:underline'
+										>
+											{companyInfoMock.email}
+										</a>
+									</div>
+								)}
+								{companyInfoMock.address && (
+									<div className='text-sm'>{companyInfoMock.address}</div>
+								)}
 							</address>
-							<SocialMedia
-								items={SOCIAL_MEDIA}
-								className='text-[#08041a]'
-							/>
+							{SOCIAL_MEDIA && (
+								<SocialMedia
+									items={SOCIAL_MEDIA}
+									className='text-[#08041a]'
+								/>
+							)}
 						</div>
 					</div>
 
