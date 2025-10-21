@@ -9,6 +9,7 @@ export const PrevButton: React.FC<PropType> = props => {
 
 	return (
 		<IconButton
+			component='button'
 			icon={<ChevronLeft className='w-6 h-6' />}
 			aria-label='Предыдущий слайд'
 			{...restProps}
@@ -24,6 +25,7 @@ export const NextButton: React.FC<PropType> = props => {
 
 	return (
 		<IconButton
+			component='button'
 			icon={<ChevronRight className='w-6 h-6' />}
 			aria-label='Следующий слайд'
 			{...restProps}
