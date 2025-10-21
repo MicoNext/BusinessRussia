@@ -12,7 +12,7 @@ interface HeaderProps {}
 export default function Header({}: HeaderProps) {
 	return (
 		<header
-			className='border-b border-gray-200 text-brand-grayText px-4 md:px-8 lg:px-12'
+			className='sticky top-0 z-50 bg-white border-b border-gray-200 text-brand-grayText px-4 md:px-8 lg:px-12'
 			role='banner'
 		>
 			<div className='container mx-auto'>
@@ -42,7 +42,10 @@ export default function Header({}: HeaderProps) {
 						</div>
 					</div>
 				</div>
-				<Menu />
+
+				<div className=''>
+					<Menu />
+				</div>
 			</div>
 		</header>
 	);

@@ -23,12 +23,12 @@ export function HeaderSidebar() {
 			</Sidebar.Trigger>
 
 			<Sidebar.Portal>
-				<Sidebar.Overlay className='animate-fade-in' />
+				<Sidebar.Overlay className='animate-fade-in z-50' />
 
 				<Sidebar.Content
 					side='left'
 					size='md'
-					className='flex flex-col animate-slide-in-left'
+					className='flex flex-col animate-slide-in-left z-50'
 				>
 					<Sidebar.Header>
 						<div className='flex items-center justify-between'>
