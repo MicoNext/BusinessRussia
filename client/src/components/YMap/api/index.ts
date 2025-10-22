@@ -1,4 +1,3 @@
-// Lazy one-time loader for Yandex Maps v3 script
 let ymapsPromise: Promise<typeof window.ymaps3> | null = null;
 
 type LoadParams = {
@@ -18,14 +17,11 @@ export function loadYMaps3({ apiKey, lang = 'ru_RU' }: LoadParams) {
 			apiKey
 		)}&lang=${lang}`;
 		script.async = true;
-		script.onload = async () => {
-			try {
-				// @ts-ignore
-				await ymaps3.ready;
-				// @ts-ignore
-				resolve(ymaps3);
-			} catch (e) {
-				reject(e);
+		script.onload = () => {
+			if (window.ymaps3) {
+				resolve(window.ymaps3);
+			} else {
+				reject(new Error('ymaps3 is not available after script load'));
 			}
 		};
 		script.onerror = () => reject(new Error('Failed to load Yandex Maps'));

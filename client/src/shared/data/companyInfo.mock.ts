@@ -7,8 +7,8 @@ export const companyInfoMock: ICompanyInfo = {
 	workingHours:
 		'<strong>Пн–Пт:</strong> 09:00–18:00<br/><strong>Сб–Вс:</strong> выходной',
 	map: {
-		center: [37.618423, 55.751244],
-		zoom: 10,
+		center: [44.23845, 42.047587],
+		zoom: 13,
 		address: 'Москва, Красная площадь',
 	},
 	logo: {
