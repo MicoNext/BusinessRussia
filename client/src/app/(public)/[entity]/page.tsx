@@ -1,13 +1,13 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { ENTITIES, type EntitySlug } from '@/shared/constants/entities';
 import { newsMock } from '@/shared/data/news.mock';
 import { eventsMock } from '@/shared/data/events.mock';
 import { projectsMock } from '@/shared/data/projects.mock';
 import { Grid } from '@/components/ui/Grid';
 import { Card } from '@/components/ui/Card';
-
-type Search = { page?: string };
+import { notFound } from 'next/navigation';
+import { TParams, TSearchParams } from './types';
+import { Headline } from '@/components/ui/Headline';
 
 const PAGE_SIZE = 9;
 
@@ -61,30 +61,38 @@ function getData(entity: EntitySlug) {
 	return [];
 }
 
-export default function EntityListPage({
+export default async function EntityListPage({
 	params,
 	searchParams,
 }: {
-	params: { entity: EntitySlug };
-	searchParams: Search;
+	params: Promise<TParams>;
+	searchParams: Promise<TSearchParams>;
 }) {
-	if (!ENTITIES[params.entity]) return null;
+	const { entity } = await params;
+	const { page } = await searchParams;
+	if (!ENTITIES[entity]) notFound();
 
-	const page = Math.max(1, Number(searchParams.page ?? 1));
-	const all = getData(params.entity);
+	const currentPage = Math.max(1, Number(page ?? 1));
+	const all = getData(entity);
 	const total = all.length;
-	const start = (page - 1) * PAGE_SIZE;
+	const start = (currentPage - 1) * PAGE_SIZE;
 	const items = all.slice(start, start + PAGE_SIZE);
 	const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
 	return (
 		<div className='space-y-8'>
+			<Headline
+				title={ENTITIES[entity].title}
+				order={2}
+				classNames={{ container: 'mb-6' }}
+			/>
+
 			<Grid
 				cols={1}
 				gap={8}
 				classNames={{ root: 'md:grid-cols-2 lg:grid-cols-3' }}
 			>
-				{items.map((item, index) => (
+				{items.map(item => (
 					<Grid.Col key={item.id}>
 						<Card
 							link={item.href}
@@ -102,10 +110,10 @@ export default function EntityListPage({
 					{Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
 						<Link
 							key={p}
-							href={`/${params.entity}?page=${p}`}
+							href={`/${entity}?page=${p}`}
 							className={
 								'px-3 py-1.5 rounded border text-sm ' +
-								(p === page
+								(p === currentPage
 									? 'border-gray-900 text-gray-900'
 									: 'border-gray-200 text-gray-600 hover:border-gray-300')
 							}
