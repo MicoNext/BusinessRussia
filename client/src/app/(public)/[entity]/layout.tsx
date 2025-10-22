@@ -17,7 +17,7 @@ export default function EntityLayout({
 	children: ReactNode;
 	params: { entity: EntitySlug };
 }) {
-	const meta = ENTITIES[params.entity as EntitySlug];
+	const meta = ENTITIES[params.entity];
 	if (!meta) notFound();
 
 	return (
