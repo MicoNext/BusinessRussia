@@ -5,9 +5,9 @@ export interface ICompanyInfo {
 	socialMedia?: ISocialMedia[];
 	workingHours?: string; // html content
 	map?: {
-		center: [number, number];
-		zoom: number;
-		address?: string;
+		ymapApiKey: string;
+		centerCoordinates: string;
+		zoomDefault: number;
 	};
 	logo?: {
 		imageUrl: string;
