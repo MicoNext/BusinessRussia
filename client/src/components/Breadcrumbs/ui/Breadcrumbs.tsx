@@ -30,7 +30,6 @@ export function Breadcrumbs({ className }: BreadcrumbsProps) {
 		const parts = pathname.split('/').filter(Boolean);
 		const acc: { href: string; label: string }[] = [];
 		let href = '';
-		// корень
 		acc.push({ href: '/', label: LABELS[''] });
 		for (const part of parts) {
 			href += `/${part}`;
@@ -40,7 +39,6 @@ export function Breadcrumbs({ className }: BreadcrumbsProps) {
 		return acc;
 	}, [pathname]);
 
-	// первый элемент — корень, последний — текущая страница
 	return (
 		<nav
 			aria-label='Хлебные крошки'
