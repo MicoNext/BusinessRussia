@@ -1,32 +1,14 @@
-import { RuTubeIcon, TelegramIcon, VkIcon } from '@/components/ui/socialIcons';
+import { Icon } from '@/components/ui/socialIcons';
+import { companyInfoMock } from '@/shared/data/companyInfo.mock';
 
-export const SOCIAL_MEDIA = [
-	{
-		icon: (
-			<VkIcon
-				width={18}
-				height={18}
-			/>
-		),
-		href: 'https://vk.com/business_russia',
-	},
-	{
-		icon: (
-			<TelegramIcon
-				width={18}
-				height={18}
-			/>
-		),
-		href: 'https://t.me/business_russia',
-	},
-	{
-		icon: (
-			<RuTubeIcon
-				width={18}
-				height={18}
-				fill='currentColor'
-			/>
-		),
-		href: 'https://rt.pravda.ru/business/',
-	},
-];
+export const SOCIAL_MEDIA = companyInfoMock.socialMedia?.map(sm => ({
+	icon: (
+		<Icon
+			iconName={sm.iconName}
+			width={18}
+			height={18}
+		/>
+	),
+	href: sm.href,
+	title: sm.title,
+}));

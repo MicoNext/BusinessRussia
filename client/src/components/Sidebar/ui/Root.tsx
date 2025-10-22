@@ -16,7 +16,7 @@ export function Root({
 	const isControlled = controlledOpen !== undefined;
 	const [uncontrolledOpen, setUncontrolledOpen] =
 		useState<boolean>(initialOpen);
-	const open = isControlled ? (controlledOpen as boolean) : uncontrolledOpen;
+	const open = isControlled ? controlledOpen : uncontrolledOpen;
 	const setOpen = (next: boolean) => {
 		if (isControlled) {
 			onOpenChange?.(next);

@@ -1,24 +1,25 @@
 import { Button } from '@/components/ui/buttons';
-import { Headline, IHeadlineProps } from '@/components/ui/Headline';
 import { TextInput, PhoneNumberInput, Switch } from '@/components/ui/inputs';
 import { formTokens } from '../base';
 import clsx from 'clsx';
+import { Headline } from '@/components/ui/Headline';
 
 interface IFormProps {
 	header?: React.ReactNode;
 	footer?: React.ReactNode;
 	variant?: 'light' | 'dark';
-	headline?: IHeadlineProps;
 	button?: React.ReactNode;
 }
 
 export function Form({
 	variant = 'light',
-	headline = {
-		title: 'Вступить',
-		variant: 'light',
-		order: 4,
-	},
+	header = (
+		<Headline
+			title='Вступить'
+			order={4}
+			variant={variant === 'light' ? 'dark' : 'light'}
+		/>
+	),
 	button = (
 		<Button
 			variant='primary'
@@ -39,12 +40,7 @@ export function Form({
 			)}
 		>
 			<div className='flex flex-col gap-4 md:gap-6'>
-				<header>
-					<Headline
-						{...headline}
-						variant={variant === 'light' ? 'dark' : 'light'}
-					/>
-				</header>
+				<div className='flex gap-2 justify-between items-center'>{header}</div>
 				<section className='flex flex-col gap-3'>
 					<TextInput
 						id='contactus_name'

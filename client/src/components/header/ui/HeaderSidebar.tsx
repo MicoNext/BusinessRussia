@@ -1,7 +1,7 @@
 'use client';
 
 import Sidebar from '@/components/Sidebar';
-import { Button } from '@/components/ui/buttons';
+import { Button, UnstyledButton } from '@/components/ui/buttons';
 import { MENU } from '../constants/menu.data';
 import NavItem from './NavItem';
 import { Menu, X } from 'lucide-react';
@@ -14,21 +14,21 @@ export function HeaderSidebar() {
 	return (
 		<Sidebar initialOpen={false}>
 			<Sidebar.Trigger asChild>
-				<Button variant='ghost'>
+				<UnstyledButton>
 					<Menu
 						size={24}
 						strokeWidth={1}
 					/>
-				</Button>
+				</UnstyledButton>
 			</Sidebar.Trigger>
 
 			<Sidebar.Portal>
-				<Sidebar.Overlay className='animate-fade-in' />
+				<Sidebar.Overlay className='animate-fade-in z-50' />
 
 				<Sidebar.Content
 					side='left'
 					size='md'
-					className='flex flex-col animate-slide-in-left'
+					className='flex flex-col animate-slide-in-left z-50'
 				>
 					<Sidebar.Header>
 						<div className='flex items-center justify-between'>

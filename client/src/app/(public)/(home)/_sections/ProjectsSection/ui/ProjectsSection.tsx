@@ -24,12 +24,14 @@ export default function ProjectsSection() {
 					rightSection={
 						<div className='flex gap-2'>
 							<IconButton
+								component='button'
 								onClick={() => emblaApi?.scrollPrev()}
 								aria-label='Предыдущие проекты'
 								icon={<ChevronLeft className='w-5 h-5' />}
 								className='items-center justify-center bg-white border border-gray-200 rounded-full shadow hover:bg-brand-primary hover:text-white'
 							/>
 							<IconButton
+								component='button'
 								onClick={() => emblaApi?.scrollNext()}
 								aria-label='Следующие проекты'
 								icon={<ChevronRight className='w-5 h-5' />}
