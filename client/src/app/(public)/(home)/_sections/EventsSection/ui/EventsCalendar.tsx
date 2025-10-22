@@ -1,7 +1,7 @@
 import type React from 'react';
 import type { IEvent } from '@/../../package/types/models/events';
 import { eventsMock } from '@/shared/data/events.mock';
-import { EventCard } from './EventCard';
+import { EventCard } from '@/components/entityCards';
 import { Grid } from '@/components/ui/Grid';
 
 interface EventsCalendarProps {

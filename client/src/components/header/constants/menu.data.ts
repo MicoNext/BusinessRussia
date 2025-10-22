@@ -31,6 +31,7 @@ export const MENU: MenuItem[] = [
 	{ label: 'Новости', href: '/news' },
 	{
 		label: 'Проекты',
+		href: '/projects',
 		children: [
 			{ label: 'Альянс проверенных подрядчиков', href: '/projects/139' },
 			{ label: 'Региональный инвестиционный стандарт', href: '/projects/149' },
