@@ -6,12 +6,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 type Reactified = {
-	YMap: React.ComponentType<unknown>;
-	YMapDefaultSchemeLayer: React.ComponentType<unknown>;
-	YMapDefaultFeaturesLayer: React.ComponentType<unknown>;
-	YMapControls: React.ComponentType<unknown>;
-	YMapZoomControl: React.ComponentType<unknown>;
-	YMapMarker: React.ComponentType<unknown>;
+	YMap: React.ComponentType<any>;
+	YMapDefaultSchemeLayer: React.ComponentType<any>;
+	YMapDefaultFeaturesLayer: React.ComponentType<any>;
+	YMapControls?: React.ComponentType<any>;
+	YMapZoomControl?: React.ComponentType<any>;
+	YMapMarker?: React.ComponentType<any>;
 };
 
 export function useYMapReactify(
@@ -31,22 +31,38 @@ export function useYMapReactify(
 					window.ymaps3.ready,
 				]);
 				const reactify = ymaps3React.reactify.bindTo(React, ReactDOM);
-				// Core map components
-				const { YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer } =
-					reactify.module(window.ymaps3);
+				const core = reactify.module(window.ymaps3);
+				const {
+					YMap,
+					YMapDefaultSchemeLayer,
+					YMapDefaultFeaturesLayer,
+					YMapControls: CoreYMapControls,
+				} = core as any;
 
-				// Controls module (zoom control, etc.)
-				const controlsModule = await window.ymaps3.import(
-					'@yandex/ymaps3-controls@0.0.1'
-				);
-				const { YMapControls, YMapZoomControl } =
-					reactify.module(controlsModule);
+				let YMapControls = CoreYMapControls as
+					| React.ComponentType<unknown>
+					| undefined;
+				let YMapZoomControl: React.ComponentType<unknown> | undefined;
+				let YMapMarker: React.ComponentType<unknown> | undefined;
 
-				// Markers module
-				const markersModule = await window.ymaps3.import(
-					'@yandex/ymaps3-markers@0.0.1'
-				);
-				const { YMapMarker } = reactify.module(markersModule);
+				try {
+					const controlsModule = await window.ymaps3.import(
+						'@yandex/ymaps3-controls'
+					);
+					const reactifiedControls = reactify.module(controlsModule) as any;
+					YMapControls = reactifiedControls.YMapControls ?? YMapControls;
+					YMapZoomControl =
+						reactifiedControls.YMapZoomControl ?? YMapZoomControl;
+				} catch {}
+
+				try {
+					const markersModule = await window.ymaps3.import(
+						'@yandex/ymaps3-markers'
+					);
+					const reactifiedMarkers = reactify.module(markersModule) as any;
+					YMapMarker = reactifiedMarkers.YMapMarker ?? YMapMarker;
+				} catch {}
+
 				if (mounted) {
 					setComponents({
 						YMap,

@@ -33,7 +33,7 @@ export function YMapWidget({
 		YMapControls,
 		YMapZoomControl,
 		YMapMarker,
-	} = components as any;
+	} = components!;
 
 	const style: CSSProperties = {
 		width: typeof width === 'number' ? `${width}px` : width,
@@ -53,17 +53,21 @@ export function YMapWidget({
 			>
 				<YMapDefaultSchemeLayer />
 				<YMapDefaultFeaturesLayer />
-				<YMapControls position='right'>
-					<YMapZoomControl />
-				</YMapControls>
+				{YMapControls && YMapZoomControl ? (
+					<YMapControls position='right'>
+						<YMapZoomControl />
+					</YMapControls>
+				) : null}
 
-				<YMapMarker
-					coordinates={[map?.center?.[1] ?? 0, map?.center?.[0] ?? 0]}
-				>
-					<div className='-translate-x-1/2 -translate-y-full'>
-						<Marker color={'#dc2626'} />
-					</div>
-				</YMapMarker>
+				{YMapMarker ? (
+					<YMapMarker
+						coordinates={[map?.center?.[1] ?? 0, map?.center?.[0] ?? 0]}
+					>
+						<div className='-translate-x-1/2 -translate-y-full'>
+							<Marker color={'#dc2626'} />
+						</div>
+					</YMapMarker>
+				) : null}
 			</YMap>
 		</div>
 	);
