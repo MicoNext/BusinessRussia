@@ -15,10 +15,7 @@ export function YMapModal({ trigger, width, height }: YMapModalProps) {
 			<Modal.Trigger asChild>{trigger}</Modal.Trigger>
 			<Modal.Portal>
 				<Modal.Content className='w-full max-w-3xl p-0'>
-					<YMapWidget
-						width={width ?? '100%'}
-						height={height ?? 420}
-					/>
+					<YMapWidget />
 				</Modal.Content>
 			</Modal.Portal>
 		</Modal>

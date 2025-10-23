@@ -1,8 +1,16 @@
+'use client';
+
 import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline/Headline';
 import { companyInfoMock } from '@/shared/data/companyInfo.mock';
-import { YMapWidget } from '@/components/YMap';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+
+import dynamic from 'next/dynamic';
+
+const YMapWidget = dynamic(
+	() => import('@/components/YMap').then(m => m.YMapWidget),
+	{ ssr: false }
+);
 
 export default function Page() {
 	const { address, phone, email, workingHours } = companyInfoMock;
@@ -19,7 +27,7 @@ export default function Page() {
 					}
 				/>
 				<div className='mt-6 flex flex-col lg:flex-row gap-6'>
-					<div className='flex-1 space-y-4'>
+					<div className='w-[100%] space-y-4'>
 						{address && (
 							<div>
 								<div className='text-sm text-gray-500'>Адрес</div>
@@ -58,7 +66,7 @@ export default function Page() {
 							</div>
 						)}
 					</div>
-					<div className='flex-1 min-h-[360px]'>
+					<div className='flex w-[100%] h-[360px]'>
 						<YMapWidget />
 					</div>
 				</div>

@@ -1,1 +1,0 @@
-export { useYMapReactify } from './useYMapReactify';

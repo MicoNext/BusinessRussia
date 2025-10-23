@@ -7,9 +7,9 @@ export const companyInfoMock: ICompanyInfo = {
 	workingHours:
 		'<strong>Пн–Пт:</strong> 09:00–18:00<br/><strong>Сб–Вс:</strong> выходной',
 	map: {
-		center: [44.23845, 42.047587],
-		zoom: 13,
-		address: 'Москва, Красная площадь',
+		ymapApiKey: '7dd76431-0f47-4a79-9a5a-3f42c319bacb',
+		centerCoordinates: '44.23845, 42.047587',
+		zoomDefault: 15,
 	},
 	logo: {
 		imageUrl: '/logo-full.svg',

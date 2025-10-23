@@ -1,0 +1,1 @@
+export { getMapOptions } from './getMapOptions';

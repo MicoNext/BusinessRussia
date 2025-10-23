@@ -1,7 +1,6 @@
 import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline/Headline';
 import { companyInfoMock } from '@/shared/data/companyInfo.mock';
-import { YMapWidget } from '@/components/YMap';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export default function Page() {
@@ -57,9 +56,6 @@ export default function Page() {
 								/>
 							</div>
 						)}
-					</div>
-					<div className='flex-1 min-h-[360px]'>
-						<YMapWidget />
 					</div>
 				</div>
 			</div>
