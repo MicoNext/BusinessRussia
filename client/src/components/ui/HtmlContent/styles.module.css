@@ -1,0 +1,116 @@
+.html-content {
+	line-height: 1.7;
+	color: #111827; /* gray-900 */
+}
+
+.html-content p {
+	margin: 0 0 1rem;
+}
+
+.html-content h1,
+.html-content h2,
+.html-content h3,
+.html-content h4,
+.html-content h5,
+.html-content h6 {
+	font-weight: 700;
+	line-height: 1.25;
+	margin: 1.25rem 0 0.75rem;
+}
+
+.html-content h1 {
+	font-size: 2rem;
+}
+.html-content h2 {
+	font-size: 1.5rem;
+}
+.html-content h3 {
+	font-size: 1.25rem;
+}
+.html-content h4 {
+	font-size: 1.125rem;
+}
+.html-content h5 {
+	font-size: 1rem;
+}
+.html-content h6 {
+	font-size: 0.875rem;
+}
+
+.html-content ul,
+.html-content ol {
+	margin: 0 0 1rem;
+	padding-left: 1.25rem;
+}
+
+.html-content ul {
+	list-style: disc;
+}
+.html-content ol {
+	list-style: decimal;
+}
+
+.html-content li + li {
+	margin-top: 0.25rem;
+}
+
+.html-content a {
+	color: #2563eb; /* blue-600 */
+	text-decoration: underline;
+}
+
+.html-content a:hover {
+	color: #1d4ed8; /* blue-700 */
+}
+
+.html-content img,
+.html-content video,
+.html-content iframe {
+	max-width: 100%;
+	height: auto;
+}
+
+.html-content img {
+	display: block;
+	margin: 1rem 0;
+	border-radius: 0.5rem;
+}
+
+.html-content figure {
+	margin: 1rem 0;
+}
+
+.html-content blockquote {
+	margin: 1rem 0;
+	padding-left: 1rem;
+	border-left: 3px solid #e5e7eb; /* gray-200 */
+	color: #374151; /* gray-700 */
+}
+
+.html-content table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1rem 0;
+}
+
+.html-content th,
+.html-content td {
+	border: 1px solid #e5e7eb; /* gray-200 */
+	padding: 0.5rem 0.75rem;
+}
+
+.html-content th {
+	background: #f9fafb; /* gray-50 */
+	text-align: left;
+}
+
+.html-content hr {
+	border: 0;
+	border-top: 1px solid #e5e7eb;
+	margin: 2rem 0;
+}
+
+.html-content b,
+.html-content strong {
+	font-weight: 600;
+}
