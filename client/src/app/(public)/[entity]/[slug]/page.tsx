@@ -5,13 +5,13 @@ import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline';
 import { Badge } from '@/components/ui/Badge';
 import { HtmlContent } from '@/components/ui/HtmlContent';
-import { ENTITIES, type EntitySlug } from '@/shared/constants/entities';
+import { type EntitySlug } from '@/shared/constants/entities';
 import { newsMock } from '@/shared/data/news.mock';
 import { eventsMock } from '@/shared/data/events.mock';
 import { projectsMock } from '@/shared/data/projects.mock';
 import { Button } from '@/components/ui/buttons/Button';
 
-type Params = { entity: EntitySlug; slug: string };
+type TParams = { entity: EntitySlug; slug: string };
 
 function getEntityItem(entity: EntitySlug, slug: string) {
 	if (entity === 'news') return newsMock.find(n => n.slug === slug);
@@ -20,8 +20,14 @@ function getEntityItem(entity: EntitySlug, slug: string) {
 	return undefined;
 }
 
-export default function EntityDetailsPage({ params }: { params: Params }) {
-	const item = getEntityItem(params.entity, params.slug) as any;
+export default async function EntityDetailsPage({
+	params,
+}: {
+	params: Promise<TParams>;
+}) {
+	const { entity, slug } = await params;
+
+	const item = getEntityItem(entity, slug);
 	if (!item) return null;
 
 	const title: string = item.title;
@@ -55,7 +61,7 @@ export default function EntityDetailsPage({ params }: { params: Params }) {
 				{html ? <HtmlContent html={html} /> : null}
 
 				<div>
-					<Link href={`/${params.entity}`}>
+					<Link href={`/${entity}`}>
 						<Button
 							variant='ghost'
 							leftSection={<ArrowLeft size={16} />}
