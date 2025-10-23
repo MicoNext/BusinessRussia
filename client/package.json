@@ -9,6 +9,11 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@tiptap/extension-text": "^3.7.2",
+		"@tiptap/extension-text-align": "^3.7.2",
+		"@tiptap/pm": "^3.7.2",
+		"@tiptap/react": "^3.7.2",
+		"@tiptap/starter-kit": "^3.7.2",
 		"axios": "^1.7.9",
 		"clsx": "^2.1.1",
 		"dotenv": "^16.4.7",

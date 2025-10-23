@@ -1,10 +1,12 @@
 'use client'
-
 import { useState } from 'react'
 import { Eye, EyeOff, UserRound, Lock } from 'lucide-react'
 import authApiService from '@/shared/api/auth.api.service'
+interface IProps {
+  setAuth: (s: boolean) => void
+}
 
-export default function SignPage() {
+export default function Sign({ setAuth }: IProps) {
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -14,6 +16,7 @@ export default function SignPage() {
     e.preventDefault()
     setIsLoading(true)
     await authApiService.signin(login, password)
+    .then(r => setAuth(true))
   }
 
   return (
