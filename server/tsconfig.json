@@ -20,8 +20,13 @@
       "src/**/*.ts",
       "src/**/*.d.ts", 
       "src/types/**/*.d.ts",
-      "../package/types/models/*.d.ts"
+      "../package/types/models/*.d.ts",
+      "../package/types/utils/*.d.ts",
     ],
-    "exclude": ["node_modules", "build"]
+    "exclude": ["node_modules", "build"],
+    "paths": {
+      "@sharedTypesModels/*": ["../package/types/models"],
+      "@sharedTypesUtil/*": ["../package/types/utils"]
+    }
   }
   
