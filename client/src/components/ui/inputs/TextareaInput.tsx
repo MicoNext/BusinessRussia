@@ -12,14 +12,16 @@ export function TextareaInput({
 	name,
 	placeholder,
 	className,
-	...styleProps
+	variant,
+	size,
+	...rest
 }: FieldBaseProps & InputStyleProps) {
 	return (
 		<FieldWrapper
 			id={id}
 			label={label}
 			required={required}
-			variant={styleProps.variant}
+			variant={variant}
 		>
 			<textarea
 				id={id}
@@ -30,8 +32,9 @@ export function TextareaInput({
 				className={composeInputClasses({
 					className,
 					size: 'textarea',
-					...styleProps,
+					variant,
 				})}
+				{...rest}
 			/>
 		</FieldWrapper>
 	);

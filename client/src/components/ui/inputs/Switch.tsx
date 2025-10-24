@@ -1,3 +1,16 @@
+interface ISwitchProps {
+	id: string;
+	name: string;
+	label?: string | React.ReactNode;
+	required?: boolean;
+	variant?: 'dark' | 'light';
+	className?: string;
+	checked?: boolean;
+	defaultChecked?: boolean;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	disabled?: boolean;
+}
+
 export function Switch({
 	id,
 	name,
@@ -9,18 +22,7 @@ export function Switch({
 	defaultChecked,
 	onChange,
 	disabled,
-}: {
-	id: string;
-	name: string;
-	label?: string | React.ReactNode;
-	required?: boolean;
-	variant?: 'dark' | 'light';
-	className?: string;
-	checked?: boolean;
-	defaultChecked?: boolean;
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	disabled?: boolean;
-}) {
+}: ISwitchProps) {
 	const labelColor = variant === 'light' ? 'text-white/90' : 'text-gray-800';
 	const offTrackColor = variant === 'light' ? 'bg-white/30' : 'bg-gray-300';
 	const focusRing =
