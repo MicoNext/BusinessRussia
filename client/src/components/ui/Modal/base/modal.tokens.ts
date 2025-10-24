@@ -1,5 +1,6 @@
 export const modalTokens = {
-	container: 'fixed inset-0 flex items-center justify-center p-4 z-[60]',
+	container: 'fixed inset-0 flex justify-center p-4 z-[60]',
+	centered: 'items-center justify-center',
 	containerAnimationBase: 'transition-opacity',
 	containerEnter:
 		'data-[state=open]:duration-100 data-[state=open]:ease-in data-[state=open]:opacity-1',

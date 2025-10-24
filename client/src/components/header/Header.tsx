@@ -42,7 +42,6 @@ export default function Header({}: HeaderProps) {
 							aria-label='Быстрые действия'
 						>
 							<JoinButton />
-							<PayFeeButton />
 						</div>
 					</div>
 				</div>

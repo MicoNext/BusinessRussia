@@ -9,9 +9,19 @@ import { Overlay } from '@/components/ui/Overlay';
 interface IContentProps {
 	className?: string;
 	children: ReactNode;
+	centered?: boolean;
+	classNames?: {
+		container?: string;
+		panel?: string;
+	};
 }
 
-export function Content({ className, children }: IContentProps) {
+export function Content({
+	className,
+	children,
+	classNames,
+	centered = true,
+}: IContentProps) {
 	const { open, setOpen, contentRef } = useModalContext();
 	const { present, setPresent, entered } = usePresence(open);
 
@@ -22,7 +32,9 @@ export function Content({ className, children }: IContentProps) {
 		modalTokens.containerAnimationBase,
 		modalTokens.containerEnter,
 		modalTokens.containerExit,
-		open && !entered && 'opacity-0'
+		centered && modalTokens.centered,
+		open && !entered && 'opacity-0',
+		classNames?.container
 	);
 
 	const panelClasses = clsx(
@@ -31,6 +43,7 @@ export function Content({ className, children }: IContentProps) {
 		modalTokens.contentEnter,
 		modalTokens.contentExit,
 		open && !entered && 'translate-y-1',
+		classNames?.panel,
 		className
 	);
 

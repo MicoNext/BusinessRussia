@@ -12,14 +12,10 @@ export function ContactusActions() {
 
 	return (
 		<>
-			<div className='border-b border-white/10 pb-4 md:pb-8'>
-				<ContactusTabs
-					activeTab={activeTab}
-					setActiveTab={setActiveTab}
-				/>
-			</div>
-			{activeTab === 'form' && <Form variant='dark' />}
-			{activeTab === 'pay' && <ContactusPay />}
+			<Form
+				id='contactus'
+				variant='dark'
+			/>
 		</>
 	);
 }

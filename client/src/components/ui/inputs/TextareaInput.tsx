@@ -1,7 +1,11 @@
-import { FieldWrapper, composeInputClasses } from './base';
-import { InputProps } from './base/inputs.interface';
+import {
+	FieldBaseProps,
+	FieldWrapper,
+	composeInputClasses,
+	type InputStyleProps,
+} from './base';
 
-export function PhoneNumberInput({
+export function TextareaInput({
 	id,
 	label,
 	required,
@@ -11,7 +15,7 @@ export function PhoneNumberInput({
 	variant,
 	size,
 	...rest
-}: InputProps) {
+}: FieldBaseProps & InputStyleProps) {
 	return (
 		<FieldWrapper
 			id={id}
@@ -19,13 +23,17 @@ export function PhoneNumberInput({
 			required={required}
 			variant={variant}
 		>
-			<input
+			<textarea
 				id={id}
 				name={name}
-				type='tel'
+				rows={4}
 				placeholder={placeholder}
 				required={required}
-				className={composeInputClasses({ className, variant, size })}
+				className={composeInputClasses({
+					className,
+					size: 'textarea',
+					variant,
+				})}
 				{...rest}
 			/>
 		</FieldWrapper>

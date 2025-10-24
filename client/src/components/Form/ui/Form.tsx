@@ -1,10 +1,17 @@
 import { Button } from '@/components/ui/buttons';
-import { TextInput, PhoneNumberInput, Switch } from '@/components/ui/inputs';
+import {
+	TextInput,
+	PhoneNumberInput,
+	Switch,
+	TextareaInput,
+} from '@/components/ui/inputs';
 import { formTokens } from '../base';
 import clsx from 'clsx';
 import { Headline } from '@/components/ui/Headline';
 
 interface IFormProps {
+	id: string;
+	subject?: string;
 	header?: React.ReactNode;
 	footer?: React.ReactNode;
 	variant?: 'light' | 'dark';
@@ -12,6 +19,8 @@ interface IFormProps {
 }
 
 export function Form({
+	id,
+	subject = 'Вступить',
 	variant = 'light',
 	header = (
 		<Headline
@@ -39,11 +48,16 @@ export function Form({
 				'flex flex-col gap-12'
 			)}
 		>
+			<input
+				type='hidden'
+				name='subject'
+				value={subject}
+			/>
 			<div className='flex flex-col gap-4 md:gap-6'>
 				<div className='flex gap-2 justify-between items-center'>{header}</div>
 				<section className='flex flex-col gap-3'>
 					<TextInput
-						id='contactus_name'
+						id={`${id}_name`}
 						name='name'
 						label='Имя'
 						required
@@ -51,7 +65,7 @@ export function Form({
 						variant={variant === 'light' ? 'dark' : 'light'}
 					/>
 					<PhoneNumberInput
-						id='contactus_phone'
+						id={`${id}_phone`}
 						name='phone'
 						label='Телефон'
 						required
@@ -59,10 +73,17 @@ export function Form({
 						variant={variant === 'light' ? 'dark' : 'light'}
 					/>
 					<TextInput
-						id='contactus_email'
+						id={`${id}_email`}
 						name='email'
 						label='E-mail'
 						placeholder='example@mail.com'
+						variant={variant === 'light' ? 'dark' : 'light'}
+					/>
+					<TextareaInput
+						id={`${id}_message`}
+						name='message'
+						label='Сообщение'
+						placeholder='Ваше сообщение'
 						variant={variant === 'light' ? 'dark' : 'light'}
 					/>
 					<p
@@ -78,7 +99,7 @@ export function Form({
 			<div className='flex flex-col gap-3'>
 				<section className='flex gap-2'>
 					<Switch
-						id='contactus_consent'
+						id={`${id}_consent`}
 						name='consent'
 						required
 						label={
