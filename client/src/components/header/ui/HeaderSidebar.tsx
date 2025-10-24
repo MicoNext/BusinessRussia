@@ -66,7 +66,6 @@ export function HeaderSidebar() {
 							aria-label='Быстрые действия'
 						>
 							<JoinButton className='w-full justify-center' />
-							<PayFeeButton className='w-full justify-center' />
 						</div>
 					</Sidebar.Footer>
 				</Sidebar.Content>
