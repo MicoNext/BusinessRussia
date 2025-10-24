@@ -34,6 +34,7 @@ export function ContactModal({ trigger }: { trigger: React.ReactNode }) {
 								</Modal.Close>
 							</>
 						}
+						id='modal_contact'
 					/>
 				</Modal.Content>
 			</Modal.Portal>

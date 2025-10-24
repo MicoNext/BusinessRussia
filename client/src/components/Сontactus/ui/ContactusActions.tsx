@@ -18,7 +18,12 @@ export function ContactusActions() {
 					setActiveTab={setActiveTab}
 				/>
 			</div>
-			{activeTab === 'form' && <Form variant='dark' />}
+			{activeTab === 'form' && (
+				<Form
+					id='contactus'
+					variant='dark'
+				/>
+			)}
 			{activeTab === 'pay' && <ContactusPay />}
 		</>
 	);
