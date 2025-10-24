@@ -53,7 +53,7 @@ export function Switch({
 				/>
 				<span
 					aria-hidden='true'
-					className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ease-in-out ${offTrackColor} peer-checked:bg-brand-primary peer-checked:[&>span]:translate-x-5 ${focusRing}`}
+					className={`relative flex-shrink-0 inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ease-in-out ${offTrackColor} peer-checked:bg-brand-primary peer-checked:[&>span]:translate-x-5 ${focusRing}`}
 				>
 					<span className='absolute left-0.5 top-1/2 -translate-y-1/2 h-5 w-5 rounded-full bg-white shadow transition-transform duration-200 ease-in-out' />
 				</span>

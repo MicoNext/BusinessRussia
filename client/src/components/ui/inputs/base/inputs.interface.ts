@@ -1,5 +1,5 @@
 export type InputVariant = 'dark' | 'light';
-export type InputSize = 'sm' | 'md' | 'lg';
+export type InputSize = 'sm' | 'md' | 'lg' | 'textarea';
 
 export interface FieldBaseProps {
 	id: string;

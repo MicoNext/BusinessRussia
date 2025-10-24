@@ -1,5 +1,10 @@
 import { Button } from '@/components/ui/buttons';
-import { TextInput, PhoneNumberInput, Switch } from '@/components/ui/inputs';
+import {
+	TextInput,
+	PhoneNumberInput,
+	Switch,
+	TextareaInput,
+} from '@/components/ui/inputs';
 import { formTokens } from '../base';
 import clsx from 'clsx';
 import { Headline } from '@/components/ui/Headline';
@@ -72,6 +77,13 @@ export function Form({
 						name='email'
 						label='E-mail'
 						placeholder='example@mail.com'
+						variant={variant === 'light' ? 'dark' : 'light'}
+					/>
+					<TextareaInput
+						id={`${id}_message`}
+						name='message'
+						label='Сообщение'
+						placeholder='Ваше сообщение'
 						variant={variant === 'light' ? 'dark' : 'light'}
 					/>
 					<p
