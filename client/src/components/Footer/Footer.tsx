@@ -77,22 +77,6 @@ export default function Footer() {
 								</li>
 								<li>
 									<a
-										href='/organization/how-to-join/'
-										className='hover:underline'
-									>
-										Как стать членом
-									</a>
-								</li>
-								<li>
-									<a
-										href='/organization/perm-region/'
-										className='hover:underline'
-									>
-										«Деловая Россия» в Пермском крае
-									</a>
-								</li>
-								<li>
-									<a
 										href='/commissions/'
 										className='hover:underline'
 									>
