@@ -1,13 +1,10 @@
 import Logo from '@/components/ui/Logo';
 import JoinButton from './ui/JoinButton';
-import PayFeeButton from './ui/PayFeeButton';
 import SearchButton from './ui/SearchButton';
 import Menu from './ui/Menu';
 import { HeaderSidebar } from './ui/HeaderSidebar';
 import { SocialMedia } from '@/components/SocialMedia';
-import { companyInfoMock } from '@/shared/data/companyInfo.mock';
 import { SOCIAL_MEDIA } from '@/shared/constants/socialMedia';
-import { Icon } from '../ui/socialIcons';
 
 interface HeaderProps {}
 

@@ -6,6 +6,15 @@ const nextConfig: NextConfig = {
 	images: {
 		unoptimized: true,
 	},
+	async redirects() {
+		return [
+			{
+				source: '/organization',
+				destination: '/organization/about',
+				permanent: true,
+			},
+		];
+	},
 	outputFileTracingRoot: process.cwd(),
 };
 
