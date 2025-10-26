@@ -70,7 +70,7 @@ export default function Footer() {
 								</li>
 								<li>
 									<a
-										href='/commissions/'
+										href='/committees/'
 										className='hover:underline'
 									>
 										Комитеты
@@ -147,7 +147,7 @@ export default function Footer() {
 								</li>
 								<li>
 									<a
-										href='/commissions/'
+										href='/committees/'
 										className='hover:underline'
 									>
 										Комитеты

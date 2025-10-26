@@ -3,7 +3,7 @@ export const ENTITIES = {
 	events: { title: 'Мероприятия' },
 	projects: { title: 'Проекты' },
 	organization: { title: '«Деловая Россия»' },
-	commissions: { title: 'Комитеты' },
+	committees: { title: 'Комитеты' },
 } as const;
 
 export type EntitySlug = keyof typeof ENTITIES;

@@ -10,6 +10,7 @@ import { newsMock } from '@/shared/data/news.mock';
 import { eventsMock } from '@/shared/data/events.mock';
 import { projectsMock } from '@/shared/data/projects.mock';
 import { Button } from '@/components/ui/buttons/Button';
+import { committeesMock } from '@/shared/data/committee.mock';
 
 type TParams = { entity: EntitySlug; slug: string };
 
@@ -17,6 +18,8 @@ function getEntityItem(entity: EntitySlug, slug: string) {
 	if (entity === 'news') return newsMock.find(n => n.slug === slug);
 	if (entity === 'events') return eventsMock.find(e => e.slug === slug);
 	if (entity === 'projects') return projectsMock.find(p => p.slug === slug);
+	if (entity === 'committees') return committeesMock.find(p => p.slug === slug);
+
 	return undefined;
 }
 
@@ -32,9 +35,10 @@ export default async function EntityDetailsPage({
 
 	const title: string = item.title;
 	const html: string | undefined = item.html;
-	const tags: string[] = Array.isArray(item.tags)
-		? (item.tags as string[])
-		: ['#Инвестицииврегион', '#Комитетпофинансамиинвестициям'];
+	// const tags: string[] =
+	// 	item?.tags && Array.isArray(item?.tags)
+	// 		? item?.tags
+	// 		: ['#Инвестицииврегион', '#Комитетпофинансамиинвестициям'];
 
 	return (
 		<section className='flex-1'>
@@ -43,13 +47,13 @@ export default async function EntityDetailsPage({
 					leftSection={
 						<Headline
 							title={title}
-							description={
-								<>
-									{tags.map((tag, index) => (
-										<Badge key={`${index}${tag}`}>#{tag}</Badge>
-									))}
-								</>
-							}
+							// description={
+							// 	<>
+							// 		{tags.map((tag, index) => (
+							// 			<Badge key={`${index}${tag}`}>#{tag}</Badge>
+							// 		))}
+							// 	</>
+							// }
 							classNames={{
 								container: 'space-y-3',
 								description: 'flex flex-wrap gap-2',

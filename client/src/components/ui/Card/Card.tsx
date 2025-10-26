@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/Badge';
 interface ICardProps {
 	link: string;
 	image?: string;
-	subtitle?: string;
+	subtitle?: string | null;
 	title?: string;
 	time?: string | Date;
 	direction?: 'column' | 'row';

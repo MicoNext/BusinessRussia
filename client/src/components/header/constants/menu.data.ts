@@ -11,7 +11,7 @@ export const MENU: MenuItem[] = [
 		children: [
 			{ label: 'О «Деловой России»', href: '/organization/about' },
 			{ label: 'Лица РО', href: '/organization/team' },
-			{ label: 'Комитеты', href: '/commissions' },
+			{ label: 'Комитеты', href: '/committees' },
 		],
 	},
 	{ label: 'Мероприятия', href: '/events' },

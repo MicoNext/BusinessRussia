@@ -8,6 +8,7 @@ import { Card } from '@/components/ui/Card';
 import { notFound } from 'next/navigation';
 import { TParams, TSearchParams } from './types';
 import { Headline } from '@/components/ui/Headline';
+import { committeesMock } from '@/shared/data/committee.mock';
 
 const PAGE_SIZE = 9;
 
@@ -58,6 +59,14 @@ function getData(entity: EntitySlug) {
 			image: p.media?.imagesUrl?.[0],
 			href: p.url?.startsWith('http') ? p.url : `/projects/${p.slug}`,
 		}));
+	if (entity === 'committees')
+		return committeesMock.map(p => ({
+			id: p._id,
+			title: p.title,
+			time: p.createdAt,
+			image: p.media?.imagesUrl?.[0],
+			href: `/committees/${p.slug}`,
+		}));
 	return [];
 }
 
@@ -98,7 +107,7 @@ export default async function EntityListPage({
 							<Card
 								link={item.href}
 								image={item.image}
-								subtitle={item.subtitle}
+								subtitle={item && 'subtitle' in item ? item.subtitle : null}
 								title={item.title}
 								time={item.time}
 							/>
