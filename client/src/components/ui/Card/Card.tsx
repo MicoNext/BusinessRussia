@@ -56,7 +56,7 @@ export function Card({
 							src={image}
 							alt={title || 'изображение'}
 							fill
-							className='object-cover rounded-2xl'
+							className='object-cover object-top rounded-2xl'
 							sizes={'(max-width: 768px) 50vw, 33vw'}
 						/>
 					</Link>

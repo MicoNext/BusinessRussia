@@ -59,14 +59,7 @@ export default function Footer() {
 										Лица РО
 									</a>
 								</li>
-								<li>
-									<a
-										href='/organization/experts/'
-										className='hover:underline'
-									>
-										Эксперты
-									</a>
-								</li>
+
 								<li>
 									<a
 										href='/services/'
