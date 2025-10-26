@@ -5,26 +5,13 @@ export interface MenuItem {
 }
 
 export const MENU: MenuItem[] = [
-	{ label: 'Книга', href: '/projects/154' },
 	{
 		label: '«Деловая Россия»',
 		href: '/organization',
 		children: [
 			{ label: 'О «Деловой России»', href: '/organization/about' },
 			{ label: 'Лица РО', href: '/organization/team' },
-			{ label: 'Эксперты', href: '/organization/experts' },
-			{ label: 'Возможности', href: '/services' },
-			{ label: 'Как стать членом', href: '/organization/how-to-join' },
-			{
-				label: '«Деловая Россия» в Пермском крае',
-				href: '/organization/perm-region',
-			},
-			{ label: 'Комитеты', href: '/commissions' },
-			{ label: 'Клубы', href: '/clubs' },
-			{ label: 'Советы и рабочие группы', href: '/boards' },
-			{ label: 'Партнеры', href: '/organization/partners' },
-			{ label: 'Документы', href: '/organization/docs' },
-			{ label: 'Реквизиты', href: '/organization/requisites' },
+			{ label: 'Комитеты', href: '/committees' },
 		],
 	},
 	{ label: 'Мероприятия', href: '/events' },
@@ -40,10 +27,7 @@ export const MENU: MenuItem[] = [
 				label: 'Клуб экспортеров «Деловой России» Export Experience Club',
 				href: '/projects/156',
 			},
-			{
-				label: 'Книга «Предприниматели и меценаты Прикамья»',
-				href: '/projects/154',
-			},
+
 			{ label: 'Деньги для Дела', href: '/projects/120' },
 			{
 				label: 'Краудфандинговая платформа #ПермьВдохновляет',

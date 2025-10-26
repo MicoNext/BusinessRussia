@@ -1,13 +1,8 @@
 import type { ReactNode } from 'react';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { ENTITIES } from '@/shared/constants/entities';
 import { Сontactus } from '@/components/Сontactus';
 
-export function generateStaticParams() {
-	return Object.keys(ENTITIES).map(entity => ({ entity }));
-}
-
-export default async function EntityLayout({
+export default function OrganizationLayout({
 	children,
 }: {
 	children: ReactNode;
@@ -16,7 +11,7 @@ export default async function EntityLayout({
 		<>
 			<section className='flex-1 px-4 md:px-8 lg:px-12 py-6'>
 				<div className='container mx-auto'>
-					<Breadcrumbs className='mb-8' />
+					<Breadcrumbs className='mb-16' />
 					{children}
 				</div>
 			</section>

@@ -8,6 +8,7 @@ import { Card } from '@/components/ui/Card';
 import { notFound } from 'next/navigation';
 import { TParams, TSearchParams } from './types';
 import { Headline } from '@/components/ui/Headline';
+import { committeesMock } from '@/shared/data/committee.mock';
 
 const PAGE_SIZE = 9;
 
@@ -58,6 +59,14 @@ function getData(entity: EntitySlug) {
 			image: p.media?.imagesUrl?.[0],
 			href: p.url?.startsWith('http') ? p.url : `/projects/${p.slug}`,
 		}));
+	if (entity === 'committees')
+		return committeesMock.map(p => ({
+			id: p._id,
+			title: p.title,
+			time: p.createdAt,
+			image: p.media?.imagesUrl?.[0],
+			href: `/committees/${p.slug}`,
+		}));
 	return [];
 }
 
@@ -80,49 +89,51 @@ export default async function EntityListPage({
 	const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
 	return (
-		<div className='space-y-8'>
-			<Headline
-				title={ENTITIES[entity].title}
-				order={2}
-				classNames={{ container: 'mb-6' }}
-			/>
+		<main>
+			<div className='space-y-8'>
+				<Headline
+					title={ENTITIES[entity].title}
+					order={2}
+					classNames={{ container: 'mb-6' }}
+				/>
 
-			<Grid
-				cols={1}
-				gap={8}
-				classNames={{ root: 'md:grid-cols-2 lg:grid-cols-3' }}
-			>
-				{items.map(item => (
-					<Grid.Col key={item.id}>
-						<Card
-							link={item.href}
-							image={item.image}
-							subtitle={item.subtitle}
-							title={item.title}
-							time={item.time}
-						/>
-					</Grid.Col>
-				))}
-			</Grid>
-
-			{totalPages > 1 && (
-				<div className='flex items-center justify-center gap-2'>
-					{Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
-						<Link
-							key={p}
-							href={`/${entity}?page=${p}`}
-							className={
-								'px-3 py-1.5 rounded border text-sm ' +
-								(p === currentPage
-									? 'border-gray-900 text-gray-900'
-									: 'border-gray-200 text-gray-600 hover:border-gray-300')
-							}
-						>
-							{p}
-						</Link>
+				<Grid
+					cols={1}
+					gap={8}
+					classNames={{ root: 'md:grid-cols-2 lg:grid-cols-3' }}
+				>
+					{items.map(item => (
+						<Grid.Col key={item.id}>
+							<Card
+								link={item.href}
+								image={item.image}
+								subtitle={item && 'subtitle' in item ? item.subtitle : null}
+								title={item.title}
+								time={item.time}
+							/>
+						</Grid.Col>
 					))}
-				</div>
-			)}
-		</div>
+				</Grid>
+
+				{totalPages > 1 && (
+					<div className='flex items-center justify-center gap-2'>
+						{Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+							<Link
+								key={p}
+								href={`/${entity}?page=${p}`}
+								className={
+									'px-3 py-1.5 rounded border text-sm ' +
+									(p === currentPage
+										? 'border-gray-900 text-gray-900'
+										: 'border-gray-200 text-gray-600 hover:border-gray-300')
+								}
+							>
+								{p}
+							</Link>
+						))}
+					</div>
+				)}
+			</div>
+		</main>
 	);
 }

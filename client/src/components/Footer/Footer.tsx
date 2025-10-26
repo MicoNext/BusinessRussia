@@ -59,14 +59,7 @@ export default function Footer() {
 										Лица РО
 									</a>
 								</li>
-								<li>
-									<a
-										href='/organization/experts/'
-										className='hover:underline'
-									>
-										Эксперты
-									</a>
-								</li>
+
 								<li>
 									<a
 										href='/services/'
@@ -77,23 +70,7 @@ export default function Footer() {
 								</li>
 								<li>
 									<a
-										href='/organization/how-to-join/'
-										className='hover:underline'
-									>
-										Как стать членом
-									</a>
-								</li>
-								<li>
-									<a
-										href='/organization/perm-region/'
-										className='hover:underline'
-									>
-										«Деловая Россия» в Пермском крае
-									</a>
-								</li>
-								<li>
-									<a
-										href='/commissions/'
+										href='/committees/'
 										className='hover:underline'
 									>
 										Комитеты
@@ -170,7 +147,7 @@ export default function Footer() {
 								</li>
 								<li>
 									<a
-										href='/commissions/'
+										href='/committees/'
 										className='hover:underline'
 									>
 										Комитеты

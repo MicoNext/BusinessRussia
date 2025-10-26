@@ -13,8 +13,10 @@ const LABELS: Record<string, string> = {
 	projects: 'Проекты',
 	contacts: 'Контакты',
 	organization: '«Деловая Россия»',
+	about: 'О «Деловой России»',
+	team: 'Лица РО',
 	services: 'Возможности',
-	commissions: 'Комитеты',
+	committees: 'Комитеты',
 	clubs: 'Клубы',
 	boards: 'Советы и рабочие группы',
 };
