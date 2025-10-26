@@ -1,5 +1,6 @@
-import Header from '@/components/header/index'
+import Header from '@/components/Header'
 import Footer from '@/components/Footer';
+import { ScrollTop } from '@/components/ScrollTop';
 
 function layout({
 	children,
@@ -11,6 +12,7 @@ function layout({
 			<Header />
 			{children}
 			<Footer />
+			<ScrollTop />
 		</div>
 	);
 }

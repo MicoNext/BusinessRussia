@@ -42,7 +42,7 @@ const startServer = async () => {
   })
   await server.register(fastifyStatic, {
     root: await mePaths("public"),
-    prefix: "/api/public",
+    prefix: "/public",
     decorateReply: false
   })
 

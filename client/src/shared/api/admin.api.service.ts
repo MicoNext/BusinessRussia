@@ -40,13 +40,14 @@ class ApiAdminService {
             throw e
         }
     }
-    async callApiBody({ path, method, body }: { path: string, method: 'post' | 'put', body: any }): Promise<any> {
+    async callApiBody({ path, method, body, headers }: { path: string, method: 'post' | 'put', body: any, headers?: any }): Promise<any> {
         try {
             return await this.axiosInstance[method](
                 path,
                 body,
                 {
                     headers: {
+                        ...headers,
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 },

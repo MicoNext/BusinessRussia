@@ -9,6 +9,7 @@ export interface IModalProps {
 	closeDelay?: number;
 	closeOnEsc?: boolean;
 	closeOnClickOutside?: boolean;
+	centered?: boolean;
 }
 
 export interface IModalContextValue {

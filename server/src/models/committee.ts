@@ -3,7 +3,6 @@ import { CommitteeDocType } from './types'
 
 const CommitteeSchema = new Schema<CommitteeDocType>({
   createdAt: { type: Date, default: Date.now },
-  slug: { type: String, required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
   tags: [{ type: String }],
