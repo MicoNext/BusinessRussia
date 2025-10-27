@@ -18,6 +18,7 @@ import committeeController from "../modules/committee/committee.controller"
 import eventController from "../modules/event/event.controller"
 import participantController from "../modules/participant/participant.controller"
 import projectController from "../modules/project/project.controller"
+import companyInfoController from "../modules/companyInfo/companyInfo.controller"
 
 const startServer = async () => {
   const server = fastify({ logger: true })
@@ -37,7 +38,7 @@ const startServer = async () => {
   await server.register(cors, {
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', ],
+    allowedHeaders: ['Content-Type', 'Authorization',],
     credentials: true
   })
   await server.register(fastifyStatic, {
@@ -53,7 +54,7 @@ const startServer = async () => {
   server.post('/api/ping', async (_, reply) => reply.send({ msg: "pong" }))
   server.put('/api/ping', async (_, reply) => reply.send({ msg: "pong" }))
   server.delete('/api/ping', async (_, reply) => reply.send({ msg: "pong" }))
-  
+
   server.post('/api/signin', {
     handler: authController.signin
   })
@@ -128,7 +129,7 @@ const startServer = async () => {
     preHandler: cheackJwtInHeader,
     handler: eventController.DELETE
   })
-  
+
   server.get('/api/participant', {
     handler: participantController.GET
   })
@@ -160,7 +161,15 @@ const startServer = async () => {
     preHandler: cheackJwtInHeader,
     handler: projectController.DELETE
   })
-  
+
+  server.get('/api/company-info', {
+    handler: companyInfoController.GET
+  })
+  server.put('/api/company-info', {
+    preHandler: cheackJwtInHeader,
+    handler: companyInfoController.PUT
+  })
+
   try {
     setupGlobalErrorHandlers()
     await dbService.connect()
