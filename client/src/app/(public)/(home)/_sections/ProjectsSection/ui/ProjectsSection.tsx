@@ -1,15 +1,18 @@
 'use client';
-
 import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline';
 import { IconButton } from '@/components/ui/buttons';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ProjectSlider from './ProjectSlider';
-import { projectsMock } from '@/shared/data/projects.mock';
 import { useState } from 'react';
 import type { EmblaCarouselType } from 'embla-carousel';
+import { IProject } from '../../../../../../../../package/types/models/projects';
 
-export default function ProjectsSection() {
+type PropsType = {
+	projects: IProject[]
+}
+
+export default function ProjectsSection({ projects }: PropsType) {
 	const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | undefined>(
 		undefined
 	);
@@ -41,7 +44,7 @@ export default function ProjectsSection() {
 					}
 				/>
 				<ProjectSlider
-					items={projectsMock.slice(0, 9)}
+					items={projects.slice(0, 9)}
 					onApi={api => setEmblaApi(api)}
 				/>
 			</div>

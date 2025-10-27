@@ -6,9 +6,10 @@ import { HeaderSidebar } from './ui/HeaderSidebar';
 import { SocialMedia } from '@/components/SocialMedia';
 import { SOCIAL_MEDIA } from '@/shared/constants/socialMedia';
 
-interface HeaderProps {}
+type PropsType = {
+}
 
-export default function Header({}: HeaderProps) {
+export default function Header({}: PropsType) {
 	return (
 		<header
 			className='sticky top-0 z-50 bg-white border-b border-gray-200 text-brand-grayText px-4 md:px-8 lg:px-12'

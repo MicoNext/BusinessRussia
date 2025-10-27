@@ -35,6 +35,22 @@ class NewsController {
     }
   }
 
+  public async GET_ID(req: FastifyRequest<{
+    Params: { _id: string }, 
+  }>, reply: FastifyReply) {
+    try {
+      const { _id } = req.params
+
+      const result = await News.findById(_id)
+
+      return successResponse("success", {
+        data: result,
+      }, reply)
+    } catch (e) {
+      return errorResponse(e, reply)
+    }
+  }
+
   public async POST(req: FastifyRequest<{ Body: { data: Partial<NewsDocType> } }>, reply: FastifyReply) {
     try {
       return successResponse("success", { data: await News.create(req.body.data) }, reply)

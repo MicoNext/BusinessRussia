@@ -1,6 +1,10 @@
+import { ICompanyInfo } from '../../../../package/types/models/companyInfo';
 import { SocialMedia } from '../SocialMedia';
-import { companyInfoMock } from '@/shared/data/companyInfo.mock';
 import { SOCIAL_MEDIA } from '@/shared/constants/socialMedia';
+
+type PropsType = {
+	companyInfo: ICompanyInfo
+}
 
 const currentYear = new Date().getFullYear();
 
@@ -16,19 +20,16 @@ export default function Footer() {
 						</p>
 						<div className='flex flex-col gap-4'>
 							<address className='not-italic'>
-								{companyInfoMock.email && (
-									<div>
-										<a
-											href={`mailto:${companyInfoMock.email}`}
-											className='text-sm hover:underline'
-										>
-											{companyInfoMock.email}
-										</a>
-									</div>
-								)}
-								{companyInfoMock.address && (
-									<div className='text-sm'>{companyInfoMock.address}</div>
-								)}
+
+							<div>
+								<a
+									href={`mailto:test@email.ru`}
+									className='text-sm hover:underline'
+								>
+									test@email.ru
+								</a>
+							</div>
+									<div className='text-sm'>Тут будет адресс</div>
 							</address>
 							{SOCIAL_MEDIA && (
 								<SocialMedia

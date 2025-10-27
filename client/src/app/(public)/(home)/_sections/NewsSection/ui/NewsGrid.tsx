@@ -22,7 +22,7 @@ export function NewsGrid({ items }: { items: INews[] }) {
 					)}
 				>
 					<Card
-						link={item.slug}
+						link={`/news/${item._id}`}
 						image={item.media.imagesUrl[0]}
 						subtitle={item.category}
 						title={item.title}

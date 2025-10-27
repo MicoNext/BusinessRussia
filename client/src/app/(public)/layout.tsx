@@ -11,7 +11,7 @@ function layout({
 		<div className='min-h-screen flex flex-col justify-between'>
 			<Header />
 			{children}
-			<Footer />
+	 		<Footer />
 			<ScrollTop />
 		</div>
 	);

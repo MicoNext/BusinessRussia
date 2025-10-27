@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { ArrowRight } from 'lucide-react';
 import { LinkButton, UnstyledButton } from '@/components/ui/buttons';
 import { Badge } from '@/components/ui/Badge';
+import Image from 'next/image';
 
 interface EventCardProps {
 	event: IEvent;
@@ -33,8 +34,8 @@ function formatDateRange(startDate: Date, endDate?: Date): string {
 }
 
 export const EventCard: React.FC<EventCardProps> = ({ event, classNames }) => {
-	const { url, title, startDate, endDate, location, time, slug } = event;
-	const href = url || `/events/${slug}`;
+	const { _id, url, title, startDate, endDate, location, time } = event;
+	const href =  `/events/${_id}`;
 
 	return (
 		<article
@@ -50,6 +51,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, classNames }) => {
 			/>
 			<div className='flex flex-col justify-between gap-3 p-4 h-full'>
 				<div className='flex flex-col gap-2'>
+					<img src={url} alt={new Date().toDateString()} />
 					<div className='flex items-center gap-2'>
 						<Badge
 							size='sm'

@@ -38,7 +38,7 @@ export function ProjectSlider({
 							className='embla__slide basis-full md:basis-1/2 lg:basis-1/3 shrink-0 min-w-0'
 						>
 							<Card
-								link={project.url}
+								link={`projects/${project._id}`}
 								image={project.media.imagesUrl[0]}
 								subtitle={project.category}
 								title={project.title}

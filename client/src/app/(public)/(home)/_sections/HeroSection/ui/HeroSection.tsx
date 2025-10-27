@@ -1,17 +1,20 @@
 'use client';
-
 import { EmblaOptionsType } from 'embla-carousel';
-import { sliderMainMock } from '@/shared/data/hero.mock';
 import { HeroSlider } from './HeroSlider';
+import type { ISliderMain } from '../../../../../../../../package/types/models/sliderMain';
+
+type PropsType = {
+	sliderMain: ISliderMain[]
+}
 
 const OPTIONS: EmblaOptionsType = { align: 'start', loop: true };
 
-function HeroSection() {
+function HeroSection({ sliderMain }: PropsType) {
 	return (
 		<section className='w-full'>
 			<div className=''>
 				<HeroSlider
-					slides={sliderMainMock}
+					slides={sliderMain}
 					options={OPTIONS}
 				/>
 			</div>

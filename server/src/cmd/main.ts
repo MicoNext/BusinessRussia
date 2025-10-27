@@ -18,7 +18,6 @@ import committeeController from "../modules/committee/committee.controller"
 import eventController from "../modules/event/event.controller"
 import participantController from "../modules/participant/participant.controller"
 import projectController from "../modules/project/project.controller"
-import companyInfoController from "../modules/companyInfo/companyInfo.controller"
 
 const startServer = async () => {
   const server = fastify({ logger: true })
@@ -69,6 +68,9 @@ const startServer = async () => {
   server.get('/api/news', {
     handler: newsController.GET
   })
+  server.get('/api/news/:_id', {
+    handler: newsController.GET_ID
+  })
   server.post('/api/news', {
     preHandler: cheackJwtInHeader,
     handler: newsController.POST
@@ -101,6 +103,9 @@ const startServer = async () => {
   server.get('/api/committee', {
     handler: committeeController.GET
   })
+  server.get('/api/committee/:_id', {
+    handler: committeeController.GET_ID
+  })
   server.post('/api/committee', {
     preHandler: cheackJwtInHeader,
     handler: committeeController.POST
@@ -116,6 +121,9 @@ const startServer = async () => {
 
   server.get('/api/event', {
     handler: eventController.GET
+  })
+  server.get('/api/event/:_id', {
+    handler: eventController.GET_ID
   })
   server.post('/api/event', {
     preHandler: cheackJwtInHeader,
@@ -133,6 +141,9 @@ const startServer = async () => {
   server.get('/api/participant', {
     handler: participantController.GET
   })
+  server.get('/api/participant/:_id', {
+    handler: participantController.GET_ID
+  })
   server.post('/api/participant', {
     preHandler: cheackJwtInHeader,
     handler: participantController.POST
@@ -149,6 +160,9 @@ const startServer = async () => {
   server.get('/api/project', {
     handler: projectController.GET
   })
+  server.get('/api/project/:_id', {
+    handler: projectController.GET_ID
+  })
   server.post('/api/project', {
     preHandler: cheackJwtInHeader,
     handler: projectController.POST
@@ -160,14 +174,6 @@ const startServer = async () => {
   server.delete('/api/project/:_id', {
     preHandler: cheackJwtInHeader,
     handler: projectController.DELETE
-  })
-
-  server.get('/api/company-info', {
-    handler: companyInfoController.GET
-  })
-  server.put('/api/company-info', {
-    preHandler: cheackJwtInHeader,
-    handler: companyInfoController.PUT
   })
 
   try {

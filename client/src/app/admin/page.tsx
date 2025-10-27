@@ -8,7 +8,6 @@ import {
   Folder, 
   Sliders, 
   LogOut,
-  Library,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Sign from '@/components/Admin/Sign/Sign';
@@ -32,13 +31,6 @@ export default function AdminPage() {
   };
 
   const adminModules = [
-    {
-      title: 'Информация о компании',
-      description: 'Управление контактной информацией и настройками',
-      icon: Library,
-      href: '/admin/company-info',
-      color: 'bg-blue-500'
-    },
 	  {
       title: 'Главный слайдер',
       description: 'Управление слайдером на главной',

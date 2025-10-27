@@ -1,4 +1,3 @@
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline';
 import { HtmlContent } from '@/components/ui/HtmlContent';

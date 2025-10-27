@@ -11,7 +11,7 @@ class CommitteeController {
       sort?: { createdAt: 1 | -1 },
       page?: number,
       limit?: number
-    }
+    }, 
   }>, reply: FastifyReply) {
     try {
       const { sort, page, limit, title } = req.query
@@ -29,6 +29,22 @@ class CommitteeController {
       return successResponse("success", {
         data: result.data,
         pagination: result.pagination
+      }, reply)
+    } catch (e) {
+      return errorResponse(e, reply)
+    }
+  }
+
+  public async GET_ID(req: FastifyRequest<{
+    Params: { _id: string }, 
+  }>, reply: FastifyReply) {
+    try {
+      const { _id } = req.params
+
+      const result = await Committee.findById(_id)
+
+      return successResponse("success", {
+        data: result,
       }, reply)
     } catch (e) {
       return errorResponse(e, reply)

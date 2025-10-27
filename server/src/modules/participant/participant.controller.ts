@@ -35,6 +35,22 @@ class ParticipantController {
     }
   }
 
+  public async GET_ID(req: FastifyRequest<{
+    Params: { _id: string }, 
+  }>, reply: FastifyReply) {
+    try {
+      const { _id } = req.params
+
+      const result = await Participant.findById(_id)
+
+      return successResponse("success", {
+        data: result,
+      }, reply)
+    } catch (e) {
+      return errorResponse(e, reply)
+    }
+  }
+
   public async POST(req: FastifyRequest<{ Body: { data: Partial<ParticipantDocType> } }>, reply: FastifyReply) {
     try {
       return successResponse("success", { data: await Participant.create(req.body.data) }, reply)

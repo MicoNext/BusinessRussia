@@ -1,12 +1,15 @@
 import { ArrowRight } from 'lucide-react';
 import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline';
-import { Button, LinkButton } from '@/components/ui/buttons';
+import { LinkButton } from '@/components/ui/buttons';
 import { NewsGrid } from './NewsGrid';
+import { INews } from '../../../../../../../../package/types/models/news';
 
-import { newsMock } from '@/shared/data/news.mock';
+type PropsType = {
+	news: INews[]
+}
 
-export default function NewsSection() {
+export default function NewsSection({ news }: PropsType) {
 	return (
 		<section
 			className='px-4 md:px-8 lg:px-12'
@@ -14,7 +17,7 @@ export default function NewsSection() {
 		>
 			<div className='container mx-auto flex flex-col gap-4 md:gap-8'>
 				<SectionBar leftSection={<Headline title='Новости' />} />
-				<NewsGrid items={newsMock.slice(0, 10)} />
+				<NewsGrid items={news.slice(0, 10)} />
 				<footer className='flex md:justify-end'>
 					<LinkButton
 						className='group text-gray-500 justify-center w-full md:w-auto text-center md:text-left gap-0'
