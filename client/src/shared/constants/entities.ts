@@ -4,6 +4,7 @@ export const ENTITIES = {
 	projects: { title: 'Проекты' },
 	organization: { title: '«Деловая Россия»' },
 	committees: { title: 'Комитеты' },
+	participants: { title: 'Участники' },
 } as const;
 
 export type EntitySlug = keyof typeof ENTITIES;
