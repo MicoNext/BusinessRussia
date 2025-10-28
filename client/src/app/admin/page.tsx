@@ -45,7 +45,7 @@ export default function AdminPage() {
       href: '/admin/news',
       color: 'bg-blue-500'
     },
-	    {
+	  {
       title: 'События',
       description: 'Управление событиями и мероприятиями',
       icon: Calendar,
