@@ -19,6 +19,7 @@ import eventController from "../modules/event/event.controller"
 import participantController from "../modules/participant/participant.controller"
 import projectController from "../modules/project/project.controller"
 import companyInfoController from "../modules/companyInfo/companyInfo.controller"
+import leadController from "../modules/lead/lead.controller"
 
 const startServer = async () => {
   const server = fastify({ logger: true })
@@ -185,6 +186,14 @@ const startServer = async () => {
     handler: companyInfoController.PUT
   })
 
+  server.get('/api/lead', {
+    handler: leadController.GET
+  })
+  server.post('/api/lead', {
+    preHandler: cheackJwtInHeader,
+    handler: leadController.POST
+  })
+  
   try {
     setupGlobalErrorHandlers()
     await dbService.connect()

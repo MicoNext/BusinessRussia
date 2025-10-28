@@ -18,5 +18,8 @@ export interface InputStyleProps {
 
 export interface InputProps extends FieldBaseProps, InputStyleProps {
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onBlur?: any
 	value?: string;
+	disabled?: boolean
+	
 }

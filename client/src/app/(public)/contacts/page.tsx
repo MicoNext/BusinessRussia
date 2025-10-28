@@ -13,7 +13,7 @@ const YMapWidget = dynamic(
 );
 
 export default function Page() {
-	const { address, phone, email, workingHours } = companyInfoMock;
+	const { address, phone, email } = companyInfoMock;
 	return (
 		<section className='px-4 md:px-8 lg:px-12 py-6'>
 			<div className='container mx-auto'>
@@ -54,15 +54,6 @@ export default function Page() {
 								>
 									{email}
 								</a>
-							</div>
-						)}
-						{workingHours && (
-							<div>
-								<div className='text-sm text-gray-500'>Режим работы</div>
-								<div
-									className='text-base'
-									dangerouslySetInnerHTML={{ __html: workingHours }}
-								/>
 							</div>
 						)}
 					</div>

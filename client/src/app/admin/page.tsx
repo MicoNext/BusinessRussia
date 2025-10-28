@@ -9,6 +9,7 @@ import {
   Sliders, 
   LogOut,
   Library,
+  Vibrate,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Sign from '@/components/Admin/Sign/Sign';
@@ -32,6 +33,13 @@ export default function AdminPage() {
   };
 
   const adminModules = [
+    {
+      title: 'Заявки',
+      description: 'Лиды из сайта',
+      icon: Vibrate,
+      href: '/admin/lead',
+      color: 'bg-green-500'
+    },
     {
       title: 'Информация о компании',
       description: 'Управление контактной информацией и настройками',

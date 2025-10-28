@@ -11,6 +11,7 @@ import axios from 'axios';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ICompanyInfo } from '../../../../../package/types/models/companyInfo';
+import { MaxIcon } from '@/components/ui/socialIcons';
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6969',

@@ -9,4 +9,6 @@ export interface ICompanyInfo {
 	maxUrl?: string
 	telegramUrl?: string
 	vkUrl?: string
+	tgBotToken?: string
+	adminTgChatId?: string
 }

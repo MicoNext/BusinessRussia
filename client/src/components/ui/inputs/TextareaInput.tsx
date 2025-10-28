@@ -5,6 +5,13 @@ import {
 	type InputStyleProps,
 } from './base';
 
+type PropsType = {
+	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+	value?: string
+	disabled?: boolean
+	onBlur?: any
+}
+
 export function TextareaInput({
 	id,
 	label,
@@ -15,7 +22,7 @@ export function TextareaInput({
 	variant,
 	size,
 	...rest
-}: FieldBaseProps & InputStyleProps) {
+}: FieldBaseProps & InputStyleProps & PropsType ) {
 	return (
 		<FieldWrapper
 			id={id}

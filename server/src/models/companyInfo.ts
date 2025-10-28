@@ -12,8 +12,9 @@ const CompanyInfoSchema = new Schema<CompanyInfoDocType>({
 	maxUrl: { type: String, required: false, default: null },
 	telegramUrl: { type: String, required: false, default: null },
 	vkUrl: { type: String, required: false, default: null },
+	tgBotToken: { type: String, required: false, default: null },
+	adminTgChatId: { type: String, required: false, default: null },
 })
-
 
 
 interface ICompanyInfoModel extends Model<CompanyInfoDocType> {

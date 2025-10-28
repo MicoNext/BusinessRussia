@@ -9,6 +9,7 @@ interface ISwitchProps {
 	defaultChecked?: boolean;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	disabled?: boolean;
+	onBlur?: any
 }
 
 export function Switch({

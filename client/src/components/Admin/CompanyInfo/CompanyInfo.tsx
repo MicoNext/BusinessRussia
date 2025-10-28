@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Save, MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
+import { Save, MapPin, Phone, Mail } from 'lucide-react'
 import adminApiService from '@/shared/api/admin.api.service'
 import { ICompanyInfo } from '../../../../../package/types/models/companyInfo'
 import TextEditor from '../components/TextEditor'
@@ -10,7 +10,7 @@ export default function AdminAboutPage() {
     const [companyInfo, setCompanyInfo] = useState<ICompanyInfo | null>(null)
     const [loading, setLoading] = useState(true)
     const [saving, setSaving] = useState(false)
-    
+
     const [formData, setFormData] = useState({
         aboutHtml: '',
         address: '',
@@ -19,7 +19,9 @@ export default function AdminAboutPage() {
         whatsappUrl: '',
         maxUrl: '',
         telegramUrl: '',
-        vkUrl: ''
+        vkUrl: '',
+        tgBotToken: '',
+        adminTgChatId: '',
     })
 
     const handleFind = async () => {
@@ -41,7 +43,9 @@ export default function AdminAboutPage() {
                     whatsappUrl: response.data.whatsappUrl || '',
                     maxUrl: response.data.maxUrl || '',
                     telegramUrl: response.data.telegramUrl || '',
-                    vkUrl: response.data.vkUrl || ''
+                    vkUrl: response.data.vkUrl || '',
+                    adminTgChatId: response.data.adminTgChatId || '',
+                    tgBotToken: response.data.tgBotToken || '',
                 })
             }
         } catch (error) {
@@ -66,6 +70,8 @@ export default function AdminAboutPage() {
                 maxUrl: formData.maxUrl || undefined,
                 telegramUrl: formData.telegramUrl || undefined,
                 vkUrl: formData.vkUrl || undefined,
+                adminTgChatId: formData.adminTgChatId || undefined,
+                tgBotToken: formData.tgBotToken || undefined,
             }
 
             let result = await adminApiService.callApiBody({
@@ -129,11 +135,10 @@ export default function AdminAboutPage() {
                         </p>
                     </div>
                 </div>
-
                 {/* Основной редактор контента */}
                 <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-6">
                     <h2 className="text-xl font-semibold text-gray-900 mb-6">Текст страницы</h2>
-                    
+
                     <div className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-3">
@@ -151,11 +156,10 @@ export default function AdminAboutPage() {
                         </div>
                     </div>
                 </div>
-
                 {/* Контактная информация */}
                 <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-6">
                     <h2 className="text-xl font-semibold text-gray-900 mb-6">Контактная информация</h2>
-                    
+
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div className="space-y-4">
                             <div>
@@ -254,10 +258,43 @@ export default function AdminAboutPage() {
                                 />
                             </div>
                         </div>
+
+
                     </div>
                 </div>
 
-                {/* Кнопка сохранения */}
+                <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-6">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-6">Доступы к телеграм Боту</h2>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <label className="flex block text-sm font-medium text-gray-700 mb-2">
+                                <Icon iconName='telegram' className='mr-2' /> Телеграм Бот Токен
+                            </label>
+                            <input
+                                type="text"
+                                value={formData.tgBotToken}
+                                onChange={(e) => handleInputChange('tgBotToken', e.target.value)}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
+                                placeholder="ваш_бот_токен.,."
+                            />
+                        </div>
+
+                        <div>
+                            <label className="flex block text-sm font-medium text-gray-700 mb-2">
+                                <Icon iconName='telegram' className='mr-2' /> Телеграм UserId
+                            </label>
+                            <input
+                                type="text"
+                                value={formData.adminTgChatId}
+                                onChange={(e) => handleInputChange('adminTgChatId', e.target.value)}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
+                                placeholder="ваш_id..."
+                            />
+                        </div>
+                    </div>
+                </div>
+
                 <div className="sticky bottom-6 bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
                     <div className="flex justify-between items-center">
                         <div>
@@ -285,6 +322,6 @@ export default function AdminAboutPage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

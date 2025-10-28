@@ -1,16 +1,16 @@
 import Image from 'next/image';
 import { ISocialIconProps } from './base';
 
-export function MaxIcon({
+export function WaIcon({
 	width = 24,
 	height = 24,
 }: ISocialIconProps) {
 	return (
 		<Image
-			alt='max'
+			alt='whatsapp'
 			width={width}
 			height={height}
-			src='/social/max-icon.svg'
+			src='/social/wa-icon.svg'
 		>
 		</Image>
 	);

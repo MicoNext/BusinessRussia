@@ -10,6 +10,7 @@ export function TextInput({
 	className,
 	variant,
 	size,
+	disabled,
 	...rest
 }: InputProps) {
 	return (
@@ -26,6 +27,7 @@ export function TextInput({
 				placeholder={placeholder}
 				required={required}
 				className={composeInputClasses({ className, variant, size })}
+				disabled={disabled}
 				{...rest}
 			/>
 		</FieldWrapper>

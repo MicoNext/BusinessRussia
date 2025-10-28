@@ -1,6 +1,7 @@
 import { MaxIcon, RuTubeIcon, TelegramIcon, VkIcon } from '@/components/ui/socialIcons';
 import { ISocialIconProps } from './base';
-import { ChartArea } from 'lucide-react';
+import { ChartArea, WandIcon } from 'lucide-react';
+import { WaIcon } from './WaIcon';
 
 interface IconProps extends ISocialIconProps {
 	iconName: 'vk' | 'telegram' | 'youtube' | 'rutube' | 'whatsapp' | 'max';
@@ -41,7 +42,6 @@ export function Icon({ iconName, width = 24, height = 24, className }: IconProps
 		case 'max':
 			return (
 				<div className={className}>
-
 					<MaxIcon
 						width={width}
 						height={height}
@@ -51,8 +51,7 @@ export function Icon({ iconName, width = 24, height = 24, className }: IconProps
 		case 'whatsapp':
 			return (
 				<div className={className}>
-
-					<ChartArea
+					<WaIcon
 						width={width}
 						height={height}
 					/>
