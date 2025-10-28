@@ -17,7 +17,6 @@ const api = axios.create({
 
 const PAGE_SIZE = 9;
 
-// API функции для получения данных
 async function getNews(): Promise<INews[]>  {
   try {
     const response = await api.get('/api/news');
@@ -132,7 +131,6 @@ async function getData(entity: EntitySlug) {
   }
 }
 
-// Генерация метаданных для SEO
 export async function generateMetadata({
   params,
 }: {

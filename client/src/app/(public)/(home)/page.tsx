@@ -8,10 +8,22 @@ import { NewsSection } from './_sections/NewsSection';
 import { ProjectsSection } from './_sections/ProjectsSection';
 import { Сontactus } from '@/components/Сontactus';
 import axios from 'axios';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { ICompanyInfo } from '../../../../../package/types/models/companyInfo';
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6969',
 });
+
+async function getCompanyInfo(): Promise<ICompanyInfo> {
+  try {
+    const response = await api.get('/api/company-info');
+    return response.data.data || [];
+  } catch (error) {
+    return { about: {} }
+  }
+}
 
 async function getSliderMain(): Promise<ISliderMain[]> {
   try {
@@ -25,7 +37,7 @@ async function getSliderMain(): Promise<ISliderMain[]> {
 
 async function getNews(): Promise<INews[]> {
   try {
-    const response = await api.get('/api/news');
+    const response = await api.get('/api/news?page=1&limit=6');
     return response.data.data || [];
   } catch (error) {
     console.error('Error fetching news:', error);
@@ -35,7 +47,7 @@ async function getNews(): Promise<INews[]> {
 
 async function getProjects(): Promise<IProject[]> {
   try {
-    const response = await api.get('/api/project');
+    const response = await api.get('/api/project?page=1&limit=4');
     return response.data.data || [];
   } catch (error) {
     console.error('Error fetching projects:', error);
@@ -45,7 +57,7 @@ async function getProjects(): Promise<IProject[]> {
 
 async function getEvents(): Promise<IEvent[]> {
   try {
-    const response = await api.get('/api/event');
+    const response = await api.get('/api/event?page=1&limit=6');
     return response.data.data || [];
   } catch (error) {
     console.error('Error fetching events:', error);
@@ -55,7 +67,8 @@ async function getEvents(): Promise<IEvent[]> {
 
 export default async function HomePage() {
   try {
-    const [sliderMain, news, projects, events] = await Promise.all([
+    const [companyInfo, sliderMain, news, projects, events] = await Promise.all([
+      getCompanyInfo(),
       getSliderMain(),
       getNews(),
       getProjects(),
@@ -63,23 +76,27 @@ export default async function HomePage() {
     ]);
 
     return <>
+      <Header companyInfo={companyInfo} />
       <main className='text-gray-900 flex flex-col gap-8 md:gap-14 lg:gap-16 xl:gap-20 flex-1 relative overflow-hidden'>
         <HeroSection sliderMain={sliderMain} />
         <NewsSection news={news} />
         <ProjectsSection projects={projects} />
         <EventsSection events={events} />
-        <Сontactus />
+        <Сontactus companyInfo={companyInfo} />
       </main>
+      <Footer companyInfo={companyInfo} />
     </>
   } catch (error) {
     return <>
+      <Header companyInfo={{ about: {} }} />
       <main className='text-gray-900 flex flex-col gap-8 md:gap-14 lg:gap-16 xl:gap-20 flex-1 relative overflow-hidden'>
         <HeroSection sliderMain={[]} />
         <NewsSection news={[]} />
         <ProjectsSection projects={[]} />
         <EventsSection events={[]} />
-        <Сontactus />		
+        <Сontactus companyInfo={ { about: {} } } />
       </main>
+      <Footer companyInfo={{ about: {} }} />
     </>
   }
 }

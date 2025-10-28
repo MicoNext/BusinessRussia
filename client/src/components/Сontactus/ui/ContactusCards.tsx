@@ -4,17 +4,24 @@ import { Headline } from '@/components/ui/Headline';
 import { ContactusCardGrid } from './ContactusCardGrid';
 import { ContactusCardSlider } from './ContactusCardSlider';
 import Image from 'next/image';
+import { ICompanyInfo } from '../../../../../package/types/models/companyInfo';
 
-const contacts: Contacts[] = [
+type PropsType = {
+	companyInfo: ICompanyInfo
+}
+
+export function ContactusCards({ companyInfo }: PropsType) {
+
+	const contacts: Contacts[] = [
 	{
 		icon: <Phone />,
-		title: '+7 (999) 999-99-99',
-		href: 'tel:+79999999999',
+		title: companyInfo.phone ?? '+7 (999) 999-99-99',
+		href: `tel:+${companyInfo.phone ?? '+7 (999) 999-99-99'}`,
 	},
 	{
 		icon: <Mail />,
-		title: 'example@mail.com',
-		href: 'mailto:example@mail.com',
+		title: companyInfo.email || 'example@mail.com',
+		href: `mailto:${companyInfo.email || "example@mail.com"}`,
 	},
 	{
 		icon: (
@@ -27,7 +34,7 @@ const contacts: Contacts[] = [
 			/>
 		),
 		title: 'WhatsApp',
-		href: 'https://wa.me/79999999999',
+		href: `https://wa.me/${companyInfo.phone}`,
 	},
 	{
 		icon: (
@@ -40,11 +47,11 @@ const contacts: Contacts[] = [
 			/>
 		),
 		title: 'Telegram',
-		href: 'https://t.me/example',
+		href: companyInfo.telegramUrl || 'https://t.me/example',
 	},
 ];
 
-export function ContactusCards() {
+
 	return (
 		<>
 			<Headline

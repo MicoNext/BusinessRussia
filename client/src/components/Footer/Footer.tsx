@@ -1,35 +1,44 @@
 import { ICompanyInfo } from '../../../../package/types/models/companyInfo';
 import { SocialMedia } from '../SocialMedia';
-import { SOCIAL_MEDIA } from '@/shared/constants/socialMedia';
+import { Icon } from '../ui/socialIcons';
 
 type PropsType = {
 	companyInfo: ICompanyInfo
 }
 
+type SocialMediaType = {
+		icon: React.ReactNode;
+		href: string;
+	}[];
+
+
 const currentYear = new Date().getFullYear();
 
-export default function Footer() {
+export default function Footer({ companyInfo }: PropsType) {
+
+	const SOCIAL_MEDIA: SocialMediaType = []
+	if(companyInfo.maxUrl) SOCIAL_MEDIA.push({ icon: <Icon iconName='max' />, href: companyInfo.maxUrl })
+	if(companyInfo.telegramUrl) SOCIAL_MEDIA.push({ icon: <Icon iconName='telegram' />, href: companyInfo.telegramUrl })
+	if(companyInfo.whatsappUrl) SOCIAL_MEDIA.push({ icon: <Icon iconName='whatsapp' />, href: companyInfo.whatsappUrl })
+	if(companyInfo.vkUrl) SOCIAL_MEDIA.push({ icon: <Icon iconName='vk' />, href: companyInfo.vkUrl })
+
+
 	return (
 		<footer className='bg-brand-gray text-white/90 px-4 md:px-8 lg:px-12 py-10'>
 			<section className='flex flex-col gap-4 container mx-auto'>
 				<div className='flex flex-wrap gap-4 md:gap-24'>
 					<div className='flex-1 flex flex-col justify-between gap-4 max-w-[340px]'>
-						<p className='text-sm text-white/80'>
-							Оплата происходит через ПАО СБЕРБАНК с использованием банковских
-							карт следующих платежных систем: МИР, Visa, Mastercard.
-						</p>
 						<div className='flex flex-col gap-4'>
 							<address className='not-italic'>
-
 							<div>
 								<a
-									href={`mailto:test@email.ru`}
+									href={`mailto:${ companyInfo.email || "test@email.ru" }`}
 									className='text-sm hover:underline'
 								>
-									test@email.ru
+									{ companyInfo.email || "test@email.ru" }
 								</a>
 							</div>
-									<div className='text-sm'>Тут будет адресс</div>
+							<div className='text-sm'>{ companyInfo.address || "ВАШ АДРЕСС БУДЕТ ТУТ" }</div>
 							</address>
 							{SOCIAL_MEDIA && (
 								<SocialMedia
@@ -60,61 +69,12 @@ export default function Footer() {
 										Лица РО
 									</a>
 								</li>
-
-								<li>
-									<a
-										href='/services/'
-										className='hover:underline'
-									>
-										Возможности
-									</a>
-								</li>
 								<li>
 									<a
 										href='/committees/'
 										className='hover:underline'
 									>
 										Комитеты
-									</a>
-								</li>
-								<li>
-									<a
-										href='/clubs/'
-										className='hover:underline'
-									>
-										Клубы
-									</a>
-								</li>
-								<li>
-									<a
-										href='/boards/'
-										className='hover:underline'
-									>
-										Советы и рабочие группы
-									</a>
-								</li>
-								<li>
-									<a
-										href='/organization/partners/'
-										className='hover:underline'
-									>
-										Партнеры
-									</a>
-								</li>
-								<li>
-									<a
-										href='/organization/docs/'
-										className='hover:underline'
-									>
-										Документы
-									</a>
-								</li>
-								<li>
-									<a
-										href='/organization/requisites/'
-										className='hover:underline'
-									>
-										Реквизиты
 									</a>
 								</li>
 							</ul>
@@ -152,22 +112,6 @@ export default function Footer() {
 										className='hover:underline'
 									>
 										Комитеты
-									</a>
-								</li>
-								<li>
-									<a
-										href='/boards/'
-										className='hover:underline'
-									>
-										Советы и рабочие группы
-									</a>
-								</li>
-								<li>
-									<a
-										href='/contacts/'
-										className='hover:underline'
-									>
-										Контакты
 									</a>
 								</li>
 							</ul>

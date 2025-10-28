@@ -1,5 +1,4 @@
 'use client';
-
 import Sidebar from '@/components/Sidebar';
 import { Button, UnstyledButton } from '@/components/ui/buttons';
 import { MENU } from '../constants/menu.data';
@@ -7,8 +6,6 @@ import NavItem from './NavItem';
 import { Menu, X } from 'lucide-react';
 import Logo from '@/components/ui/Logo';
 import JoinButton from './JoinButton';
-import PayFeeButton from './PayFeeButton';
-import SearchButton from './SearchButton';
 
 export function HeaderSidebar() {
 	return (
@@ -48,8 +45,6 @@ export function HeaderSidebar() {
 					</Sidebar.Header>
 
 					<div className='flex-1 p-4 flex flex-col gap-4'>
-						<SearchButton />
-
 						<nav className='flex-1 flex flex-col gap-2'>
 							{MENU.map(item => (
 								<NavItem

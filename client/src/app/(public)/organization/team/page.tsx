@@ -4,9 +4,6 @@ import { Card } from '@/components/ui/Card/Card';
 import { Headline } from '@/components/ui/Headline';
 import { IParticipant } from '../../../../../../package/types/models/participant';
 
-const PAGE_SIZE = 9;
-
-// Получение всех участников
 async function getAllParticipants(): Promise<IParticipant[]> {
   const res = await fetch(`http://localhost:6969/api/participant?page=1&limit=10000`, {
     next: { revalidate: 3600 } // Перегенерировать каждый час

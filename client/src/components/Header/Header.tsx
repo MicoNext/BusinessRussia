@@ -1,15 +1,28 @@
 import Logo from '@/components/ui/Logo';
 import JoinButton from './ui/JoinButton';
-import SearchButton from './ui/SearchButton';
 import Menu from './ui/Menu';
 import { HeaderSidebar } from './ui/HeaderSidebar';
 import { SocialMedia } from '@/components/SocialMedia';
-import { SOCIAL_MEDIA } from '@/shared/constants/socialMedia';
+import { ICompanyInfo } from '../../../../package/types/models/companyInfo';
+import { Icon } from '../ui/socialIcons';
 
 type PropsType = {
+	companyInfo: ICompanyInfo
 }
 
-export default function Header({}: PropsType) {
+type SocialMediaType = {
+		icon: React.ReactNode;
+		href: string;
+	}[];
+
+export default function Header({ companyInfo }: PropsType) {
+
+	const SOCIAL_MEDIA: SocialMediaType = []
+	if(companyInfo.maxUrl) SOCIAL_MEDIA.push({ icon: <Icon iconName='max' />, href: companyInfo.maxUrl })
+	if(companyInfo.telegramUrl) SOCIAL_MEDIA.push({ icon: <Icon iconName='telegram' />, href: companyInfo.telegramUrl })
+	if(companyInfo.whatsappUrl) SOCIAL_MEDIA.push({ icon: <Icon iconName='whatsapp' />, href: companyInfo.whatsappUrl })
+	if(companyInfo.vkUrl) SOCIAL_MEDIA.push({ icon: <Icon iconName='vk' />, href: companyInfo.vkUrl })
+		
 	return (
 		<header
 			className='sticky top-0 z-50 bg-white border-b border-gray-200 text-brand-grayText px-4 md:px-8 lg:px-12'
@@ -25,15 +38,11 @@ export default function Header({}: PropsType) {
 							<HeaderSidebar />
 							<Logo />
 						</div>
-						{SOCIAL_MEDIA && (
 							<SocialMedia
 								items={SOCIAL_MEDIA}
 								className='hidden md:flex'
 							/>
-						)}
 					</div>
-
-					<SearchButton />
 					<div className='hidden sm:flex items-center gap-4'>
 						<div
 							className='flex items-center gap-2'

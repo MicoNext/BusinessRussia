@@ -2,3 +2,4 @@ export { Icon } from './Icon';
 export { RuTubeIcon } from './RuTubeIcon';
 export { TelegramIcon } from './TelegramIcon';
 export { VkIcon } from './VkIcon';
+export { MaxIcon } from './MaxIcon';

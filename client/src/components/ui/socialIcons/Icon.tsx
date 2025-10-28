@@ -1,32 +1,62 @@
-import { RuTubeIcon, TelegramIcon, VkIcon } from '@/components/ui/socialIcons';
+import { MaxIcon, RuTubeIcon, TelegramIcon, VkIcon } from '@/components/ui/socialIcons';
 import { ISocialIconProps } from './base';
+import { ChartArea } from 'lucide-react';
 
 interface IconProps extends ISocialIconProps {
-	iconName: 'vk' | 'telegram' | 'youtube' | 'rutube' | 'whatsapp';
+	iconName: 'vk' | 'telegram' | 'youtube' | 'rutube' | 'whatsapp' | 'max';
+	className?: string
 }
 
-export function Icon({ iconName, width = 24, height = 24 }: IconProps) {
+export function Icon({ iconName, width = 24, height = 24, className }: IconProps) {
 	switch (iconName) {
 		case 'vk':
 			return (
-				<VkIcon
-					width={width}
-					height={height}
-				/>
+				<div className={className}>
+					<VkIcon
+						width={width}
+						height={height}
+					/>
+				</div>
 			);
 		case 'telegram':
 			return (
-				<TelegramIcon
-					width={width}
-					height={height}
-				/>
+				<div className={className}>
+
+					<TelegramIcon
+						width={width}
+						height={height}
+					/>
+				</div>
 			);
 		case 'rutube':
 			return (
-				<RuTubeIcon
-					width={width}
-					height={height}
-				/>
+				<div className={className}>
+
+					<RuTubeIcon
+						width={width}
+						height={height}
+					/>
+				</div>
+			);
+		case 'max':
+			return (
+				<div className={className}>
+
+					<MaxIcon
+						width={width}
+						height={height}
+					/>
+				</div>
+			);
+		case 'whatsapp':
+			return (
+				<div className={className}>
+
+					<ChartArea
+						width={width}
+						height={height}
+					/>
+				</div>
 			);
 		default:
 			return null;

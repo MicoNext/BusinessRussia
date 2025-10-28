@@ -18,6 +18,7 @@ import committeeController from "../modules/committee/committee.controller"
 import eventController from "../modules/event/event.controller"
 import participantController from "../modules/participant/participant.controller"
 import projectController from "../modules/project/project.controller"
+import companyInfoController from "../modules/companyInfo/companyInfo.controller"
 
 const startServer = async () => {
   const server = fastify({ logger: true })
@@ -174,6 +175,14 @@ const startServer = async () => {
   server.delete('/api/project/:_id', {
     preHandler: cheackJwtInHeader,
     handler: projectController.DELETE
+  })
+
+  server.get('/api/company-info', {
+    handler: companyInfoController.GET
+  })
+  server.put('/api/company-info', {
+    preHandler: cheackJwtInHeader,
+    handler: companyInfoController.PUT
   })
 
   try {

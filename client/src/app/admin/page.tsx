@@ -8,6 +8,7 @@ import {
   Folder, 
   Sliders, 
   LogOut,
+  Library,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Sign from '@/components/Admin/Sign/Sign';
@@ -31,6 +32,13 @@ export default function AdminPage() {
   };
 
   const adminModules = [
+    {
+      title: 'Информация о компании',
+      description: 'Управление контактной информацией и настройками',
+      icon: Library,
+      href: '/admin/company-info',
+      color: 'bg-blue-500'
+    },
 	  {
       title: 'Главный слайдер',
       description: 'Управление слайдером на главной',
@@ -90,7 +98,6 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -114,67 +121,7 @@ export default function AdminPage() {
       </header>
 
       <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <Newspaper className="w-6 h-6 text-blue-600" />
-                </div>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Новости</p>
-                <p className="text-2xl font-bold text-gray-900">24</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                  <Users className="w-6 h-6 text-green-600" />
-                </div>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Комитеты</p>
-                <p className="text-2xl font-bold text-gray-900">8</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                  <Calendar className="w-6 h-6 text-purple-600" />
-                </div>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">События</p>
-                <p className="text-2xl font-bold text-gray-900">12</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
-                  <User className="w-6 h-6 text-orange-600" />
-                </div>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Участники</p>
-                <p className="text-2xl font-bold text-gray-900">45</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Modules Grid */}
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">Модули управления</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {adminModules.map((module, index) => (
               <div
