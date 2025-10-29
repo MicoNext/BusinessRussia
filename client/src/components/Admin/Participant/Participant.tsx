@@ -1,11 +1,13 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Plus, Edit3, Trash2, EyeOff, User, Building, Award, ExternalLink, Save } from 'lucide-react'
+import { Plus, Edit3, Trash2, EyeOff, User, Building, Award, ExternalLink, Save, ArrowLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import adminApiService from '@/shared/api/admin.api.service'
 import type { IParticipant } from "../../../../../package/types/models/participant"
 import NewsMediaManager from '../components/ViewFile/NewsMediaManager'
 import TextEditor from '../components/TextEditor'
+import { Button } from '@/components/ui/buttons'
+import Link from 'next/link'
 
 export default function AdminParticipant() {
   const router = useRouter()
@@ -26,9 +28,9 @@ export default function AdminParticipant() {
   const handleFind = async () => {
     try {
       setLoading(true)
-      const response = await adminApiService.callApi({ 
-        path: "/api/participant?page=1&limit=1000", 
-        method: "get" 
+      const response = await adminApiService.callApi({
+        path: "/api/participant?page=1&limit=1000",
+        method: "get"
       })
       setParticipants(response.data || [])
     } catch (error) {
@@ -40,10 +42,10 @@ export default function AdminParticipant() {
 
   const handleCreate = async (data: Partial<IParticipant>) => {
     try {
-      const response = await adminApiService.callApiBody({ 
-        path: "/api/participant", 
-        method: "post", 
-        body: { data } 
+      const response = await adminApiService.callApiBody({
+        path: "/api/participant",
+        method: "post",
+        body: { data }
       })
       return response
     } catch (error) {
@@ -54,10 +56,10 @@ export default function AdminParticipant() {
 
   const handleUpdate = async (id: string, data: Partial<IParticipant>) => {
     try {
-      const response = await adminApiService.callApiBody({ 
-        path: `/api/participant/${id}`, 
-        method: "put", 
-        body: { data } 
+      const response = await adminApiService.callApiBody({
+        path: `/api/participant/${id}`,
+        method: "put",
+        body: { data }
       })
       return response
     } catch (error) {
@@ -68,9 +70,9 @@ export default function AdminParticipant() {
 
   const handleDelete = async (id: string) => {
     try {
-      await adminApiService.callApi({ 
-        path: `/api/participant/${id}`, 
-        method: "delete" 
+      await adminApiService.callApi({
+        path: `/api/participant/${id}`,
+        method: "delete"
       })
       setParticipants(participants.filter(item => item._id !== id))
       if (selectedParticipant?._id === id) {
@@ -86,7 +88,7 @@ export default function AdminParticipant() {
     try {
       setSaving(true)
       const contentHtml = html || editorHtml
-      
+
       const participantData: Partial<IParticipant> = {
         name,
         jobTitle,
@@ -218,7 +220,7 @@ export default function AdminParticipant() {
                     required
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Должность *
@@ -323,8 +325,8 @@ export default function AdminParticipant() {
                   {isCreating ? 'Создание участника' : 'Редактирование участника'}
                 </h3>
                 <p className="text-gray-600 text-sm mt-1">
-                  {isCreating 
-                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания участника' 
+                  {isCreating
+                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания участника'
                     : 'Внесите изменения и нажмите кнопку ниже для сохранения'
                   }
                 </p>
@@ -364,6 +366,17 @@ export default function AdminParticipant() {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <Link href={`/admin`}>
+            <Button
+              variant='ghost'
+              leftSection={<ArrowLeft size={16} />}
+              className="mb-4 text-blue-600 hover:text-blue-700 text-sm sm:text-base"
+            >
+              Назад к админ панели
+            </Button>
+          </Link>
+        </div>
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Управление участниками</h1>
@@ -437,7 +450,7 @@ export default function AdminParticipant() {
                       <Award className="w-4 h-4" />
                       <span className="line-clamp-2">{participant.jobTitle}</span>
                     </div>
-                    
+
                     {participant.organization && (
                       <div className="flex items-center gap-2 text-sm text-gray-600">
                         <Building className="w-4 h-4" />
@@ -447,8 +460,8 @@ export default function AdminParticipant() {
                   </div>
 
                   {participant.html && (
-                    <div className="text-sm text-gray-600 mb-3 line-clamp-3" 
-                         dangerouslySetInnerHTML={{ __html: participant.html }} />
+                    <div className="text-sm text-gray-600 mb-3 line-clamp-3"
+                      dangerouslySetInnerHTML={{ __html: participant.html }} />
                   )}
 
                   <div className="text-xs text-gray-500">

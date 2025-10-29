@@ -1,8 +1,10 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { EyeOff, Phone, Mail, User, MessageSquare, Calendar, Search, Filter } from 'lucide-react'
+import { EyeOff, Phone, Mail, User, MessageSquare, Calendar, Search, Filter, ArrowLeft } from 'lucide-react'
 import adminApiService from '@/shared/api/admin.api.service'
 import type { ILead } from "../../../../../package/types/models/lead"
+import Link from 'next/link'
+import { Button } from '@/components/ui/buttons'
 
 export default function AdminLeads() {
   const [leads, setLeads] = useState<ILead[]>([])
@@ -13,9 +15,9 @@ export default function AdminLeads() {
   const handleFind = async () => {
     try {
       setLoading(true)
-      const response = await adminApiService.callApi({ 
-        path: "/api/lead?page=1&limit=1000", 
-        method: "get" 
+      const response = await adminApiService.callApi({
+        path: "/api/lead?page=1&limit=1000",
+        method: "get"
       })
       setLeads(response.data || [])
       setFilteredLeads(response.data || [])
@@ -83,6 +85,17 @@ export default function AdminLeads() {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-7xl mx-auto">
+        <div className="mb-6">
+          <Link href={`/admin`}>
+            <Button
+              variant='ghost'
+              leftSection={<ArrowLeft size={16} />}
+              className="mb-4 text-blue-600 hover:text-blue-700 text-sm sm:text-base"
+            >
+              Назад к админ панели
+            </Button>
+          </Link>
+        </div>
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Заявки (Лиды)</h1>
@@ -149,8 +162,8 @@ export default function AdminLeads() {
               {searchTerm ? 'Заявки не найдены' : 'Заявок пока нет'}
             </h3>
             <p className="text-gray-600 mb-6">
-              {searchTerm 
-                ? 'Попробуйте изменить условия поиска' 
+              {searchTerm
+                ? 'Попробуйте изменить условия поиска'
                 : 'Все новые заявки будут отображаться здесь'
               }
             </p>
@@ -190,7 +203,7 @@ export default function AdminLeads() {
                           <div className="flex flex-wrap gap-4 mt-2">
                             <div className="flex items-center gap-2 text-gray-600">
                               <Phone className="w-4 h-4" />
-                              <a 
+                              <a
                                 href={`tel:${lead.phone}`}
                                 className="hover:text-[#2b7de0] transition-colors"
                               >
@@ -200,7 +213,7 @@ export default function AdminLeads() {
                             {lead.email && (
                               <div className="flex items-center gap-2 text-gray-600">
                                 <Mail className="w-4 h-4" />
-                                <a 
+                                <a
                                   href={`mailto:${lead.email}`}
                                   className="hover:text-[#2b7de0] transition-colors"
                                 >

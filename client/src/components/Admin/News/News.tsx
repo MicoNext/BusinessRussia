@@ -1,11 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Plus, Edit3, Trash2, EyeOff, Image as ImageIcon, Video, Tag, ExternalLink, Save } from 'lucide-react'
+import { Plus, Edit3, Trash2, EyeOff, Image as ImageIcon, Video, Tag, ExternalLink, Save, Link, ArrowLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import TextEditor from '@/components/Admin/components/TextEditor'
 import adminApiService from '@/shared/api/admin.api.service'
 import type { INews } from "../../../../../package/types/models/news"
 import NewsMediaManager from '../components/ViewFile/NewsMediaManager'
+import { Button } from '@/components/ui/buttons'
 
 export default function AdminNews() {
   const router = useRouter()
@@ -27,9 +28,9 @@ export default function AdminNews() {
   const handleFind = async () => {
     try {
       setLoading(true)
-      const response = await adminApiService.callApi({ 
-        path: "/api/news?page=1&limit=1000", 
-        method: "get" 
+      const response = await adminApiService.callApi({
+        path: "/api/news?page=1&limit=1000",
+        method: "get"
       })
       setNews(response.data || [])
     } catch (error) {
@@ -41,10 +42,10 @@ export default function AdminNews() {
 
   const handleCreate = async (data: Partial<INews>) => {
     try {
-      const response = await adminApiService.callApiBody({ 
-        path: "/api/news", 
-        method: "post", 
-        body: { data } 
+      const response = await adminApiService.callApiBody({
+        path: "/api/news",
+        method: "post",
+        body: { data }
       })
       return response
     } catch (error) {
@@ -55,10 +56,10 @@ export default function AdminNews() {
 
   const handleUpdate = async (id: string, data: Partial<INews>) => {
     try {
-      const response = await adminApiService.callApiBody({ 
-        path: `/api/news/${id}`, 
-        method: "put", 
-        body: { data } 
+      const response = await adminApiService.callApiBody({
+        path: `/api/news/${id}`,
+        method: "put",
+        body: { data }
       })
       return response
     } catch (error) {
@@ -69,9 +70,9 @@ export default function AdminNews() {
 
   const handleDelete = async (id: string) => {
     try {
-      await adminApiService.callApi({ 
-        path: `/api/news/${id}`, 
-        method: "delete" 
+      await adminApiService.callApi({
+        path: `/api/news/${id}`,
+        method: "delete"
       })
       setNews(news.filter(item => item._id !== id))
       if (selectedNews?._id === id) {
@@ -87,7 +88,7 @@ export default function AdminNews() {
     try {
       setSaving(true)
       const contentHtml = html || editorHtml
-      
+
       const newsData: Partial<INews> = {
         title,
         slug,
@@ -216,7 +217,7 @@ export default function AdminNews() {
                     required
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Slug *
@@ -294,7 +295,7 @@ export default function AdminNews() {
           {selectedNews && (
             <div className="mb-6">
               <NewsMediaManager
-                handleSave={(images: string[], videos: string[]) => {setImages(images); setVideos(videos)} }
+                handleSave={(images: string[], videos: string[]) => { setImages(images); setVideos(videos) }}
                 viewImg={true}
                 viewVideo={true}
                 initialImages={selectedNews?.media?.imagesUrl || []}
@@ -317,8 +318,8 @@ export default function AdminNews() {
                   {isCreating ? 'Создание новости' : 'Редактирование новости'}
                 </h3>
                 <p className="text-gray-600 text-sm mt-1">
-                  {isCreating 
-                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания новости' 
+                  {isCreating
+                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания новости'
                     : 'Внесите изменения и нажмите кнопку ниже для сохранения'
                   }
                 </p>
@@ -358,6 +359,17 @@ export default function AdminNews() {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <Link href={`/admin`}>
+            <Button
+              variant='ghost'
+              leftSection={<ArrowLeft size={16} />}
+              className="mb-4 text-blue-600 hover:text-blue-700 text-sm sm:text-base"
+            >
+              Назад к админ панели
+            </Button>
+          </Link>
+        </div>
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Управление новостями</h1>

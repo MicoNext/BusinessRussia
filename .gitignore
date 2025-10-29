@@ -18,4 +18,6 @@
 **/yarn.lock
 **/logs
 **/log
+**/env.ts
+**/env.js
 server/public

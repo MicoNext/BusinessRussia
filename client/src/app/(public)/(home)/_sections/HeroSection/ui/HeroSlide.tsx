@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { ISliderMain } from '@/../../package/types/models/sliderMain.d';
 import clsx from 'clsx';
 import { Headline } from '@/components/ui/Headline';
@@ -18,13 +17,11 @@ export function HeroSlide({ slide }: { slide: ISliderMain }) {
 		>
 			{slide.type === 'img' && (
 				<div className='absolute inset-0 -z-0'>
-					<Image
+					<img
 						src={slide.url}
 						alt={slide.title || 'slide image'}
-						fill
 						className='object-cover'
 						sizes='(max-width: 768px) 100vw, 100vw'
-						priority={false}
 					/>
 				</div>
 			)}

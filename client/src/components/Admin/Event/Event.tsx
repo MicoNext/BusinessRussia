@@ -1,11 +1,13 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Plus, Edit3, Trash2, EyeOff, Calendar, MapPin, Clock, Tag, ExternalLink, Save } from 'lucide-react'
+import { Plus, Edit3, Trash2, EyeOff, Calendar, MapPin, Clock, Tag, ExternalLink, Save, ArrowLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import TextEditor from '@/components/Admin/components/TextEditor'
 import adminApiService from '@/shared/api/admin.api.service'
 import type { IEvent } from "../../../../../package/types/models/events"
 import NewsMediaManager from '../components/ViewFile/NewsMediaManager'
+import Link from 'next/link'
+import { Button } from '@/components/ui/buttons'
 
 export default function AdminEvent() {
   const router = useRouter()
@@ -31,9 +33,9 @@ export default function AdminEvent() {
   const handleFind = async () => {
     try {
       setLoading(true)
-      const response = await adminApiService.callApi({ 
-        path: "/api/event?page=1&limit=1000", 
-        method: "get" 
+      const response = await adminApiService.callApi({
+        path: "/api/event?page=1&limit=1000",
+        method: "get"
       })
       setEvents(response.data || [])
     } catch (error) {
@@ -45,10 +47,10 @@ export default function AdminEvent() {
 
   const handleCreate = async (data: Partial<IEvent>) => {
     try {
-      const response = await adminApiService.callApiBody({ 
-        path: "/api/event", 
-        method: "post", 
-        body: { data } 
+      const response = await adminApiService.callApiBody({
+        path: "/api/event",
+        method: "post",
+        body: { data }
       })
       return response
     } catch (error) {
@@ -59,10 +61,10 @@ export default function AdminEvent() {
 
   const handleUpdate = async (id: string, data: Partial<IEvent>) => {
     try {
-      const response = await adminApiService.callApiBody({ 
-        path: `/api/event/${id}`, 
-        method: "put", 
-        body: { data } 
+      const response = await adminApiService.callApiBody({
+        path: `/api/event/${id}`,
+        method: "put",
+        body: { data }
       })
       return response
     } catch (error) {
@@ -73,9 +75,9 @@ export default function AdminEvent() {
 
   const handleDelete = async (id: string) => {
     try {
-      await adminApiService.callApi({ 
-        path: `/api/event/${id}`, 
-        method: "delete" 
+      await adminApiService.callApi({
+        path: `/api/event/${id}`,
+        method: "delete"
       })
       setEvents(events.filter(item => item._id !== id))
       if (selectedEvent?._id === id) {
@@ -91,10 +93,10 @@ export default function AdminEvent() {
     try {
       setSaving(true)
       const contentHtml = html || editorHtml
-      
+
       // Берем первое изображение из массива для поля url
       const imageUrl = images.length > 0 ? images[0] : ''
-      
+
       const eventData: Partial<IEvent> = {
         title,
         slug,
@@ -146,11 +148,11 @@ export default function AdminEvent() {
     setTime(event.time || '')
     setCategory(event.category || '')
     setEditorHtml(event.html || '')
-    
+
     // Устанавливаем изображение из url в массив images
     const initialImages = event.url ? [event.url] : []
     setImages(initialImages)
-    
+
     setIsEditing(true)
     setIsCreating(false)
   }
@@ -207,7 +209,7 @@ export default function AdminEvent() {
   const formatEventDate = (event: IEvent) => {
     const start = new Date(event.startDate)
     const end = event.endDate ? new Date(event.endDate) : null
-    
+
     if (end && start.toDateString() !== end.toDateString()) {
       return `${start.toLocaleDateString('ru-RU')} - ${end.toLocaleDateString('ru-RU')}`
     }
@@ -252,7 +254,7 @@ export default function AdminEvent() {
                     required
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Slug *
@@ -295,7 +297,7 @@ export default function AdminEvent() {
                       required
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Дата окончания
@@ -431,8 +433,8 @@ export default function AdminEvent() {
                   {isCreating ? 'Создание события' : 'Редактирование события'}
                 </h3>
                 <p className="text-gray-600 text-sm mt-1">
-                  {isCreating 
-                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания события' 
+                  {isCreating
+                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания события'
                     : 'Внесите изменения и нажмите кнопку ниже для сохранения'
                   }
                 </p>
@@ -472,6 +474,17 @@ export default function AdminEvent() {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <Link href={`/admin`}>
+            <Button
+              variant='ghost'
+              leftSection={<ArrowLeft size={16} />}
+              className="mb-4 text-blue-600 hover:text-blue-700 text-sm sm:text-base"
+            >
+              Назад к админ панели
+            </Button>
+          </Link>
+        </div>
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Управление событиями</h1>
@@ -515,11 +528,10 @@ export default function AdminEvent() {
             {events.map((event) => (
               <div
                 key={event._id}
-                className={`bg-white rounded-2xl border shadow-lg hover:shadow-xl transition-all overflow-hidden ${
-                  isUpcoming(event) 
-                    ? 'border-green-200 bg-green-50' 
+                className={`bg-white rounded-2xl border shadow-lg hover:shadow-xl transition-all overflow-hidden ${isUpcoming(event)
+                    ? 'border-green-200 bg-green-50'
                     : 'border-gray-200'
-                }`}
+                  }`}
               >
                 <div className="p-6">
                   {event.url && (
@@ -529,7 +541,7 @@ export default function AdminEvent() {
                       className="w-full h-48 object-cover rounded-xl mb-4"
                     />
                   )}
-                  
+
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 flex-1">
                       {event.title}
@@ -540,20 +552,20 @@ export default function AdminEvent() {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="space-y-2 mb-3">
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Calendar className="w-4 h-4" />
                       <span>{formatEventDate(event)}</span>
                     </div>
-                    
+
                     {event.time && (
                       <div className="flex items-center gap-2 text-sm text-gray-600">
                         <Clock className="w-4 h-4" />
                         <span>{event.time}</span>
                       </div>
                     )}
-                    
+
                     {event.location && (
                       <div className="flex items-center gap-2 text-sm text-gray-600">
                         <MapPin className="w-4 h-4" />

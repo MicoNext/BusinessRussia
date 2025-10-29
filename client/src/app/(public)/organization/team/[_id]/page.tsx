@@ -1,14 +1,11 @@
-import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
-import { Headline } from '@/components/ui/Headline';
 import { HtmlContent } from '@/components/ui/HtmlContent';
 import { MemberCard } from './_components/MemberCard';
 import { IParticipant } from '../../../../../../../package/types/models/participant';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Calendar, Image as ImageIcon, Video, FileText } from 'lucide-react';
+import { ArrowLeft, Image as ImageIcon, Video, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/buttons/Button';
 import { Badge } from '@/components/ui/Badge';
-import Image from 'next/image';
 
 // Получение участника по ID
 async function getParticipantById(_id: string): Promise<IParticipant | null> {
@@ -102,10 +99,9 @@ function MediaGallery({ media }: { media: IParticipant['media'] }) {
                 className="relative group overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 transition-all duration-300 hover:shadow-lg hover:border-blue-300"
               >
                 <div className="relative aspect-square w-full">
-                  <Image
+                  <img
                     src={image}
                     alt={`Фото участника ${index + 1}`}
-                    fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />

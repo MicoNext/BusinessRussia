@@ -1,17 +1,11 @@
-import dotenv from "dotenv"
-dotenv.config()
-
-function valueOrError(key: string) {
-    if(process.env[key]) return process.env[key]
-    else throw new Error()
-}
+import env from "../../../env"
 
 export default {
-    MeUrl: valueOrError("ME_URL"),
-    ServerUrl: valueOrError("SERVER_URL"),
+    MeUrl: env["ME_URL"],
+    ServerUrl: env["SERVER_URL"],
     ymap: {
-        ymapApiKey: valueOrError("YMAP_API_KEY"),
-		centerCoordinates:valueOrError("YMAP_COORDINATES"),
+        ymapApiKey: env["YMAP_API_KEY"],
+		centerCoordinates:env["YMAP_COORDINATES"],
 		zoomDefault: 15,
     }
 }

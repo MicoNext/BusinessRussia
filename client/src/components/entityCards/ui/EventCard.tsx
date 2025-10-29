@@ -3,9 +3,8 @@ import React from 'react';
 import type { IEvent } from '@/../../package/types/models/events';
 import clsx from 'clsx';
 import { ArrowRight } from 'lucide-react';
-import { LinkButton, UnstyledButton } from '@/components/ui/buttons';
+import { UnstyledButton } from '@/components/ui/buttons';
 import { Badge } from '@/components/ui/Badge';
-import Image from 'next/image';
 
 interface EventCardProps {
 	event: IEvent;
@@ -51,7 +50,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, classNames }) => {
 			/>
 			<div className='flex flex-col justify-between gap-3 p-4 h-full'>
 				<div className='flex flex-col gap-2'>
-					<img src={url} alt={new Date().toDateString()} />
+					<img src={url} alt={_id} />
 					<div className='flex items-center gap-2'>
 						<Badge
 							size='sm'

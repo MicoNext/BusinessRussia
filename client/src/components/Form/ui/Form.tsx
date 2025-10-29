@@ -180,7 +180,6 @@ export function Form({
 			[field]: value
 		}))
 
-		// Помечаем поле как "тронутое"
 		setTouchedFields(prev => ({
 			...prev,
 			[field]: true
@@ -196,11 +195,8 @@ export function Form({
 		}
 	}
 
-	// Создаем отдельные обработчики blur для каждого поля
 	const createBlurHandler = (field: keyof FormData) => () => {
 		setTouchedFields(prev => ({ ...prev, [field]: true }))
-		
-		// Валидируем поле при blur
 		const error = validateField(field as keyof FormErrors, formData[field])
 		setFieldErrors(prev => ({
 			...prev,
@@ -208,12 +204,10 @@ export function Form({
 		}))
 	}
 
-	// Функция для проверки, нужно ли показывать ошибку
 	const shouldShowError = (field: keyof FormErrors): boolean => {
 		return (touchedFields[field] || showAllErrors) && !!fieldErrors[field]
 	}
 
-	// Получаем классы для инпутов с ошибками
 	const getInputClasses = (field: keyof FormErrors, additionalClasses: string = '') => {
 		const hasError = shouldShowError(field)
 		const baseClasses = variant === 'light' ? 'border-gray-300' : 'border-gray-600'
@@ -232,13 +226,11 @@ export function Form({
 		return hasError ? 'text-red-500' : ''
 	}
 
-	// Проверка валидности формы для кнопки
 	const isFormValid = formData.name.trim().length >= 2 &&
 		formData.phone.trim().length > 0 &&
 		(formData.phone.match(/\d/g) || []).length >= 10 &&
 		formData.consent
 
-	// Рендер кнопки с индикацией загрузки
 	const renderButton = () => {
 		const buttonContent = loading ? (
 			<>
@@ -256,10 +248,10 @@ export function Form({
 		return (
 			<Button
 				variant='primary'
-				size='lg'
+				size='md'
 				fullWidth
 				type='submit'
-				className='justify-center'
+				className='justify-center align-center'
 				disabled={loading || !isFormValid}
 			>
 				{buttonContent}

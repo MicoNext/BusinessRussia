@@ -1,11 +1,13 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Plus, Edit3, Trash2, EyeOff, Image as ImageIcon, Video, Tag, ExternalLink, Save, Star } from 'lucide-react'
+import { Plus, Edit3, Trash2, EyeOff, Image as ImageIcon, Video, Tag, ExternalLink, Save, Star, ArrowLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import adminApiService from '@/shared/api/admin.api.service'
 import { IProject } from '../../../../../package/types/models/projects'
 import NewsMediaManager from '../components/ViewFile/NewsMediaManager'
 import TextEditor from '../components/TextEditor'
+import Link from 'next/link'
+import { Button } from '@/components/ui/buttons'
 
 export default function AdminProject() {
   const router = useRouter()
@@ -29,9 +31,9 @@ export default function AdminProject() {
   const handleFind = async () => {
     try {
       setLoading(true)
-      const response = await adminApiService.callApi({ 
-        path: "/api/project?page=1&limit=1000", 
-        method: "get" 
+      const response = await adminApiService.callApi({
+        path: "/api/project?page=1&limit=1000",
+        method: "get"
       })
       setProjects(response.data || [])
     } catch (error) {
@@ -43,10 +45,10 @@ export default function AdminProject() {
 
   const handleCreate = async (data: Partial<IProject>) => {
     try {
-      const response = await adminApiService.callApiBody({ 
-        path: "/api/project", 
-        method: "post", 
-        body: { data } 
+      const response = await adminApiService.callApiBody({
+        path: "/api/project",
+        method: "post",
+        body: { data }
       })
       return response
     } catch (error) {
@@ -57,10 +59,10 @@ export default function AdminProject() {
 
   const handleUpdate = async (id: string, data: Partial<IProject>) => {
     try {
-      const response = await adminApiService.callApiBody({ 
-        path: `/api/project/${id}`, 
-        method: "put", 
-        body: { data } 
+      const response = await adminApiService.callApiBody({
+        path: `/api/project/${id}`,
+        method: "put",
+        body: { data }
       })
       return response
     } catch (error) {
@@ -71,9 +73,9 @@ export default function AdminProject() {
 
   const handleDelete = async (id: string) => {
     try {
-      await adminApiService.callApi({ 
-        path: `/api/project/${id}`, 
-        method: "delete" 
+      await adminApiService.callApi({
+        path: `/api/project/${id}`,
+        method: "delete"
       })
       setProjects(projects.filter(item => item._id !== id))
       if (selectedProject?._id === id) {
@@ -89,7 +91,7 @@ export default function AdminProject() {
     try {
       setSaving(true)
       const contentHtml = html || editorHtml
-      
+
       const projectData: Partial<IProject> = {
         title,
         slug,
@@ -228,7 +230,7 @@ export default function AdminProject() {
                     required
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Slug *
@@ -357,8 +359,8 @@ export default function AdminProject() {
                   {isCreating ? 'Создание проекта' : 'Редактирование проекта'}
                 </h3>
                 <p className="text-gray-600 text-sm mt-1">
-                  {isCreating 
-                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания проекта' 
+                  {isCreating
+                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания проекта'
                     : 'Внесите изменения и нажмите кнопку ниже для сохранения'
                   }
                 </p>
@@ -398,6 +400,17 @@ export default function AdminProject() {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <Link href={`/admin`}>
+            <Button
+              variant='ghost'
+              leftSection={<ArrowLeft size={16} />}
+              className="mb-4 text-blue-600 hover:text-blue-700 text-sm sm:text-base"
+            >
+              Назад к админ панели
+            </Button>
+          </Link>
+        </div>
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Управление проектами</h1>
@@ -441,9 +454,8 @@ export default function AdminProject() {
             {projects.map((project) => (
               <div
                 key={project._id}
-                className={`bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all overflow-hidden ${
-                  project.isBig ? 'ring-2 ring-yellow-400' : ''
-                }`}
+                className={`bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all overflow-hidden ${project.isBig ? 'ring-2 ring-yellow-400' : ''
+                  }`}
               >
                 <div className="p-6">
                   {project.media?.imagesUrl?.[0] && (
@@ -453,7 +465,7 @@ export default function AdminProject() {
                       className="w-full h-48 object-cover rounded-xl mb-4"
                     />
                   )}
-                  
+
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 flex-1">
                       {project.title}
@@ -462,7 +474,7 @@ export default function AdminProject() {
                       <Star className="w-5 h-5 text-yellow-500 flex-shrink-0 ml-2" />
                     )}
                   </div>
-                  
+
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
                     <span>{project.slug}</span>
                     {project.category && (
@@ -490,8 +502,8 @@ export default function AdminProject() {
                   </div>
 
                   {project.html && (
-                    <div className="text-sm text-gray-600 mb-3 line-clamp-3" 
-                         dangerouslySetInnerHTML={{ __html: project.html }} />
+                    <div className="text-sm text-gray-600 mb-3 line-clamp-3"
+                      dangerouslySetInnerHTML={{ __html: project.html }} />
                   )}
 
                   <div className="flex items-center justify-between text-xs text-gray-500">
@@ -510,9 +522,9 @@ export default function AdminProject() {
 
                   {project.url && (
                     <div className="mt-3">
-                      <a 
-                        href={project.url} 
-                        target="_blank" 
+                      <a
+                        href={project.url}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-[#2b7de0] hover:underline"
                       >

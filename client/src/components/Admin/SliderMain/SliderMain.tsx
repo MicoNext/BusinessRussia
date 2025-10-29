@@ -1,9 +1,11 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Plus, Edit3, Trash2, EyeOff, Image as ImageIcon, Video, Tag, ExternalLink, Save, Type } from 'lucide-react'
+import { Plus, Edit3, Trash2, EyeOff, Image as ImageIcon, Video, Tag, ExternalLink, Save, Type, ArrowLeft } from 'lucide-react'
 import adminApiService from '@/shared/api/admin.api.service'
 import type { ISliderMain } from "../../../../../package/types/models/sliderMain"
 import NewsMediaManager from '../components/ViewFile/NewsMediaManager'
+import Link from 'next/link'
+import { Button } from '@/components/ui/buttons'
 
 export default function AdminSliderMain() {
   const [sliders, setSliders] = useState<ISliderMain[]>([])
@@ -28,9 +30,9 @@ export default function AdminSliderMain() {
   const handleFind = async () => {
     try {
       setLoading(true)
-      const response = await adminApiService.callApi({ 
-        path: "/api/slider-main?page=1&limit=1000", 
-        method: "get" 
+      const response = await adminApiService.callApi({
+        path: "/api/slider-main?page=1&limit=1000",
+        method: "get"
       })
       setSliders(response.data || [])
     } catch (error) {
@@ -42,10 +44,10 @@ export default function AdminSliderMain() {
 
   const handleCreate = async (data: Partial<ISliderMain>) => {
     try {
-      const response = await adminApiService.callApiBody({ 
-        path: "/api/slider-main", 
-        method: "post", 
-        body: { data } 
+      const response = await adminApiService.callApiBody({
+        path: "/api/slider-main",
+        method: "post",
+        body: { data }
       })
       return response
     } catch (error) {
@@ -56,10 +58,10 @@ export default function AdminSliderMain() {
 
   const handleUpdate = async (id: string, data: Partial<ISliderMain>) => {
     try {
-      const response = await adminApiService.callApiBody({ 
-        path: `/api/slider-main/${id}`, 
-        method: "put", 
-        body: { data } 
+      const response = await adminApiService.callApiBody({
+        path: `/api/slider-main/${id}`,
+        method: "put",
+        body: { data }
       })
       return response
     } catch (error) {
@@ -70,9 +72,9 @@ export default function AdminSliderMain() {
 
   const handleDelete = async (id: string) => {
     try {
-      await adminApiService.callApi({ 
-        path: `/api/slider-main/${id}`, 
-        method: "delete" 
+      await adminApiService.callApi({
+        path: `/api/slider-main/${id}`,
+        method: "delete"
       })
       setSliders(sliders.filter(item => item._id !== id))
       if (selectedSlider?._id === id) {
@@ -87,7 +89,7 @@ export default function AdminSliderMain() {
   const handleSave = async () => {
     try {
       setSaving(true)
-      
+
       // Определяем URL из загруженных файлов
       let mediaUrl = ''
       if (type === 'img' && images.length > 0) {
@@ -95,7 +97,7 @@ export default function AdminSliderMain() {
       } else if (type === 'video' && videos.length > 0) {
         mediaUrl = videos[0]
       }
-      
+
       const sliderData: Partial<ISliderMain> = {
         type,
         url: mediaUrl,
@@ -144,7 +146,7 @@ export default function AdminSliderMain() {
     setOverlay(slider.overlay)
     setSourseUrl(slider.sourse?.url || '')
     setButtonName(slider.sourse?.buttonName || '')
-    
+
     // Устанавливаем медиа файлы в зависимости от типа
     if (slider.type === 'img' && slider.url) {
       setImages([slider.url])
@@ -153,7 +155,7 @@ export default function AdminSliderMain() {
       setVideos([slider.url])
       setImages([])
     }
-    
+
     setIsEditing(true)
     setIsCreating(false)
   }
@@ -250,7 +252,7 @@ export default function AdminSliderMain() {
 
   if (isEditing || isCreating) {
     const currentMedia = getCurrentMedia()
-    
+
     return (
       <div className="min-h-screen bg-gray-50 p-4">
         <div className="max-w-4xl mx-auto">
@@ -353,7 +355,7 @@ export default function AdminSliderMain() {
                 {/* Блок медиа с выбором типа */}
                 <div className="bg-gray-50 rounded-xl p-4">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Медиа контент</h3>
-                  
+
                   {/* Выбор типа контента */}
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -366,11 +368,10 @@ export default function AdminSliderMain() {
                           setType('img')
                           setVideos([]) // Очищаем видео при выборе изображения
                         }}
-                        className={`p-3 border rounded-xl flex items-center justify-center gap-2 transition-all ${
-                          type === 'img' 
-                            ? 'border-[#2b7de0] bg-blue-50 text-[#2b7de0]' 
+                        className={`p-3 border rounded-xl flex items-center justify-center gap-2 transition-all ${type === 'img'
+                            ? 'border-[#2b7de0] bg-blue-50 text-[#2b7de0]'
                             : 'border-gray-300 text-gray-600 hover:border-gray-400'
-                        }`}
+                          }`}
                       >
                         <ImageIcon className="w-5 h-5" />
                         Изображение
@@ -381,11 +382,10 @@ export default function AdminSliderMain() {
                           setType('video')
                           setImages([]) // Очищаем изображения при выборе видео
                         }}
-                        className={`p-3 border rounded-xl flex items-center justify-center gap-2 transition-all ${
-                          type === 'video' 
-                            ? 'border-[#2b7de0] bg-blue-50 text-[#2b7de0]' 
+                        className={`p-3 border rounded-xl flex items-center justify-center gap-2 transition-all ${type === 'video'
+                            ? 'border-[#2b7de0] bg-blue-50 text-[#2b7de0]'
                             : 'border-gray-300 text-gray-600 hover:border-gray-400'
-                        }`}
+                          }`}
                       >
                         <Video className="w-5 h-5" />
                         Видео
@@ -499,8 +499,8 @@ export default function AdminSliderMain() {
                   {isCreating ? 'Создание слайда' : 'Редактирование слайда'}
                 </h3>
                 <p className="text-gray-600 text-sm mt-1">
-                  {isCreating 
-                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания слайда' 
+                  {isCreating
+                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания слайда'
                     : 'Внесите изменения и нажмите кнопку ниже для сохранения'
                   }
                 </p>
@@ -540,6 +540,17 @@ export default function AdminSliderMain() {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <Link href={`/admin`}>
+            <Button
+              variant='ghost'
+              leftSection={<ArrowLeft size={16} />}
+              className="mb-4 text-blue-600 hover:text-blue-700 text-sm sm:text-base"
+            >
+              Назад к админ панели
+            </Button>
+          </Link>
+        </div>
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Главный слайдер</h1>
@@ -601,9 +612,8 @@ export default function AdminSliderMain() {
                     <div className="absolute inset-0 bg-black bg-opacity-30" />
                   )}
                   <div className="absolute top-3 right-3">
-                    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
-                      slider.type === 'img' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
-                    }`}>
+                    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${slider.type === 'img' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
+                      }`}>
                       {getTypeIcon(slider.type)}
                       {getTypeLabel(slider.type)}
                     </span>
@@ -614,7 +624,7 @@ export default function AdminSliderMain() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
                     {slider.title}
                   </h3>
-                  
+
                   {slider.subtitle && (
                     <p className="text-gray-600 text-sm mb-2 line-clamp-2">
                       {slider.subtitle}

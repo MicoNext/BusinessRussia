@@ -1,10 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Save, MapPin, Phone, Mail } from 'lucide-react'
+import { Save, MapPin, Phone, Mail, ArrowLeft } from 'lucide-react'
 import adminApiService from '@/shared/api/admin.api.service'
 import { ICompanyInfo } from '../../../../../package/types/models/companyInfo'
 import TextEditor from '../components/TextEditor'
 import { Icon } from '@/components/ui/socialIcons'
+import Link from 'next/link'
+import { Button } from '@/components/ui/buttons'
 
 export default function AdminAboutPage() {
     const [companyInfo, setCompanyInfo] = useState<ICompanyInfo | null>(null)
@@ -111,7 +113,6 @@ export default function AdminAboutPage() {
         handleFind()
     }, [])
 
-    // Прелоадер пока данные загружаются
     if (loading) {
         return (
             <div className="min-h-screen bg-gray-50 p-4 flex items-center justify-center">
@@ -127,6 +128,17 @@ export default function AdminAboutPage() {
     return (
         <div className="min-h-screen bg-gray-50 p-4">
             <div className="max-w-6xl mx-auto">
+                <div className="mb-6">
+                    <Link href={`/admin`}>
+                        <Button
+                            variant='ghost'
+                            leftSection={<ArrowLeft size={16} />}
+                            className="mb-4 text-blue-600 hover:text-blue-700 text-sm sm:text-base"
+                        >
+                            Назад к админ панели
+                        </Button>
+                    </Link>
+                </div>
                 <div className="flex justify-between items-center mb-8">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900">Страница "О «Деловой России»"</h1>

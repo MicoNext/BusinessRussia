@@ -46,7 +46,7 @@ function NavDropdown({
 			<Dropdown.Trigger asChild>
 				<Link
 					href={parentHref}
-					className='text-sm text-brand-grayText hover:text-brand-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary inline-flex items-center gap-1'
+					className='text-xl text-brand-grayText hover:text-brand-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary inline-flex items-center gap-1'
 					aria-haspopup='true'
 					aria-expanded='false'
 				>

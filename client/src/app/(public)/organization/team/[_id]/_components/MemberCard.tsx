@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Building, Calendar, Badge } from 'lucide-react';
 import { IParticipant } from '../../../../../../../../package/types/models/participant';
 import { Badge as UiBadge } from '@/components/ui/Badge';
@@ -43,16 +42,13 @@ export function MemberCard({ member }: IMemberCardProps) {
 				{member.media?.imagesUrl?.[0] && (
 					<div className="lg:w-64 lg:flex-shrink-0 relative">
 						<div className="relative w-full h-64 lg:h-full aspect-[4/5]">
-							<Image
+							<img
 								src={member.media.imagesUrl[0]}
 								alt={`Фото ${member.name}`}
-								fill
 								className="object-cover"
 								sizes="(max-width: 1024px) 100vw, 256px"
-								priority
 							/>
 						</div>
-						{/* Градиент overlay для мобильной версии */}
 						<div className="lg:hidden absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
 					</div>
 				)}

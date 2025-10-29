@@ -1,9 +1,10 @@
 import axios, { type AxiosInstance, type AxiosResponse, AxiosError } from 'axios'
+import config from '../config/config'
 class ApiAdminService {
     private axiosInstance: AxiosInstance
     constructor() {
         this.axiosInstance = axios.create({
-            baseURL: 'http://localhost:6969',
+            baseURL: config.ServerUrl,
             headers: {
                 'Content-Type': 'application/json',
             },

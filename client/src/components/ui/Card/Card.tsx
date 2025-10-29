@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import React from 'react';
 import { Headline } from '@/components/ui/Headline';
 import clsx from 'clsx';
@@ -52,10 +51,9 @@ export function Card({
 						href={link}
 						aria-label={title}
 					>
-						<Image
+						<img
 							src={image}
 							alt={title || 'изображение'}
-							fill
 							className='object-cover object-top rounded-2xl'
 							sizes={'(max-width: 768px) 50vw, 33vw'}
 						/>

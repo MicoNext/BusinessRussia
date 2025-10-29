@@ -8,54 +8,25 @@ import { Button } from '@/components/ui/buttons/Button'
 import { Badge } from '@/components/ui/Badge'
 import { TParams } from '../types'
 import config from '@/shared/config/config'
+import Header from '@/components/Header'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { ICompanyInfo } from '../../../../../../package/types/models/companyInfo'
+import Footer from '@/components/Footer'
+import ssgApiService from '@/shared/api/ssg.api.service'
 
-async function getNewsItem(id: string) {
-  const res = await fetch(`${config.ServerUrl}/api/news/${id}`, { cache: 'force-cache' })
-  if (!res.ok) return null
-  const response = await res.json()
-  return response.data || null
-}
-
-async function getEventItem(id: string) {
-  const res = await fetch(`${config.ServerUrl}/api/event/${id}`, { cache: 'force-cache' })
-  if (!res.ok) return null
-  const response = await res.json()
-  return response.data || null
-}
-
-async function getProjectItem(id: string) {
-  const res = await fetch(`${config.ServerUrl}/api/project/${id}`, { cache: 'force-cache' })
-  if (!res.ok) return null
-  const response = await res.json()
-  return response.data || null
-}
-
-async function getCommitteeItem(id: string) {
-  const res = await fetch(`${config.ServerUrl}/api/committee/${id}`, { cache: 'force-cache' })
-  if (!res.ok) return null
-  const response = await res.json()
-  return response.data || null
-}
-
-async function getParticipantItem(id: string) {
-  const res = await fetch(`${config.ServerUrl}/api/participant/${id}`, { cache: 'force-cache' })
-  if (!res.ok) return null
-  const response = await res.json()
-  return response.data || null
-}
 
 async function getEntityItem(entity: EntitySlug, id: string) {
   switch (entity) {
     case 'news':
-      return await getNewsItem(id)
+      return await ssgApiService.getNews(1, 1, id)
     case 'events':
-      return await getEventItem(id)
+      return await ssgApiService.getEvents(1, 1, id)
     case 'projects':
-      return await getProjectItem(id)
+      return await ssgApiService.getProjects(1, 1, id)
     case 'committees':
-      return await getCommitteeItem(id)
+      return await ssgApiService.getCommittees(1, 1, id)
     case 'participants':
-      return await getParticipantItem(id)
+      return await ssgApiService.getParticipants(1, 1, id)
     default:
       return null
   }
@@ -259,7 +230,6 @@ function CommitteeInfo({ committee }: { committee: any }) {
 
 function ProjectInfo({ project }: { project: any }) {
   const hasProjectInfo = project.category || project.tags?.length > 0 || project.url || project.isBig
-  
   if (!hasProjectInfo) return null
 
   return (
@@ -372,6 +342,7 @@ export async function generateStaticParams() {
 export default async function EntityDetailsPage({ params }: { params: Promise<TParams> }) {
   const { entity, _id } = await params
   const item = await getEntityItem(entity, _id)
+  const companyInfo: ICompanyInfo = await ssgApiService.getCompanyInfo()
   
   if (!item) {
     return (
@@ -405,21 +376,11 @@ export default async function EntityDetailsPage({ params }: { params: Promise<TP
   const html: string | undefined = item.html || item.content || item.description
   const tags: string[] = item?.tags && Array.isArray(item?.tags) ? item.tags : []
 
-  return (
-    <section className='flex-1 bg-gray-50 min-h-screen'>
+  return <>
+  <Header companyInfo={companyInfo} />
+    <section className='flex-1 bg-gray-50 min-h-screen'>      
       <div className='container mx-auto px-4 py-6 sm:py-8'>
-        <div className="mb-6">
-          <Link href={`/${entity}`}>
-            <Button
-              variant='ghost'
-              leftSection={<ArrowLeft size={16} />}
-              className="mb-4 text-blue-600 hover:text-blue-700 text-sm sm:text-base"
-            >
-              Назад к списку
-            </Button>
-          </Link>
-        </div>
-
+        <Breadcrumbs className='mb-8' />
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 mb-6">
           <Headline
             title={title}
@@ -479,5 +440,6 @@ export default async function EntityDetailsPage({ params }: { params: Promise<TP
         </div>
       </div>
     </section>
-  )
+  <Footer companyInfo={companyInfo} />
+  </>
 }

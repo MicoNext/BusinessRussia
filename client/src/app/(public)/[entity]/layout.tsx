@@ -11,14 +11,5 @@ export default async function EntityLayout({
 }: {
 	children: ReactNode;
 }) {
-	return (
-		<>
-			<section className='flex-1 px-4 md:px-8 lg:px-12 py-6'>
-				<div className='container mx-auto'>
-					<Breadcrumbs className='mb-8' />
-					{children}
-				</div>
-			</section>
-		</>
-	);
+	return  children 
 }

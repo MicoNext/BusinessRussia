@@ -11,7 +11,6 @@ export function MaxIcon({
 			width={width}
 			height={height}
 			src='/social/max-icon.svg'
-		>
-		</Image>
+		/>
 	);
 }
