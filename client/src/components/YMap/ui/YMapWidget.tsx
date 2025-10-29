@@ -8,16 +8,15 @@ import {
 	YMapComponentsProvider,
 	YMapMarker,
 } from 'ymap3-components';
-
 import { Marker } from '@/components/YMap/ui/Marker';
 import { getMapOptions } from '@/components/YMap/lib/helpers';
 import { IMapOptionsReturn } from '@/shared/types/ymap';
-import { companyInfoMock } from '@/shared/data/companyInfo.mock';
+import config from '@/shared/config/config';
 
 interface YMapWidgetProps {}
 
 export const YMapWidget: FC<YMapWidgetProps> = ({}) => {
-	const mapOptions = companyInfoMock.map;
+	const mapOptions = config.ymap;
 	if (!mapOptions) return;
 
 	const formattedMapOptions: IMapOptionsReturn | false =

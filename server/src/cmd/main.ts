@@ -44,7 +44,7 @@ const startServer = async () => {
   })
   await server.register(fastifyStatic, {
     root: await mePaths("public"),
-    prefix: "/public",
+    prefix: "/api/public",
     decorateReply: false
   })
 
@@ -193,7 +193,7 @@ const startServer = async () => {
     preHandler: cheackJwtInHeader,
     handler: leadController.POST
   })
-  
+
   try {
     setupGlobalErrorHandlers()
     await dbService.connect()

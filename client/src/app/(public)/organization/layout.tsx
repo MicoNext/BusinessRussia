@@ -15,7 +15,6 @@ export default function OrganizationLayout({
 					{children}
 				</div>
 			</section>
-			<Сontactus />
 		</>
 	);
 }

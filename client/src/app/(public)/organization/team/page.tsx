@@ -6,7 +6,7 @@ import { IParticipant } from '../../../../../../package/types/models/participant
 
 async function getAllParticipants(): Promise<IParticipant[]> {
   const res = await fetch(`http://localhost:6969/api/participant?page=1&limit=10000`, {
-    next: { revalidate: 3600 } // Перегенерировать каждый час
+    next: { revalidate: 3600 }
   });
 
   if (!res.ok) {
@@ -17,13 +17,7 @@ async function getAllParticipants(): Promise<IParticipant[]> {
   return response.data; 
 }
 
-export async function generateStaticParams() {
-  try {
-    return await getAllParticipants();
-  } catch (error) {
-    return []
-  }
-}
+export const revalidate = 3600;
 
 export default async function TeamPage() {
   const participants = await getAllParticipants();

@@ -1,91 +1,70 @@
 import Link from 'next/link'
-import { ArrowLeft, Calendar, MapPin, Clock, Users, Building, Tag, Image as ImageIcon, Video } from 'lucide-react'
+import { ArrowLeft, Calendar, MapPin, Clock, Users, Building, Tag, Image as ImageIcon, Video, ExternalLink, Flame } from 'lucide-react'
 import { SectionBar } from '@/components/ui/SectionBar/SectionBar'
 import { Headline } from '@/components/ui/Headline'
 import { HtmlContent } from '@/components/ui/HtmlContent'
 import { type EntitySlug } from '@/shared/constants/entities'
 import { Button } from '@/components/ui/buttons/Button'
-import axios from 'axios'
 import { Badge } from '@/components/ui/Badge'
-
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6969',
-})
-
-type TParams = { entity: EntitySlug; _id: string }
+import { TParams } from '../types'
+import config from '@/shared/config/config'
 
 async function getNewsItem(id: string) {
-  try {
-    const response = await api.get(`/api/news/${id}`)
-    return response.data.data || null
-  } catch (error) {
-    return null
-  }
+  const res = await fetch(`${config.ServerUrl}/api/news/${id}`, { cache: 'force-cache' })
+  if (!res.ok) return null
+  const response = await res.json()
+  return response.data || null
 }
 
 async function getEventItem(id: string) {
-  try {
-    const response = await api.get(`/api/event/${id}`)
-    return response.data.data || null
-  } catch (error) {
-    return null
-  }
+  const res = await fetch(`${config.ServerUrl}/api/event/${id}`, { cache: 'force-cache' })
+  if (!res.ok) return null
+  const response = await res.json()
+  return response.data || null
 }
 
 async function getProjectItem(id: string) {
-  try {
-    const response = await api.get(`/api/project/${id}`)
-    return response.data.data || null
-  } catch (error) {
-    return null
-  }
+  const res = await fetch(`${config.ServerUrl}/api/project/${id}`, { cache: 'force-cache' })
+  if (!res.ok) return null
+  const response = await res.json()
+  return response.data || null
 }
 
 async function getCommitteeItem(id: string) {
-  try {
-    const response = await api.get(`/api/committee/${id}`)
-    return response.data.data || null
-  } catch (error) {
-    return null
-  }
+  const res = await fetch(`${config.ServerUrl}/api/committee/${id}`, { cache: 'force-cache' })
+  if (!res.ok) return null
+  const response = await res.json()
+  return response.data || null
 }
 
 async function getParticipantItem(id: string) {
-  try {
-    const response = await api.get(`/api/participant/${id}`)
-    return response.data.data || null
-  } catch (error) {
-    return null
-  }
+  const res = await fetch(`${config.ServerUrl}/api/participant/${id}`, { cache: 'force-cache' })
+  if (!res.ok) return null
+  const response = await res.json()
+  return response.data || null
 }
 
 async function getEntityItem(entity: EntitySlug, id: string) {
-  try {
-    switch (entity) {
-      case 'news':
-        return await getNewsItem(id)
-      case 'events':
-        return await getEventItem(id)
-      case 'projects':
-        return await getProjectItem(id)
-      case 'committees':
-        return await getCommitteeItem(id)
-      case 'participants':
-        return await getParticipantItem(id)
-      default:
-        return null
-    }
-  } catch (error) {
-    return null
+  switch (entity) {
+    case 'news':
+      return await getNewsItem(id)
+    case 'events':
+      return await getEventItem(id)
+    case 'projects':
+      return await getProjectItem(id)
+    case 'committees':
+      return await getCommitteeItem(id)
+    case 'participants':
+      return await getParticipantItem(id)
+    default:
+      return null
   }
 }
 
 function MediaGallery({ media }: { media: { imagesUrl?: string[]; videoUrl?: string[] } }) {
   const { imagesUrl = [], videoUrl = [] } = media || {}
   
-  if (imagesUrl.length === 0 && videoUrl.length === 0) {
-    return null
-  }
+  if (imagesUrl.length === 0 && videoUrl.length === 0) return null
 
   return (
     <div className="space-y-6">
@@ -295,8 +274,9 @@ function ProjectInfo({ project }: { project: any }) {
         )}
         
         {project.isBig && (
-          <Badge size="sm" className="bg-blue-600 text-white">
-            🔥 Большой проект
+          <Badge size="sm" className="bg-blue-600 text-white flex items-center gap-1">
+            <Flame className="w-3 h-3" />
+            Большой проект
           </Badge>
         )}
         
@@ -305,9 +285,10 @@ function ProjectInfo({ project }: { project: any }) {
             href={project.url} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors"
+            className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors text-sm"
           >
-            🌐 Внешняя ссылка
+            <ExternalLink className="w-3 h-3" />
+            Внешняя ссылка
           </a>
         )}
       </div>
@@ -362,11 +343,7 @@ function EntitySidebar({ item }: { item: any }) {
   )
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<TParams>
-}) {
+export async function generateMetadata({ params }: { params: Promise<TParams> }) {
   const { entity, _id } = await params
   const item = await getEntityItem(entity, _id)
 
@@ -388,11 +365,11 @@ export async function generateMetadata({
   }
 }
 
-export default async function EntityDetailsPage({
-  params,
-}: {
-  params: Promise<TParams>
-}) {
+export async function generateStaticParams() {
+  return []
+}
+
+export default async function EntityDetailsPage({ params }: { params: Promise<TParams> }) {
   const { entity, _id } = await params
   const item = await getEntityItem(entity, _id)
   
@@ -436,7 +413,7 @@ export default async function EntityDetailsPage({
             <Button
               variant='ghost'
               leftSection={<ArrowLeft size={16} />}
-              className="mb-4 text-blue-600 hover:text-blue-700"
+              className="mb-4 text-blue-600 hover:text-blue-700 text-sm sm:text-base"
             >
               Назад к списку
             </Button>
@@ -494,7 +471,7 @@ export default async function EntityDetailsPage({
             <Button
               variant='outline'
               leftSection={<ArrowLeft size={16} />}
-              className="border-blue-600 text-blue-600 hover:bg-blue-50"
+              className="border-blue-600 text-blue-600 hover:bg-blue-50 text-sm sm:text-base"
             >
               Вернуться к списку
             </Button>
