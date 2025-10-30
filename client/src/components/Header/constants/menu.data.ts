@@ -7,7 +7,7 @@ export interface MenuItem {
 export const MENU: MenuItem[] = [
 	{
 		label: '«Деловая Россия»',
-		href: '/organization',
+		href: '/organization/about',
 		children: [
 			{ label: 'О «Деловой России»', href: '/organization/about' },
 			{ label: 'Лица РО', href: '/organization/team' },
