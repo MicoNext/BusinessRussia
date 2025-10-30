@@ -16,11 +16,11 @@ export function HeroSlide({ slide }: { slide: ISliderMain }) {
 			)}
 		>
 			{slide.type === 'img' && (
-				<div className='absolute inset-0 -z-0'>
+				<div className='absolute inset-0 -z-0 overflow-hidden'>
 					<img
 						src={slide.url}
 						alt={slide.title || 'slide image'}
-						className='object-cover'
+						className='w-full h-full object-cover'
 						sizes='(max-width: 768px) 100vw, 100vw'
 					/>
 				</div>

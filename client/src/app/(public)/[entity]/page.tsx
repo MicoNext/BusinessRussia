@@ -53,7 +53,7 @@ async function getData(entity: EntitySlug) {
         subtitle: formatEventDateRange(e.startDate, e.endDate),
         time: undefined as string | Date | undefined,
         image: undefined as string | undefined,
-        href: e.url || `/events/${e._id}`,
+        href: `/events/${e._id}`,
       }));
     }
     case 'projects': {
@@ -64,7 +64,7 @@ async function getData(entity: EntitySlug) {
         subtitle: p.category,
         time: p.createdAt,
         image: p.media?.imagesUrl?.[0],
-        href: p.url?.startsWith('http') ? p.url : `/projects/${p._id}`,
+        href: `/projects/${p._id}`,
       }));
     }
     case 'committees': {

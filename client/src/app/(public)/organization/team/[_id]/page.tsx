@@ -1,40 +1,40 @@
-import { HtmlContent } from '@/components/ui/HtmlContent';
-import { MemberCard } from './_components/MemberCard';
-import { IParticipant } from '../../../../../../../package/types/models/participant';
-import { notFound } from 'next/navigation';
-import { ArrowLeft, Image as ImageIcon, Video, FileText } from 'lucide-react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/buttons/Button';
-import { Badge } from '@/components/ui/Badge';
-import ssgApiService from '@/shared/api/ssg.api.service';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import { HtmlContent } from '@/components/ui/HtmlContent'
+import { MemberCard } from './_components/MemberCard'
+import { IParticipant } from '../../../../../../../package/types/models/participant'
+import { notFound } from 'next/navigation'
+import { ArrowLeft, Image as ImageIcon, Video, FileText } from 'lucide-react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/buttons/Button'
+import { Badge } from '@/components/ui/Badge'
+import ssgApiService from '@/shared/api/ssg.api.service'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
-export const revalidate = 1690;
+export const revalidate = 1690
 
 export async function generateMetadata({ params }: { params: Promise<{ _id: string }> }) {
-  const { _id } = await params;
+  const { _id } = await params
   const participant: IParticipant = JSON.parse(JSON.stringify(await ssgApiService.getParticipants(1, 1, _id)))
 
   if (!participant) {
     return {
-      title: 'Участник не найден',
-    };
+      title: 'Участник не найден'
+    }
   }
 
   return {
     title: `${participant.name} - ${participant.jobTitle}`,
     description: participant.organization
       ? `${participant.jobTitle} в ${participant.organization}`
-      : participant.jobTitle,
-  };
+      : participant.jobTitle
+  }
 }
 
 function MediaGallery({ media }: { media: IParticipant['media'] }) {
-  const { imagesUrl = [], videoUrl = [] } = media || {};
+  const { imagesUrl = [], videoUrl = [] } = media || {}
 
   if (imagesUrl.length === 0 && videoUrl.length === 0) {
-    return null;
+    return null
   }
 
   return (
@@ -55,7 +55,7 @@ function MediaGallery({ media }: { media: IParticipant['media'] }) {
                   <img
                     src={image}
                     alt={`Фото участника ${index + 1}`}
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
@@ -85,17 +85,18 @@ function MediaGallery({ media }: { media: IParticipant['media'] }) {
               >
                 <video
                   controls
-                  className="w-full aspect-video rounded-2xl"
-                  poster={imagesUrl[0]} // Используем первое фото как постер
+                  className="w-full h-full aspect-video rounded-2xl object-cover"
+                  poster={imagesUrl[0]}
                 >
                   <source src={video} type="video/mp4" />
                   <source src={video} type="video/webm" />
                   <source src={video} type="video/ogg" />
-                  Ваш браузер не поддерживает видео тег.
+                  Ваш браузер не поддерживает видео тег
                 </video>
                 <div className="absolute top-3 left-3">
                   <Badge className="bg-purple-600 text-white">
-                    🎥 Видео {index + 1}
+                    <Video className="w-3 h-3 mr-1" />
+                    Видео {index + 1}
                   </Badge>
                 </div>
               </div>
@@ -104,13 +105,12 @@ function MediaGallery({ media }: { media: IParticipant['media'] }) {
         </div>
       )}
     </div>
-  );
+  )
 }
-// Компонент боковой панели с дополнительной информацией
+
 function ParticipantSidebar({ participant }: { participant: IParticipant }) {
   return (
     <div className="space-y-6">
-      {/* Блок с основной информацией */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
         <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
           <FileText className="w-4 h-4" />
@@ -140,7 +140,6 @@ function ParticipantSidebar({ participant }: { participant: IParticipant }) {
         </div>
       </div>
 
-      {/* Блок с медиа-статистикой */}
       {(participant.media?.imagesUrl?.length > 0 || participant.media?.videoUrl?.length > 0) && (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
           <h3 className="font-semibold text-gray-900 mb-4">Медиа-контент</h3>
@@ -152,7 +151,7 @@ function ParticipantSidebar({ participant }: { participant: IParticipant }) {
                   Фотографии:
                 </span>
                 <span className="font-medium text-gray-900">
-                  {participant.media.imagesUrl.length} шт.
+                  {participant.media.imagesUrl.length} шт
                 </span>
               </div>
             )}
@@ -163,7 +162,7 @@ function ParticipantSidebar({ participant }: { participant: IParticipant }) {
                   Видео:
                 </span>
                 <span className="font-medium text-gray-900">
-                  {participant.media.videoUrl.length} шт.
+                  {participant.media.videoUrl.length} шт
                 </span>
               </div>
             )}
@@ -171,91 +170,85 @@ function ParticipantSidebar({ participant }: { participant: IParticipant }) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
 export default async function MemberPage({
-  params,
+  params
 }: {
-  params: Promise<{ _id: string }>;
+  params: Promise<{ _id: string }>
 }) {
-  const { _id } = await params;
+  const { _id } = await params
   const participant: IParticipant = JSON.parse(JSON.stringify(await ssgApiService.getParticipants(1, 1, _id)))
   const companyInfo = await ssgApiService.getCompanyInfo()
 
   if (!participant) {
-    notFound();
+    notFound()
   }
 
-  const html = participant.html;
+  const html = participant.html
 
-  return (<>
-    <Header companyInfo={companyInfo} />
-    <section className="flex-1 bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4 py-6 sm:py-8">
-        {/* Кнопка назад */}
-        <div className="mb-6">
-          <Link href="/organization/team">
-            <Button
-              variant="ghost"
-              leftSection={<ArrowLeft size={16} />}
-              className="text-blue-600 hover:text-blue-700"
-            >
-              Назад к команде
-            </Button>
-          </Link>
-        </div>
+  return (
+    <>
+      <Header companyInfo={companyInfo} />
+      <section className="flex-1 bg-gray-50 min-h-screen">
+        <div className="container mx-auto px-4 py-6 sm:py-8">
+          <div className="mb-6">
+            <Link href="/organization/team">
+              <Button
+                variant="ghost"
+                leftSection={<ArrowLeft size={16} />}
+                className="text-blue-600 hover:text-blue-700"
+              >
+                Назад к команде
+              </Button>
+            </Link>
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
-          {/* Основной контент */}
-          <div className="lg:col-span-3 space-y-6">
-            {/* Карточка участника */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-              <MemberCard member={participant} />
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
+            <div className="lg:col-span-3 space-y-6">
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                <MemberCard member={participant} />
+              </div>
+
+              {(participant.media?.imagesUrl?.length > 0 || participant.media?.videoUrl?.length > 0) && (
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                  <MediaGallery media={participant.media} />
+                </div>
+              )}
+
+              {html && (
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                  <div className="mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                      <FileText className="w-5 h-5" />
+                      Дополнительная информация
+                    </h3>
+                  </div>
+                  <HtmlContent html={html} />
+                </div>
+              )}
             </div>
 
-            {/* Медиа-галерея */}
-            {(participant.media?.imagesUrl?.length > 0 || participant.media?.videoUrl?.length > 0) && (
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-                <MediaGallery media={participant.media} />
-              </div>
-            )}
-
-            {/* HTML контент */}
-            {html && (
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-                <div className="mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                    <FileText className="w-5 h-5" />
-                    Дополнительная информация
-                  </h3>
-                </div>
-                <HtmlContent html={html} />
-              </div>
-            )}
+            <div className="lg:col-span-1">
+              <ParticipantSidebar participant={participant} />
+            </div>
           </div>
 
-          {/* Боковая панель */}
-          <div className="lg:col-span-1">
-            <ParticipantSidebar participant={participant} />
+          <div className="mt-8 text-center">
+            <Link href="/organization/team">
+              <Button
+                variant="outline"
+                leftSection={<ArrowLeft size={16} />}
+                className="border-blue-600 text-blue-600 hover:bg-blue-50"
+              >
+                Вернуться к списку участников
+              </Button>
+            </Link>
           </div>
         </div>
-
-        {/* Футер с кнопкой назад */}
-        <div className="mt-8 text-center">
-          <Link href="/organization/team">
-            <Button
-              variant="outline"
-              leftSection={<ArrowLeft size={16} />}
-              className="border-blue-600 text-blue-600 hover:bg-blue-50"
-            >
-              Вернуться к списку участников
-            </Button>
-          </Link>
-        </div>
-      </div>
-    </section>
-    <Footer companyInfo={companyInfo} />
-  </>
-  );
+      </section>
+      <Footer companyInfo={companyInfo} />
+    </>
+  )
 }
