@@ -190,7 +190,6 @@ const startServer = async () => {
     handler: leadController.GET
   })
   server.post('/api/lead', {
-    preHandler: cheackJwtInHeader,
     handler: leadController.POST
   })
 

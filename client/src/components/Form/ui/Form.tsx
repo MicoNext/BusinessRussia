@@ -11,6 +11,7 @@ import clsx from 'clsx'
 import { Headline } from '@/components/ui/Headline'
 import React, { useState, useCallback } from 'react'
 import adminApiService from '@/shared/api/admin.api.service'
+import { CheckCircle, XCircle, X } from 'lucide-react'
 
 interface IFormProps {
 	id: string
@@ -36,6 +37,11 @@ interface FormErrors {
 	phone: string
 	email: string
 	consent: string
+}
+
+interface Notification {
+	type: 'success' | 'error'
+	message: string
 }
 
 export function Form({
@@ -69,6 +75,7 @@ export function Form({
 	})
 	const [touchedFields, setTouchedFields] = useState<Record<string, boolean>>({})
 	const [showAllErrors, setShowAllErrors] = useState(false)
+	const [notification, setNotification] = useState<Notification | null>(null)
 
 	const validateField = useCallback((name: keyof FormErrors, value: string | boolean): string => {
 		if (name === 'name') {
@@ -115,16 +122,24 @@ export function Form({
 		return { errors, hasErrors }
 	}, [formData, validateField])
 
+	const showNotification = (type: 'success' | 'error', message: string) => {
+		setNotification({ type, message })
+		setTimeout(() => {
+			setNotification(null)
+		}, 5000)
+	}
+
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
 
-		// Показываем все ошибки при отправке
 		setShowAllErrors(true)
 		const { errors, hasErrors } = validateAllFields()
 		setFieldErrors(errors)
 
 		if (hasErrors) {
-			onError?.('Пожалуйста, исправьте ошибки в форме')
+			const errorMessage = 'Пожалуйста, исправьте ошибки в форме'
+			showNotification('error', errorMessage)
+			onError?.(errorMessage)
 			return
 		}
 
@@ -161,6 +176,9 @@ export function Form({
 				})
 				setTouchedFields({})
 				setShowAllErrors(false)
+				
+				const successMessage = 'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.'
+				showNotification('success', successMessage)
 				onSuccess?.()
 			} else {
 				throw new Error('Ошибка при создании заявки')
@@ -168,7 +186,9 @@ export function Form({
 
 		} catch (error) {
 			console.error('Ошибка отправки формы:', error)
-			onError?.('Произошла ошибка при отправке формы. Попробуйте еще раз.')
+			const errorMessage = 'Произошла ошибка при отправке формы. Попробуйте еще раз.'
+			showNotification('error', errorMessage)
+			onError?.(errorMessage)
 		} finally {
 			setLoading(false)
 		}
@@ -219,7 +239,6 @@ export function Form({
 		)
 	}
 
-	// Получаем классы для свитча с ошибками
 	const getSwitchClasses = (field: keyof FormErrors) => {
 		const hasError = shouldShowError(field)
 		return hasError ? 'text-red-500' : ''
@@ -259,149 +278,179 @@ export function Form({
 	}
 
 	return (
-		<form
-			className={clsx(
-				formTokens.variants[variant].container,
-				'flex flex-col gap-12'
+		<>
+			{notification && (
+				<div className={clsx(
+					"fixed top-4 right-4 z-50 max-w-md w-full md:w-auto",
+					"animate-in slide-in-from-right-full duration-300"
+				)}>
+					<div className={clsx(
+						"p-4 rounded-lg shadow-lg border backdrop-blur-sm",
+						notification.type === 'success' 
+							? "bg-green-50 border-green-200 text-green-800"
+							: "bg-red-50 border-red-200 text-red-800"
+					)}>
+						<div className="flex items-start gap-3">
+							<div className="flex-shrink-0 mt-0.5">
+								{notification.type === 'success' ? (
+									<CheckCircle className="w-5 h-5 text-green-600" />
+								) : (
+									<XCircle className="w-5 h-5 text-red-600" />
+								)}
+							</div>
+							<div className="flex-1">
+								<p className="text-sm font-medium">
+									{notification.type === 'success' ? 'Успешно' : 'Ошибка'}
+								</p>
+								<p className="text-sm mt-1">{notification.message}</p>
+							</div>
+							<button
+								onClick={() => setNotification(null)}
+								className="flex-shrink-0 rounded-full p-1 hover:bg-black/10 transition-colors"
+							>
+								<X className="w-4 h-4" />
+							</button>
+						</div>
+					</div>
+				</div>
 			)}
-			onSubmit={handleSubmit}
-		>
-			<input
-				type='hidden'
-				name='subject'
-				value={subject}
-			/>
 
-			<div className='flex flex-col gap-4 md:gap-6'>
-				<div className='flex gap-2 justify-between items-center'>{header}</div>
+			<form
+				className={clsx(
+					formTokens.variants[variant].container,
+					'flex flex-col gap-12'
+				)}
+				onSubmit={handleSubmit}
+			>
+				<input
+					type='hidden'
+					name='subject'
+					value={subject}
+				/>
 
-				<section className='flex flex-col gap-3'>
-					<div className="min-h-[5rem] md:min-h-[5.5rem]">
-						<TextInput
-							id={`${id}_name`}
-							name='name'
-							label='Имя'
-							required
-							placeholder='Иван Иванов'
-							variant={variant === 'light' ? 'dark' : 'light'}
-							value={formData.name}
-							onChange={(e) => handleInputChange('name')(e.target.value)}
-							onBlur={createBlurHandler('name')}
-							disabled={loading}
-							className={getInputClasses('name')}
-						/>
-						<div 
-							className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end"
-						>
-							{shouldShowError('name') && (
-								<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.name}</p>
+				<div className='flex flex-col gap-4 md:gap-6'>
+					<div className='flex gap-2 justify-between items-center'>{header}</div>
+
+					<section className='flex flex-col gap-3'>
+						<div className="min-h-[5rem] md:min-h-[5.5rem]">
+							<TextInput
+								id={`${id}_name`}
+								name='name'
+								label='Имя'
+								required
+								placeholder='Иван Иванов'
+								variant={variant === 'light' ? 'dark' : 'light'}
+								value={formData.name}
+								onChange={(e) => handleInputChange('name')(e.target.value)}
+								onBlur={createBlurHandler('name')}
+								disabled={loading}
+								className={getInputClasses('name')}
+							/>
+							<div className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end">
+								{shouldShowError('name') && (
+									<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.name}</p>
+								)}
+							</div>
+						</div>
+
+						<div className="min-h-[5rem] md:min-h-[5.5rem]">
+							<PhoneNumberInput
+								id={`${id}_phone`}
+								name='phone'
+								label='Телефон'
+								required
+								placeholder='+7 (999) 999-99-99'
+								variant={variant === 'light' ? 'dark' : 'light'}
+								value={formData.phone}
+								onChange={(e) => handleInputChange('phone')(e.target.value)}
+								onBlur={createBlurHandler('phone')}
+								disabled={loading}
+								className={getInputClasses('phone')}
+							/>
+							<div className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end">
+								{shouldShowError('phone') && (
+									<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.phone}</p>
+								)}
+							</div>
+						</div>
+
+						<div className="min-h-[5rem] md:min-h-[5.5rem]">
+							<TextInput
+								id={`${id}_email`}
+								name='email'
+								label='E-mail'
+								placeholder='example@mail.com'
+								variant={variant === 'light' ? 'dark' : 'light'}
+								value={formData.email}
+								onChange={(e) => handleInputChange('email')(e.target.value)}
+								onBlur={createBlurHandler('email')}
+								disabled={loading}
+								className={getInputClasses('email')}
+							/>
+							<div className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end">
+								{shouldShowError('email') && (
+									<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.email}</p>
+								)}
+							</div>
+						</div>
+
+						<div>
+							<TextareaInput
+								id={`${id}_message`}
+								name='message'
+								label='Сообщение'
+								placeholder='Ваше сообщение'
+								variant={variant === 'light' ? 'dark' : 'light'}
+								value={formData.message}
+								onChange={(e) => handleInputChange('message')(e.target.value)}
+								onBlur={createBlurHandler('message')}
+								disabled={loading}
+							/>
+						</div>
+					</section>
+				</div>
+
+				<div className='flex flex-col gap-3'>
+					<section className="min-h-[3rem] md:min-h-[3.5rem]">
+						<div className='flex gap-2'>
+							<Switch
+								id={`${id}_consent`}
+								name='consent'
+								required
+								checked={formData.consent}
+								onChange={(e) => handleInputChange('consent')(e.target.checked)}
+								onBlur={createBlurHandler('consent')}
+								label={
+									<span className={getSwitchClasses('consent')}>
+										<i style={{ color: "red" }}>*</i> Я согласен на обработку{' '}
+										<a
+											href='/privacy-policy'
+											target='_blank'
+											className={clsx(
+												formTokens.variants[variant].consent,
+												'underline'
+											)}
+										>
+											персональных данных
+										</a>
+									</span>
+								}
+								variant={variant === 'light' ? 'dark' : 'light'}
+								disabled={loading}
+							/>
+						</div>
+						<div className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end">
+							{shouldShowError('consent') && (
+								<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.consent}</p>
 							)}
 						</div>
-					</div>
+					</section>
 
-					<div className="min-h-[5rem] md:min-h-[5.5rem]">
-						<PhoneNumberInput
-							id={`${id}_phone`}
-							name='phone'
-							label='Телефон'
-							required
-							placeholder='+7 (999) 999-99-99'
-							variant={variant === 'light' ? 'dark' : 'light'}
-							value={formData.phone}
-							onChange={(e) => handleInputChange('phone')(e.target.value)}
-							onBlur={createBlurHandler('phone')}
-							disabled={loading}
-							className={getInputClasses('phone')}
-						/>
-						<div 
-							className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end"
-						>
-							{shouldShowError('phone') && (
-								<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.phone}</p>
-							)}
-						</div>
-					</div>
-
-					<div className="min-h-[5rem] md:min-h-[5.5rem]">
-						<TextInput
-							id={`${id}_email`}
-							name='email'
-							label='E-mail'
-							placeholder='example@mail.com'
-							variant={variant === 'light' ? 'dark' : 'light'}
-							value={formData.email}
-							onChange={(e) => handleInputChange('email')(e.target.value)}
-							onBlur={createBlurHandler('email')}
-							disabled={loading}
-							className={getInputClasses('email')}
-						/>
-						<div 
-							className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end"
-						>
-							{shouldShowError('email') && (
-								<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.email}</p>
-							)}
-						</div>
-					</div>
-
-					<div>
-						<TextareaInput
-							id={`${id}_message`}
-							name='message'
-							label='Сообщение'
-							placeholder='Ваше сообщение'
-							variant={variant === 'light' ? 'dark' : 'light'}
-							value={formData.message}
-							onChange={(e) => handleInputChange('message')(e.target.value)}
-							onBlur={createBlurHandler('message')}
-							disabled={loading}
-						/>
-					</div>
-				</section>
-			</div>
-
-			<div className='flex flex-col gap-3'>
-				<section className="min-h-[3rem] md:min-h-[3.5rem]">
-					<div className='flex gap-2'>
-						<Switch
-							id={`${id}_consent`}
-							name='consent'
-							required
-							checked={formData.consent}
-							onChange={(e) => handleInputChange('consent')(e.target.checked)}
-							onBlur={createBlurHandler('consent')}
-							label={
-								<span className={getSwitchClasses('consent')}>
-								  	<i style={{ color: "red" }}>*</i> Я согласен на обработку{' '}
-									<a
-										href='/privacy-policy'
-										target='_blank'
-										className={clsx(
-											formTokens.variants[variant].consent,
-											'underline'
-										)}
-									>
-										персональных данных
-									</a>
-								</span>
-							}
-							variant={variant === 'light' ? 'dark' : 'light'}
-							disabled={loading}
-						/>
-					</div>
-					<div 
-						className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end"
-					>
-						{shouldShowError('consent') && (
-							<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.consent}</p>
-						)}
-					</div>
-				</section>
-
-				<footer>
-					{renderButton()}
-				</footer>
-			</div>
-		</form>
+					<footer>
+						{renderButton()}
+					</footer>
+				</div>
+			</form>
+		</>
 	)
 }
