@@ -3,7 +3,7 @@ module.exports = {
     name: 'business_russia',
     script: 'npm',
     args: 'run start',
-    instances: 2,
+    instances: 1,
     exec_mode: 'fork',
     max_memory_restart: '500M',
     env: {

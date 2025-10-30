@@ -185,7 +185,6 @@ export function Form({
 			[field]: true
 		}))
 
-		// Валидируем поле в реальном времени только если оно было тронуто или показываются все ошибки
 		if (touchedFields[field] || showAllErrors) {
 			const error = validateField(field as keyof FormErrors, value)
 			setFieldErrors(prev => ({
@@ -233,10 +232,10 @@ export function Form({
 
 	const renderButton = () => {
 		const buttonContent = loading ? (
-			<>
-				<div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-				Отправка...
-			</>
+			<div className="flex items-center justify-center gap-2">
+				<div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+				<span>Отправка...</span>
+			</div>
 		) : (
 			'Отправить заявку'
 		)
@@ -251,16 +250,13 @@ export function Form({
 				size='md'
 				fullWidth
 				type='submit'
-				className='justify-center align-center'
+				className="flex items-center justify-center min-h-[44px] py-2 md:py-3"
 				disabled={loading || !isFormValid}
 			>
 				{buttonContent}
 			</Button>
 		)
 	}
-
-	// Высота для сообщений об ошибках (фиксированная, чтобы избежать прыжков)
-	const errorMessageHeight = '1.25rem' // 20px
 
 	return (
 		<form
@@ -280,8 +276,7 @@ export function Form({
 				<div className='flex gap-2 justify-between items-center'>{header}</div>
 
 				<section className='flex flex-col gap-3'>
-					{/* Имя */}
-					<div className="min-h-[5.5rem]"> {/* Фиксированная высота для поля с ошибкой */}
+					<div className="min-h-[5rem] md:min-h-[5.5rem]">
 						<TextInput
 							id={`${id}_name`}
 							name='name'
@@ -296,20 +291,15 @@ export function Form({
 							className={getInputClasses('name')}
 						/>
 						<div 
-							className="transition-all duration-200 ease-in-out overflow-hidden"
-							style={{ 
-								height: shouldShowError('name') ? errorMessageHeight : '0.5rem',
-								opacity: shouldShowError('name') ? 1 : 0
-							}}
+							className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end"
 						>
 							{shouldShowError('name') && (
-								<p className="text-red-500 text-xs mt-1">{fieldErrors.name}</p>
+								<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.name}</p>
 							)}
 						</div>
 					</div>
 
-					{/* Телефон */}
-					<div className="min-h-[5.5rem]">
+					<div className="min-h-[5rem] md:min-h-[5.5rem]">
 						<PhoneNumberInput
 							id={`${id}_phone`}
 							name='phone'
@@ -324,20 +314,15 @@ export function Form({
 							className={getInputClasses('phone')}
 						/>
 						<div 
-							className="transition-all duration-200 ease-in-out overflow-hidden"
-							style={{ 
-								height: shouldShowError('phone') ? errorMessageHeight : '0.5rem',
-								opacity: shouldShowError('phone') ? 1 : 0
-							}}
+							className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end"
 						>
 							{shouldShowError('phone') && (
-								<p className="text-red-500 text-xs mt-1">{fieldErrors.phone}</p>
+								<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.phone}</p>
 							)}
 						</div>
 					</div>
 
-					{/* Email */}
-					<div className="min-h-[5.5rem]">
+					<div className="min-h-[5rem] md:min-h-[5.5rem]">
 						<TextInput
 							id={`${id}_email`}
 							name='email'
@@ -351,19 +336,14 @@ export function Form({
 							className={getInputClasses('email')}
 						/>
 						<div 
-							className="transition-all duration-200 ease-in-out overflow-hidden"
-							style={{ 
-								height: shouldShowError('email') ? errorMessageHeight : '0.5rem',
-								opacity: shouldShowError('email') ? 1 : 0
-							}}
+							className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end"
 						>
 							{shouldShowError('email') && (
-								<p className="text-red-500 text-xs mt-1">{fieldErrors.email}</p>
+								<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.email}</p>
 							)}
 						</div>
 					</div>
 
-					{/* Сообщение */}
 					<div>
 						<TextareaInput
 							id={`${id}_message`}
@@ -381,7 +361,7 @@ export function Form({
 			</div>
 
 			<div className='flex flex-col gap-3'>
-				<section className="min-h-[3.5rem]">
+				<section className="min-h-[3rem] md:min-h-[3.5rem]">
 					<div className='flex gap-2'>
 						<Switch
 							id={`${id}_consent`}
@@ -410,14 +390,10 @@ export function Form({
 						/>
 					</div>
 					<div 
-						className="transition-all duration-200 ease-in-out overflow-hidden"
-						style={{ 
-							height: shouldShowError('consent') ? errorMessageHeight : '0.5rem',
-							opacity: shouldShowError('consent') ? 1 : 0
-						}}
+						className="transition-all duration-200 ease-in-out overflow-hidden min-h-[1.25rem] flex items-end"
 					>
 						{shouldShowError('consent') && (
-							<p className="text-red-500 text-xs mt-1">{fieldErrors.consent}</p>
+							<p className="text-red-500 text-xs mt-1 w-full">{fieldErrors.consent}</p>
 						)}
 					</div>
 				</section>
