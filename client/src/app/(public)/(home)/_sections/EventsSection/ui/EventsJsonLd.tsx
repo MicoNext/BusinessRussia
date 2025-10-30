@@ -16,7 +16,7 @@ export const EventsJsonLd: React.FC<EventsJsonLdProps> = ({ events }) => {
 		'@type': 'Event',
 		name: e.title,
 		description: e.html,
-		url: e.url,
+		url: `/events/${e._id}`,
 		startDate: toIso(e.startDate),
 		endDate: toIso(e.endDate),
 		location: e.location

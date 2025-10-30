@@ -36,46 +36,48 @@ export default async function TeamPage() {
     ssgApiService.getCompanyInfo()
   ]);
 
-  return (
-    <>
-      <Header companyInfo={companyInfo} />
-      <section className="px-4 md:px-8 lg:px-12 py-6">
-        <div className="container mx-auto">
-          <Breadcrumbs className="mb-6" />
-          <main>
-            <Headline
-              title={'Лица регионального отделения'}
-              order={1}
-              classNames={{ container: 'mb-6' }}
-            />
-            <div className='space-y-8'>
-              {participants.length === 0 ? (
-                <div className="text-center py-8">
-                  <p className="text-gray-500">Нет данных для отображения</p>
-                </div>
-              ) : (
-                <Grid
-                  cols={1}
-                  gap={8}
-                  classNames={{ root: 'md:grid-cols-2 lg:grid-cols-3' }}
-                >
-                  {participants.map(item => (
-                    <Grid.Col key={item._id}>
-                      <Card
-                        link={`/organization/team/${item._id}`}
-                        image={item.media?.imagesUrl?.[0]}
-                        title={item.name}
-                        subtitle={`${item.organization ? item.organization + ": " : ""}${item.jobTitle || ''}`}
-                      />
-                    </Grid.Col>
-                  ))}
-                </Grid>
-              )}
-            </div>
-          </main>
-        </div>
-      </section>
-      <Footer companyInfo={companyInfo} />
-    </>
-  );
+  return <>
+    <Header companyInfo={companyInfo} />
+    <section className='flex-1 px-4 md:px-8 lg:px-12 py-6'>
+      <div className='container mx-auto'>
+        <section className="px-4 md:px-8 lg:px-12 py-6">
+          <div className="container mx-auto">
+            <Breadcrumbs className="mb-6" />
+            <main>
+              <Headline
+                title={'Лица регионального отделения'}
+                order={1}
+                classNames={{ container: 'mb-6' }}
+              />
+              <div className='space-y-8'>
+                {participants.length === 0 ? (
+                  <div className="text-center py-8">
+                    <p className="text-gray-500">Нет данных для отображения</p>
+                  </div>
+                ) : (
+                  <Grid
+                    cols={1}
+                    gap={8}
+                    classNames={{ root: 'md:grid-cols-2 lg:grid-cols-3' }}
+                  >
+                    {participants.map(item => (
+                      <Grid.Col key={item._id}>
+                        <Card
+                          link={`/organization/team/${item._id}`}
+                          image={item.media?.imagesUrl?.[0]}
+                          title={item.name}
+                          subtitle={`${item.organization ? item.organization + ": " : ""}${item.jobTitle || ''}`}
+                        />
+                      </Grid.Col>
+                    ))}
+                  </Grid>
+                )}
+              </div>
+            </main>
+          </div>
+        </section>
+      </div>
+    </section>
+    <Footer companyInfo={companyInfo} />
+  </>
 }

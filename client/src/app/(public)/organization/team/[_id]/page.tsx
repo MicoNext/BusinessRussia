@@ -6,62 +6,15 @@ import { ArrowLeft, Image as ImageIcon, Video, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/buttons/Button';
 import { Badge } from '@/components/ui/Badge';
+import ssgApiService from '@/shared/api/ssg.api.service';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
-// Получение участника по ID
-async function getParticipantById(_id: string): Promise<IParticipant | null> {
-  try {
-    const res = await fetch(`http://localhost:6969/api/participant/${_id}`, {
-      next: { revalidate: 3600 }
-    });
+export const revalidate = 1690;
 
-    if (res.ok) {
-      const response = await res.json();
-      return response.data || response; // Поддержка разных форматов ответа
-    }
-    return null;
-  } catch (error) {
-    console.error('Error fetching participant:', error);
-    return null;
-  }
-}
-
-// Получение всех участников для генерации путей
-async function getAllParticipants(): Promise<IParticipant[]> {
-  try {
-    const res = await fetch(`http://localhost:6969/api/participant`, {
-      next: { revalidate: 3600 }
-    });
-
-    if (!res.ok) {
-      throw new Error('Failed to fetch participants');
-    }
-    
-    const response = await res.json();
-    return response.data || response; // Поддержка разных форматов ответа
-  } catch (error) {
-    console.error('Error fetching all participants:', error);
-    return [];
-  }
-}
-
-// Генерация статических параметров для всех участников
-export async function generateStaticParams() {
-  try {
-    const participants = await getAllParticipants();
-    
-    return participants.map((participant: IParticipant) => ({
-      _id: participant._id,
-    }));
-  } catch (error) {
-    console.error('Error generating static params:', error);
-    return [];
-  }
-}
-
-// Метаданные для SEO
 export async function generateMetadata({ params }: { params: Promise<{ _id: string }> }) {
   const { _id } = await params;
-  const participant = await getParticipantById(_id);
+  const participant: IParticipant = JSON.parse(JSON.stringify(await ssgApiService.getParticipants(1, 1, _id)))
 
   if (!participant) {
     return {
@@ -71,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ _id: stri
 
   return {
     title: `${participant.name} - ${participant.jobTitle}`,
-    description: participant.organization 
+    description: participant.organization
       ? `${participant.jobTitle} в ${participant.organization}`
       : participant.jobTitle,
   };
@@ -79,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ _id: stri
 
 function MediaGallery({ media }: { media: IParticipant['media'] }) {
   const { imagesUrl = [], videoUrl = [] } = media || {};
-  
+
   if (imagesUrl.length === 0 && videoUrl.length === 0) {
     return null;
   }
@@ -94,8 +47,8 @@ function MediaGallery({ media }: { media: IParticipant['media'] }) {
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {imagesUrl.map((image, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="relative group overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 transition-all duration-300 hover:shadow-lg hover:border-blue-300"
               >
                 <div className="relative aspect-square w-full">
@@ -126,8 +79,8 @@ function MediaGallery({ media }: { media: IParticipant['media'] }) {
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {videoUrl.map((video, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100"
               >
                 <video
@@ -172,16 +125,16 @@ function ParticipantSidebar({ participant }: { participant: IParticipant }) {
           </div>
           <div className="flex justify-between items-center">
             <span className="text-gray-600">Статус:</span>
-            <Badge 
-              size="sm" 
+            <Badge
+              size="sm"
               className={
                 participant.role === 'manager' ? 'bg-red-100 text-red-800 border-red-200' :
-                participant.role === 'boardMember' ? 'bg-blue-100 text-blue-800 border-blue-200' :
-                'bg-green-100 text-green-800 border-green-200'
+                  participant.role === 'boardMember' ? 'bg-blue-100 text-blue-800 border-blue-200' :
+                    'bg-green-100 text-green-800 border-green-200'
               }
             >
               {participant.role === 'manager' ? 'Руководитель' :
-               participant.role === 'boardMember' ? 'Член правления' : 'Приглашенный'}
+                participant.role === 'boardMember' ? 'Член правления' : 'Приглашенный'}
             </Badge>
           </div>
         </div>
@@ -227,16 +180,17 @@ export default async function MemberPage({
   params: Promise<{ _id: string }>;
 }) {
   const { _id } = await params;
-  const participant = await getParticipantById(_id);
+  const participant: IParticipant = JSON.parse(JSON.stringify(await ssgApiService.getParticipants(1, 1, _id)))
+  const companyInfo = await ssgApiService.getCompanyInfo()
 
   if (!participant) {
     notFound();
   }
 
-  const title = participant.name;
   const html = participant.html;
 
-  return (
+  return (<>
+    <Header companyInfo={companyInfo} />
     <section className="flex-1 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-4 py-6 sm:py-8">
         {/* Кнопка назад */}
@@ -301,5 +255,7 @@ export default async function MemberPage({
         </div>
       </div>
     </section>
+    <Footer companyInfo={companyInfo} />
+  </>
   );
 }
