@@ -1,7 +1,6 @@
 export interface IEvent {
 	_id: string;
 	createdAt: Date;
-	slug: string;
 	url: string;
 
 	title: string;

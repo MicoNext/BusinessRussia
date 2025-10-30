@@ -3,7 +3,6 @@ import { ProjectDocType } from './types'
 
 const ProjectSchema = new Schema<ProjectDocType>({
   createdAt: { type: Date, default: Date.now },
-  slug: { type: String, required: true },
   url: { type: String, required: true },
   title: { type: String, required: true },
   tags: [{ type: String }],

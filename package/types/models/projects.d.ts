@@ -1,7 +1,6 @@
 export interface IProject {
 	_id: string;
 	createdAt: Date;
-	slug: string;
 	url: string;
 	media: {
 		imagesUrl: string[];

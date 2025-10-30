@@ -17,7 +17,6 @@ export default function AdminProject() {
   const [isCreating, setIsCreating] = useState(false)
   const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState('')
-  const [slug, setSlug] = useState('')
   const [url, setUrl] = useState('')
   const [category, setCategory] = useState('')
   const [tags, setTags] = useState<string[]>([])
@@ -94,7 +93,6 @@ export default function AdminProject() {
 
       const projectData: Partial<IProject> = {
         title,
-        slug,
         url,
         category,
         tags,
@@ -136,7 +134,6 @@ export default function AdminProject() {
   const handleEdit = (project: IProject) => {
     setSelectedProject(project)
     setTitle(project.title || '')
-    setSlug(project.slug || '')
     setUrl(project.url || '')
     setCategory(project.category || '')
     setTags(project.tags || [])
@@ -157,7 +154,6 @@ export default function AdminProject() {
   const resetForm = () => {
     setSelectedProject(null)
     setTitle('')
-    setSlug('')
     setUrl('')
     setCategory('')
     setTags([])
@@ -233,21 +229,7 @@ export default function AdminProject() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Slug *
-                  </label>
-                  <input
-                    type="text"
-                    value={slug}
-                    onChange={(e) => setSlug(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
-                    placeholder="url-slug"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Внешняя ссылка
+                    Ссылка на внешний источник
                   </label>
                   <input
                     type="url"
@@ -374,7 +356,7 @@ export default function AdminProject() {
                 </button>
                 <button
                   onClick={() => handleSave()}
-                  disabled={saving || !title || !slug}
+                  disabled={saving || !title}
                   className="px-8 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {saving ? (
@@ -476,7 +458,6 @@ export default function AdminProject() {
                   </div>
 
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                    <span>{project.slug}</span>
                     {project.category && (
                       <span className="px-2 py-1 bg-gray-100 rounded-full">
                         {project.category}
@@ -528,7 +509,7 @@ export default function AdminProject() {
                         rel="noopener noreferrer"
                         className="text-xs text-[#2b7de0] hover:underline"
                       >
-                        Внешняя ссылка →
+                        Ссылка на внешний источник
                       </a>
                     </div>
                   )}

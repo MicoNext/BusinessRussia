@@ -3,7 +3,6 @@ import { EventDocType } from './types'
 
 const EventSchema = new Schema<EventDocType>({
   createdAt: { type: Date, default: Date.now },
-  slug: { type: String, required: true },
   url: { type: String, required: true },
   title: { type: String, required: true },
   tags: [{ type: String }],

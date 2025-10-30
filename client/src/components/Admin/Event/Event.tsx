@@ -17,7 +17,6 @@ export default function AdminEvent() {
   const [isCreating, setIsCreating] = useState(false)
   const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState('')
-  const [slug, setSlug] = useState('')
   const [url, setUrl] = useState('')
   const [tags, setTags] = useState<string[]>([])
   const [newTag, setNewTag] = useState('')
@@ -99,7 +98,6 @@ export default function AdminEvent() {
 
       const eventData: Partial<IEvent> = {
         title,
-        slug,
         url: imageUrl, // Используем первое изображение как url
         tags,
         html: contentHtml,
@@ -140,7 +138,6 @@ export default function AdminEvent() {
   const handleEdit = (event: IEvent) => {
     setSelectedEvent(event)
     setTitle(event.title || '')
-    setSlug(event.slug || '')
     setTags(event.tags || [])
     setStartDate(event.startDate ? new Date(event.startDate).toISOString().split('T')[0] : '')
     setEndDate(event.endDate ? new Date(event.endDate).toISOString().split('T')[0] : '')
@@ -166,7 +163,6 @@ export default function AdminEvent() {
   const resetForm = () => {
     setSelectedEvent(null)
     setTitle('')
-    setSlug('')
     setTags([])
     setNewTag('')
     setStartDate('')
@@ -251,20 +247,6 @@ export default function AdminEvent() {
                     onChange={(e) => setTitle(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
                     placeholder="Введите название события"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Slug *
-                  </label>
-                  <input
-                    type="text"
-                    value={slug}
-                    onChange={(e) => setSlug(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
-                    placeholder="url-slug"
                     required
                   />
                 </div>
@@ -448,7 +430,7 @@ export default function AdminEvent() {
                 </button>
                 <button
                   onClick={() => handleSave()}
-                  disabled={saving || !title || !slug || !startDate}
+                  disabled={saving || !title || !startDate}
                   className="px-8 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {saving ? (

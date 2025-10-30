@@ -1,6 +1,5 @@
 export interface ICommittee {
 	_id: string;
-	slug: string;
 	createdAt: Date;
 	title: string;
 	description: string;

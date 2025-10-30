@@ -4,7 +4,6 @@ import { NewsDocType } from './types'
 
 const NewsSchema = new Schema<NewsDocType>({
   createdAt: { type: Date, default: Date.now },
-  slug: { type: String, required: true },
   media: {
     imagesUrl: [{ type: String }],
     videoUrl: [{ type: String }],

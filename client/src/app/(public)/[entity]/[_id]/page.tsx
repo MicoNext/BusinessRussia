@@ -7,7 +7,6 @@ import { type EntitySlug } from '@/shared/constants/entities'
 import { Button } from '@/components/ui/buttons/Button'
 import { Badge } from '@/components/ui/Badge'
 import { TParams } from '../types'
-import config from '@/shared/config/config'
 import Header from '@/components/Header'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { ICompanyInfo } from '../../../../../../package/types/models/companyInfo'
@@ -258,7 +257,7 @@ function ProjectInfo({ project }: { project: any }) {
             className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors text-sm"
           >
             <ExternalLink className="w-3 h-3" />
-            Внешняя ссылка
+            Ссылка на внешний источник
           </a>
         )}
       </div>

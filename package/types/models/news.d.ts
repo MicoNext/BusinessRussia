@@ -1,7 +1,6 @@
 export interface INews {
 	_id: string;
 	createdAt: Date;
-	slug: string;
 	media: {
 		imagesUrl: string[];
 		videoUrl: string[];

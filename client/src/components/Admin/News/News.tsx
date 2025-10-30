@@ -16,7 +16,6 @@ export default function AdminNews() {
   const [isCreating, setIsCreating] = useState(false)
   const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState('')
-  const [slug, setSlug] = useState('')
   const [category, setCategory] = useState('')
   const [tags, setTags] = useState<string[]>([])
   const [newTag, setNewTag] = useState('')
@@ -91,7 +90,6 @@ export default function AdminNews() {
 
       const newsData: Partial<INews> = {
         title,
-        slug,
         category,
         tags,
         html: contentHtml,
@@ -131,7 +129,6 @@ export default function AdminNews() {
   const handleEdit = (newsItem: INews) => {
     setSelectedNews(newsItem)
     setTitle(newsItem.title || '')
-    setSlug(newsItem.slug || '')
     setCategory(newsItem.category || '')
     setTags(newsItem.tags || [])
     setEditorHtml(newsItem.html || '')
@@ -148,7 +145,6 @@ export default function AdminNews() {
   const resetForm = () => {
     setSelectedNews(null)
     setTitle('')
-    setSlug('')
     setCategory('')
     setTags([])
     setNewTag('')
@@ -214,20 +210,6 @@ export default function AdminNews() {
                     onChange={(e) => setTitle(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
                     placeholder="Введите заголовок"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Slug *
-                  </label>
-                  <input
-                    type="text"
-                    value={slug}
-                    onChange={(e) => setSlug(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
-                    placeholder="url-slug"
                     required
                   />
                 </div>
@@ -333,7 +315,7 @@ export default function AdminNews() {
                 </button>
                 <button
                   onClick={() => handleSave()}
-                  disabled={saving || !title || !slug}
+                  disabled={saving || !title }
                   className="px-8 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {saving ? (
@@ -420,7 +402,6 @@ export default function AdminNews() {
                     {newsItem.title}
                   </h3>
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                    <span>{newsItem.slug}</span>
                     {newsItem.category && (
                       <span className="px-2 py-1 bg-gray-100 rounded-full">
                         {newsItem.category}
