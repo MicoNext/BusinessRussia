@@ -6,6 +6,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ClientMap from './_components/ClientMap';
 
+export const revalidate = 1690;
+
 interface CompanyInfo {
   address?: string;
   phone?: string;
