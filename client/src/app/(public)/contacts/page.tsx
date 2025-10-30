@@ -1,17 +1,10 @@
 import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline/Headline';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import dynamic from 'next/dynamic';
 import ssgApiService from '@/shared/api/ssg.api.service';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
-export const revalidate = 3600;
-
-const YMapWidget = dynamic(
-  () => import('@/components/YMap').then(m => m.YMapWidget),
-  { ssr: false }
-);
+import ClientMap from './_components/ClientMap';
 
 interface CompanyInfo {
   address?: string;
@@ -95,8 +88,8 @@ export default async function ContactsPage() {
                 </div>
               )}
             </div>
-            <div className='w-full lg:w-1/2 h-64 lg:h-96'>
-              <YMapWidget />
+            <div className='w-full lg:w-1/2'>
+              <ClientMap />
             </div>
           </div>
         </div>
