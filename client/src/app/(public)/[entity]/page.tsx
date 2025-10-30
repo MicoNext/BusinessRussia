@@ -11,6 +11,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import ssgApiService from '@/shared/api/ssg.api.service';
 
 const PAGE_SIZE = 9;
+export const revalidate = 3600;
 
 function formatEventDateRange(startDate: Date, endDate?: Date): string {
   const locale = 'ru-RU';
@@ -127,8 +128,8 @@ export default async function EntityListPage({
   return <>
     <Header companyInfo={companyInfo} />
     <section className='flex-1 px-4 md:px-8 lg:px-12 py-6'>
-      <Breadcrumbs className='mb-8' />
       <div className='container mx-auto'>
+      <Breadcrumbs className='mb-8' />
         <main>
           <div className='space-y-8'>
             <Headline

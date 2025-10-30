@@ -13,6 +13,7 @@ import { ICompanyInfo } from '../../../../../../package/types/models/companyInfo
 import Footer from '@/components/Footer'
 import ssgApiService from '@/shared/api/ssg.api.service'
 
+export const revalidate = 3600;
 
 async function getEntityItem(entity: EntitySlug, id: string) {
   switch (entity) {

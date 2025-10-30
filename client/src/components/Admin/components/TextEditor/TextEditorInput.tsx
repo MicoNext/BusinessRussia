@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
@@ -34,6 +34,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
 }) => {
   const [isMounted, setIsMounted] = useState(false)
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle')
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     setIsMounted(true)
@@ -41,11 +42,10 @@ const TextEditor: React.FC<TextEditorProps> = ({
 
   const handleSave = useCallback(async (content: string) => {
     if (!onSave) return
-    setSaveStatus('saving')
     
+    setSaveStatus('saving')
     try {
       await onSave(content)
-      
       setSaveStatus('success')
       setTimeout(() => setSaveStatus('idle'), 2000)
     } catch (error) {
@@ -83,25 +83,37 @@ const TextEditor: React.FC<TextEditorProps> = ({
     editable: editable,
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
-        const html = editor.getHTML()
-        
-        const timeoutId = setTimeout(() => {
-          handleSave(html)
-        }, autoSaveDelay)
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current)
+      }
 
-        return () => clearTimeout(timeoutId)
+      saveTimeoutRef.current = setTimeout(() => {
+        const html = editor.getHTML()
+        handleSave(html)
+      }, autoSaveDelay)
     },
   })
 
   useEffect(() => {
     if (editor && initialContent && isMounted) {
-      editor.commands.setContent(initialContent)
+      const currentContent = editor.getHTML()
+      if (currentContent !== initialContent) {
+        editor.commands.setContent(initialContent)
+      }
     }
   }, [editor, initialContent, isMounted])
 
+  useEffect(() => {
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current)
+      }
+    }
+  }, [])
+
   if (!isMounted) {
     return (
-      <div className={`min-h-[500px] bg-white rounded-2xl border border-gray-200 shadow-lg ${className}`}>
+      <div className={`min-h-[200px] bg-white rounded-2xl border border-gray-200 shadow-lg ${className}`}>
         <div className="border-b border-gray-200 bg-gray-50 px-6 py-4 rounded-t-2xl">
           <div className="flex flex-wrap gap-2">
             {Array.from({ length: 6 }).map((_, index) => (
@@ -116,7 +128,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
             ))}
           </div>
         </div>
-        <div className="p-6 flex items-center justify-center h-96">
+        <div className="p-6 flex items-center justify-center h-32">
           <div className="text-center">
             <div className="w-8 h-8 border-2 border-[#2b7de0] border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
             <p className="text-gray-600">Загрузка редактора...</p>
@@ -128,8 +140,8 @@ const TextEditor: React.FC<TextEditorProps> = ({
 
   if (!editor) {
     return (
-      <div className={`min-h-[500px] bg-white rounded-2xl border border-gray-200 shadow-lg ${className}`}>
-        <div className="p-6 flex items-center justify-center h-96">
+      <div className={`min-h-[200px] bg-white rounded-2xl border border-gray-200 shadow-lg ${className}`}>
+        <div className="p-6 flex items-center justify-center h-32">
           <div className="text-center text-red-600">
             <p>Ошибка загрузки редактора</p>
           </div>
@@ -139,14 +151,13 @@ const TextEditor: React.FC<TextEditorProps> = ({
   }
 
   return (
-    <div className={`bg-white rounded-2xl border border-gray-200 shadow-lg ${className}`}>
+    <div className={`flex flex-col h-full bg-white rounded-2xl border border-gray-200 shadow-lg ${className}`}>
       {editable && (
-        <div className="border-b border-gray-200 bg-gray-50 px-6 py-4 rounded-t-2xl">
+        <div className="border-b border-gray-200 bg-gray-50 px-4 py-3 rounded-t-2xl sticky top-0 z-10">
           <div className="flex flex-wrap gap-2 items-center">
-            {/* Text formatting */}
             <button
               onClick={() => editor.chain().focus().toggleBold().run()}
-              className={`px-4 py-2 border rounded-xl transition-all ${
+              className={`px-3 py-2 border rounded-xl transition-all ${
                 editor.isActive('bold')
                   ? 'border-[#2b7de0] bg-[#2b7de0] text-white'
                   : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-50'
@@ -158,7 +169,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
             
             <button
               onClick={() => editor.chain().focus().toggleItalic().run()}
-              className={`px-4 py-2 border rounded-xl transition-all ${
+              className={`px-3 py-2 border rounded-xl transition-all ${
                 editor.isActive('italic')
                   ? 'border-[#2b7de0] bg-[#2b7de0] text-white'
                   : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-50'
@@ -170,7 +181,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
             
             <button
               onClick={() => editor.chain().focus().toggleUnderline().run()}
-              className={`px-4 py-2 border rounded-xl transition-all ${
+              className={`px-3 py-2 border rounded-xl transition-all ${
                 editor.isActive('underline')
                   ? 'border-[#2b7de0] bg-[#2b7de0] text-white'
                   : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-50'
@@ -180,12 +191,11 @@ const TextEditor: React.FC<TextEditorProps> = ({
               <UnderlineIcon className="w-4 h-4" />
             </button>
             
-            <div className="w-px bg-gray-300 h-8 my-auto"></div>
+            <div className="w-px bg-gray-300 h-6"></div>
             
-            {/* Text alignment */}
             <button
               onClick={() => editor.chain().focus().setTextAlign('left').run()}
-              className={`px-4 py-2 border rounded-xl transition-all ${
+              className={`px-3 py-2 border rounded-xl transition-all ${
                 editor.isActive({ textAlign: 'left' })
                   ? 'border-[#2b7de0] bg-[#2b7de0] text-white'
                   : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-50'
@@ -197,7 +207,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
             
             <button
               onClick={() => editor.chain().focus().setTextAlign('center').run()}
-              className={`px-4 py-2 border rounded-xl transition-all ${
+              className={`px-3 py-2 border rounded-xl transition-all ${
                 editor.isActive({ textAlign: 'center' })
                   ? 'border-[#2b7de0] bg-[#2b7de0] text-white'
                   : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-50'
@@ -209,7 +219,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
             
             <button
               onClick={() => editor.chain().focus().setTextAlign('right').run()}
-              className={`px-4 py-2 border rounded-xl transition-all ${
+              className={`px-3 py-2 border rounded-xl transition-all ${
                 editor.isActive({ textAlign: 'right' })
                   ? 'border-[#2b7de0] bg-[#2b7de0] text-white'
                   : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-50'
@@ -219,12 +229,11 @@ const TextEditor: React.FC<TextEditorProps> = ({
               <AlignRight className="w-4 h-4" />
             </button>
             
-            <div className="w-px bg-gray-300 h-8 my-auto"></div>
+            <div className="w-px bg-gray-300 h-6"></div>
             
-            {/* Lists */}
             <button
               onClick={() => editor.chain().focus().toggleBulletList().run()}
-              className={`px-4 py-2 border rounded-xl transition-all ${
+              className={`px-3 py-2 border rounded-xl transition-all ${
                 editor.isActive('bulletList')
                   ? 'border-[#2b7de0] bg-[#2b7de0] text-white'
                   : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-50'
@@ -236,7 +245,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
             
             <button
               onClick={() => editor.chain().focus().toggleOrderedList().run()}
-              className={`px-4 py-2 border rounded-xl transition-all ${
+              className={`px-3 py-2 border rounded-xl transition-all ${
                 editor.isActive('orderedList')
                   ? 'border-[#2b7de0] bg-[#2b7de0] text-white'
                   : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-50'
@@ -246,9 +255,8 @@ const TextEditor: React.FC<TextEditorProps> = ({
               <ListOrdered className="w-4 h-4" />
             </button>
 
-            {/* Save status */}
             {saveStatus !== 'idle' && (
-              <div className="ml-4 flex items-center gap-2 text-sm">
+              <div className="ml-2 flex items-center gap-2 text-sm">
                 {saveStatus === 'saving' && (
                   <>
                     <div className="w-3 h-3 border-2 border-[#2b7de0] border-t-transparent rounded-full animate-spin" />
@@ -267,11 +275,11 @@ const TextEditor: React.FC<TextEditorProps> = ({
         </div>
       )}
 
-      <div className={`min-h-[400px] ${editable ? 'bg-white' : 'bg-gray-50'} transition-colors rounded-b-2xl`}>
-        <div className="p-6 h-full">
+      <div className={`flex-1 min-h-[300px] ${editable ? 'bg-white' : 'bg-gray-50'} transition-colors rounded-b-2xl overflow-auto`}>
+        <div className="p-4 md:p-6 h-full">
           <EditorContent 
             editor={editor} 
-            className={cotnentStyle}
+            className={`${cotnentStyle} h-full`}
           />
         </div>
       </div>
