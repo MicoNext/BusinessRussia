@@ -431,17 +431,6 @@ export default function AdminSliderMain() {
                       </div>
                     </div>
                   )}
-
-                  {/* Менеджер загрузки */}
-                  {!currentMedia && (
-                    <NewsMediaManager
-                      handleSave={handleMediaUpload}
-                      viewImg={type === 'img'}
-                      viewVideo={type === 'video'}
-                      initialImages={[]}
-                      initialVideos={[]}
-                    />
-                  )}
                 </div>
 
                 <div className="flex items-center gap-3 p-4 border border-gray-200 rounded-xl">
@@ -458,6 +447,24 @@ export default function AdminSliderMain() {
                 </div>
               </div>
             </div>
+
+            {/* Отдельный блок для загрузки файлов */}
+            {!currentMedia && (
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <div className="bg-white rounded-xl border border-gray-200 p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Загрузка {type === 'img' ? 'изображения' : 'видео'}</h3>
+                  <div className="w-full">
+                    <NewsMediaManager
+                      handleSave={handleMediaUpload}
+                      viewImg={type === 'img'}
+                      viewVideo={type === 'video'}
+                      initialImages={[]}
+                      initialVideos={[]}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Секция кнопки действия */}
             <div className="mt-6 pt-6 border-t border-gray-200">

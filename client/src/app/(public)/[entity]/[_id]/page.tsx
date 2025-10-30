@@ -13,7 +13,7 @@ import { ICompanyInfo } from '../../../../../../package/types/models/companyInfo
 import Footer from '@/components/Footer'
 import ssgApiService from '@/shared/api/ssg.api.service'
 
-export const revalidate = 3600;
+export const revalidate = 1690;
 
 async function getEntityItem(entity: EntitySlug, id: string) {
   switch (entity) {
@@ -315,7 +315,7 @@ function EntitySidebar({ item }: { item: any }) {
 
 export async function generateMetadata({ params }: { params: Promise<TParams> }) {
   const { entity, _id } = await params
-  const item = await getEntityItem(entity, _id)
+  const item: any = await getEntityItem(entity, _id)
 
   if (!item) {
     return {
@@ -326,7 +326,7 @@ export async function generateMetadata({ params }: { params: Promise<TParams> })
 
   return {
     title: item.title || 'Детальная страница',
-    description: item.description || item.excerpt || `Детальная информация о ${item.title}`,
+    description:  `Детальная информация о ${item.title}`,
     openGraph: {
       title: item.title,
       description: item.description || item.excerpt,
@@ -341,7 +341,7 @@ export async function generateStaticParams() {
 
 export default async function EntityDetailsPage({ params }: { params: Promise<TParams> }) {
   const { entity, _id } = await params
-  const item = await getEntityItem(entity, _id)
+  const item: any = await getEntityItem(entity, _id)
   const companyInfo: ICompanyInfo = await ssgApiService.getCompanyInfo()
   
   if (!item) {

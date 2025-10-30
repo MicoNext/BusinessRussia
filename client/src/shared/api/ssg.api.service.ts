@@ -2,6 +2,7 @@ import { ICommittee } from "../../../../package/types/models/committee"
 import { ICompanyInfo } from "../../../../package/types/models/companyInfo"
 import { IEvent } from "../../../../package/types/models/events"
 import { INews } from "../../../../package/types/models/news"
+import { IParticipant } from "../../../../package/types/models/participant"
 import { IProject } from "../../../../package/types/models/projects"
 import { ISliderMain } from "../../../../package/types/models/sliderMain"
 import config from "../config/config"
@@ -21,7 +22,7 @@ class SSGApiService {
         return response.data || []
     }
 
-    public async getNews(page: number, limit: number, id?:string): Promise<INews[]> {
+    public async getNews(page: number, limit: number, id?: string): Promise<INews[]> {
         const res = await fetch(`${config.ServerUrl}/api/news${id ? `/${id}` : ""}?page=${page}&limit=${limit}?page=1&limit=6`, { cache: 'force-cache' })
         if (!res.ok) return []
         const response = await res.json()
@@ -49,12 +50,12 @@ class SSGApiService {
         return response.data || [];
     }
 
-    public async getParticipants(page: number, limit: number, id?: string) {
-  const res = await fetch(`${config.ServerUrl}/api/participant${id ? `/${id}` : ""}?page=${page}&limit=${limit}`, { cache: 'force-cache' })
-  if (!res.ok) return null
-  const response = await res.json()
-  return response.data || null
-}
+    public async getParticipants(page: number, limit: number, id?: string): Promise<IParticipant[]> {
+        const res = await fetch(`${config.ServerUrl}/api/participant${id ? `/${id}` : ""}?page=${page}&limit=${limit}`, { cache: 'force-cache' })
+        if (!res.ok) return []
+        const response = await res.json()
+        return response.data || []
+    }
 }
 
 export default new SSGApiService()

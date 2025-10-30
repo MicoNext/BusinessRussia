@@ -132,6 +132,8 @@ export default function AdminNews() {
     setCategory(newsItem.category || '')
     setTags(newsItem.tags || [])
     setEditorHtml(newsItem.html || '')
+    setImages(newsItem.media?.imagesUrl || [])
+    setVideos(newsItem.media?.videoUrl || [])
     setIsEditing(true)
     setIsCreating(false)
   }
@@ -149,6 +151,8 @@ export default function AdminNews() {
     setTags([])
     setNewTag('')
     setEditorHtml('')
+    setImages([])
+    setVideos([])
   }
 
   const handleCancel = () => {
@@ -177,6 +181,11 @@ export default function AdminNews() {
 
   const handleViewPost = (newsId: string) => {
     router.push(`/news/${newsId}`)
+  }
+
+  const handleMediaSave = (newImages: string[], newVideos: string[]) => {
+    setImages(newImages)
+    setVideos(newVideos)
   }
 
   useEffect(() => {
@@ -273,18 +282,16 @@ export default function AdminNews() {
             </div>
           </div>
 
-          {/* Менеджер медиа */}
-          {selectedNews && (
-            <div className="mb-6">
-              <NewsMediaManager
-                handleSave={(images: string[], videos: string[]) => { setImages(images); setVideos(videos) }}
-                viewImg={true}
-                viewVideo={true}
-                initialImages={selectedNews?.media?.imagesUrl || []}
-                initialVideos={selectedNews?.media?.videoUrl || []}
-              />
-            </div>
-          )}
+          {/* Менеджер медиа - теперь отображается и при создании */}
+          <div className="mb-6">
+            <NewsMediaManager
+              handleSave={handleMediaSave}
+              viewImg={true}
+              viewVideo={true}
+              initialImages={isCreating ? images : selectedNews?.media?.imagesUrl || []}
+              initialVideos={isCreating ? videos : selectedNews?.media?.videoUrl || []}
+            />
+          </div>
 
           {/* Редактор контента */}
           <TextEditor
@@ -305,6 +312,16 @@ export default function AdminNews() {
                     : 'Внесите изменения и нажмите кнопку ниже для сохранения'
                   }
                 </p>
+                <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                  <span className="flex items-center gap-1">
+                    <ImageIcon className="w-4 h-4" />
+                    Изображений: {images.length}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Video className="w-4 h-4" />
+                    Видео: {videos.length}
+                  </span>
+                </div>
               </div>
               <div className="flex gap-3">
                 <button
@@ -315,7 +332,7 @@ export default function AdminNews() {
                 </button>
                 <button
                   onClick={() => handleSave()}
-                  disabled={saving || !title }
+                  disabled={saving || !title}
                   className="px-8 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {saving ? (

@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 
-export const revalidate = 3600;
+export const revalidate = 1690;
 
 async function getCompanyInfo() {
   try {

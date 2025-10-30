@@ -11,7 +11,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import ssgApiService from '@/shared/api/ssg.api.service';
 
 const PAGE_SIZE = 9;
-export const revalidate = 3600;
+export const revalidate = 1690;
 
 function formatEventDateRange(startDate: Date, endDate?: Date): string {
   const locale = 'ru-RU';
