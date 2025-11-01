@@ -254,206 +254,169 @@ export default function AdminSliderMain() {
     const currentMedia = getCurrentMedia()
 
     return (
-      <div className="min-h-screen bg-gray-50 p-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-6 flex justify-between items-center">
+      <div className="min-h-screen bg-gray-50 p-3 sm:p-4 md:p-6">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="mb-6">
             <button
               onClick={handleCancel}
-              className="px-4 py-2 border border-gray-300 rounded-xl text-gray-700 bg-white hover:bg-gray-50 transition-all flex items-center gap-2"
+              className="px-4 py-2 border border-gray-300 rounded-xl text-gray-700 bg-white hover:bg-gray-50 transition-all flex items-center gap-2 text-sm sm:text-base"
             >
-              ← Назад к списку
+              <ArrowLeft className="w-4 h-4" />
+              Назад к списку
             </button>
           </div>
 
-          {/* Форма редактирования слайда */}
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Заголовок *
-                  </label>
-                  <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
-                    placeholder="Основной заголовок слайда"
-                    required
-                  />
-                </div>
+          <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 sm:gap-6">
+            {/* Left Column - Main Content */}
+            <div className="xl:col-span-3 space-y-4 sm:space-y-6">
+              {/* Slider Info Card */}
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-4 sm:p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4 sm:mb-6">
+                  Основная информация слайда
+                </h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Заголовок *
+                      </label>
+                      <input
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all text-sm"
+                        placeholder="Основной заголовок слайда"
+                        required
+                      />
+                    </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Подзаголовок
-                  </label>
-                  <input
-                    type="text"
-                    value={subtitle}
-                    onChange={(e) => setSubtitle(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
-                    placeholder="Дополнительный подзаголовок"
-                  />
-                </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Подзаголовок
+                      </label>
+                      <input
+                        type="text"
+                        value={subtitle}
+                        onChange={(e) => setSubtitle(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all text-sm"
+                        placeholder="Дополнительный подзаголовок"
+                      />
+                    </div>
+                  </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Текст слайда
-                  </label>
-                  <textarea
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all resize-none"
-                    placeholder="Описание или призыв к действию"
-                    rows={3}
-                  />
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Текст слайда
+                      </label>
+                      <textarea
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all resize-none text-sm"
+                        placeholder="Описание или призыв к действию"
+                        rows={3}
+                      />
+                    </div>
+                  </div>
                 </div>
+              </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Теги
+              {/* Media Type Selection */}
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-4 sm:p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4 sm:mb-6">
+                  Медиа контент
+                </h2>
+                
+                {/* Content Type Selection */}
+                <div className="mb-6">
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                    Тип контента *
                   </label>
-                  <div className="flex gap-2 mb-2">
-                    <input
-                      type="text"
-                      value={newTag}
-                      onChange={(e) => setNewTag(e.target.value)}
-                      onKeyPress={handleKeyPress}
-                      className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
-                      placeholder="Добавить тег"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <button
                       type="button"
-                      onClick={addTag}
-                      className="px-4 py-3 bg-[#2b7de0] text-white rounded-xl hover:bg-[#1e5fb0] transition-all"
+                      onClick={() => {
+                        setType('img')
+                        setVideos([])
+                      }}
+                      className={`p-4 border-2 rounded-xl flex items-center justify-center gap-3 transition-all ${
+                        type === 'img'
+                          ? 'border-[#2b7de0] bg-blue-50 text-[#2b7de0]'
+                          : 'border-gray-300 text-gray-600 hover:border-gray-400 hover:bg-gray-50'
+                      }`}
                     >
-                      <Plus className="w-4 h-4" />
+                      <ImageIcon className="w-5 h-5" />
+                      <span className="font-medium">Изображение</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setType('video')
+                        setImages([])
+                      }}
+                      className={`p-4 border-2 rounded-xl flex items-center justify-center gap-3 transition-all ${
+                        type === 'video'
+                          ? 'border-[#2b7de0] bg-blue-50 text-[#2b7de0]'
+                          : 'border-gray-300 text-gray-600 hover:border-gray-400 hover:bg-gray-50'
+                      }`}
+                    >
+                      <Video className="w-5 h-5" />
+                      <span className="font-medium">Видео</span>
                     </button>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-                      >
-                        <Tag className="w-3 h-3" />
-                        {tag}
-                        <button
-                          type="button"
-                          onClick={() => removeTag(tag)}
-                          className="ml-1 hover:text-blue-600"
-                        >
-                          ×
-                        </button>
-                      </span>
-                    ))}
-                  </div>
                 </div>
-              </div>
 
-              <div className="space-y-4">
-                {/* Блок медиа с выбором типа */}
-                <div className="bg-gray-50 rounded-xl p-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Медиа контент</h3>
-
-                  {/* Выбор типа контента */}
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Тип контента *
+                {/* Media Preview */}
+                {currentMedia && (
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                      Превью контента
                     </label>
-                    <div className="grid grid-cols-2 gap-3">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setType('img')
-                          setVideos([]) // Очищаем видео при выборе изображения
-                        }}
-                        className={`p-3 border rounded-xl flex items-center justify-center gap-2 transition-all ${type === 'img'
-                            ? 'border-[#2b7de0] bg-blue-50 text-[#2b7de0]'
-                            : 'border-gray-300 text-gray-600 hover:border-gray-400'
-                          }`}
-                      >
-                        <ImageIcon className="w-5 h-5" />
-                        Изображение
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setType('video')
-                          setImages([]) // Очищаем изображения при выборе видео
-                        }}
-                        className={`p-3 border rounded-xl flex items-center justify-center gap-2 transition-all ${type === 'video'
-                            ? 'border-[#2b7de0] bg-blue-50 text-[#2b7de0]'
-                            : 'border-gray-300 text-gray-600 hover:border-gray-400'
-                          }`}
-                      >
-                        <Video className="w-5 h-5" />
-                        Видео
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Превью контента */}
-                  {currentMedia && (
-                    <div className="mb-4">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Превью
-                      </label>
-                      <div className="border border-gray-300 rounded-xl p-4 relative">
-                        {type === 'img' ? (
-                          <>
-                            <img
-                              src={currentMedia}
-                              alt="Превью слайда"
-                              className="w-full h-32 object-cover rounded-lg"
-                            />
+                    <div className="border-2 border-gray-200 rounded-xl p-4 bg-gray-50 relative">
+                      {type === 'img' ? (
+                        <div className="space-y-3">
+                          <img
+                            src={currentMedia}
+                            alt="Превью слайда"
+                            className="w-full max-w-md h-48 object-cover rounded-lg mx-auto"
+                          />
+                          <div className="text-center">
                             <button
                               onClick={handleClearMedia}
-                              className="absolute top-3 right-3 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
-                              title="Удалить изображение"
+                              className="px-4 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-all flex items-center gap-2 mx-auto text-sm"
                             >
                               <Trash2 className="w-4 h-4" />
-                            </button>
-                          </>
-                        ) : (
-                          <div className="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center relative">
-                            <Video className="w-8 h-8 text-gray-400" />
-                            <span className="ml-2 text-gray-600">Видео контент</span>
-                            <button
-                              onClick={handleClearMedia}
-                              className="absolute top-3 right-3 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
-                              title="Удалить видео"
-                            >
-                              <Trash2 className="w-4 h-4" />
+                              Удалить изображение
                             </button>
                           </div>
-                        )}
-                      </div>
+                        </div>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="w-full max-w-md h-48 bg-gray-800 rounded-lg flex items-center justify-center mx-auto">
+                            <Video className="w-12 h-12 text-white" />
+                          </div>
+                          <div className="text-center">
+                            <button
+                              onClick={handleClearMedia}
+                              className="px-4 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-all flex items-center gap-2 mx-auto text-sm"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                              Удалить видео
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
-                <div className="flex items-center gap-3 p-4 border border-gray-200 rounded-xl">
-                  <input
-                    type="checkbox"
-                    id="overlay"
-                    checked={overlay}
-                    onChange={(e) => setOverlay(e.target.checked)}
-                    className="w-4 h-4 text-[#2b7de0] border-gray-300 rounded focus:ring-[#2b7de0]"
-                  />
-                  <label htmlFor="overlay" className="text-sm font-medium text-gray-700 cursor-pointer">
-                    Затемняющий оверлей (для лучшей читаемости текста)
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            {/* Отдельный блок для загрузки файлов */}
-            {!currentMedia && (
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <div className="bg-white rounded-xl border border-gray-200 p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Загрузка {type === 'img' ? 'изображения' : 'видео'}</h3>
-                  <div className="w-full">
+                {/* Media Upload */}
+                {!currentMedia && (
+                  <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 bg-gray-50">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">
+                      Загрузка {type === 'img' ? 'изображения' : 'видео'}
+                    </h3>
                     <NewsMediaManager
                       handleSave={handleMediaUpload}
                       viewImg={type === 'img'}
@@ -462,80 +425,190 @@ export default function AdminSliderMain() {
                       initialVideos={[]}
                     />
                   </div>
-                </div>
+                )}
               </div>
-            )}
 
-            {/* Секция кнопки действия */}
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Кнопка действия</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    URL кнопки
-                  </label>
-                  <input
-                    type="url"
-                    value={sourseUrl}
-                    onChange={(e) => setSourseUrl(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
-                    placeholder="https://example.com"
-                  />
+              {/* Additional Settings */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                {/* Tags Section */}
+                <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-4 sm:p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Теги</h3>
+                  <div className="space-y-4">
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={newTag}
+                        onChange={(e) => setNewTag(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all text-sm"
+                        placeholder="Добавить тег"
+                      />
+                      <button
+                        type="button"
+                        onClick={addTag}
+                        className="px-4 py-3 bg-[#2b7de0] text-white rounded-xl hover:bg-[#1e5fb0] transition-all"
+                      >
+                        <Plus className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                        >
+                          <Tag className="w-3 h-3" />
+                          {tag}
+                          <button
+                            type="button"
+                            onClick={() => removeTag(tag)}
+                            className="ml-1 hover:text-blue-600 text-sm"
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Текст кнопки
-                  </label>
-                  <input
-                    type="text"
-                    value={buttonName}
-                    onChange={(e) => setButtonName(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all"
-                    placeholder="Узнать больше"
-                  />
+
+                {/* Action Button Settings */}
+                <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-4 sm:p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Кнопка действия</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        URL кнопки
+                      </label>
+                      <input
+                        type="url"
+                        value={sourseUrl}
+                        onChange={(e) => setSourseUrl(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all text-sm"
+                        placeholder="https://example.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Текст кнопки
+                      </label>
+                      <input
+                        type="text"
+                        value={buttonName}
+                        onChange={(e) => setButtonName(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all text-sm"
+                        placeholder="Узнать больше"
+                      />
+                    </div>
+                    <div className="flex items-center gap-3 p-3 border border-gray-200 rounded-xl">
+                      <input
+                        type="checkbox"
+                        id="overlay"
+                        checked={overlay}
+                        onChange={(e) => setOverlay(e.target.checked)}
+                        className="w-4 h-4 text-[#2b7de0] border-gray-300 rounded focus:ring-[#2b7de0]"
+                      />
+                      <label htmlFor="overlay" className="text-sm font-medium text-gray-700 cursor-pointer">
+                        Затемняющий оверлей
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Кнопка сохранения */}
-          <div className="sticky bottom-6 bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {isCreating ? 'Создание слайда' : 'Редактирование слайда'}
-                </h3>
-                <p className="text-gray-600 text-sm mt-1">
-                  {isCreating
-                    ? 'Заполните все необходимые поля и нажмите кнопку ниже для создания слайда'
-                    : 'Внесите изменения и нажмите кнопку ниже для сохранения'
-                  }
-                </p>
-              </div>
-              <div className="flex gap-3">
-                <button
-                  onClick={handleCancel}
-                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all"
-                >
-                  Отмена
-                </button>
-                <button
-                  onClick={handleSave}
-                  disabled={saving || !title || !getCurrentMedia()}
-                  className="px-8 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {saving ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Сохранение...
-                    </>
-                  ) : (
-                    <>
-                      <Save className="w-5 h-5" />
-                      {isCreating ? 'Создать слайд' : 'Сохранить изменения'}
-                    </>
-                  )}
-                </button>
+            {/* Right Column - Save Panel */}
+            <div className="xl:col-span-1">
+              <div className="sticky top-6 bg-white rounded-2xl border border-gray-200 shadow-lg p-4 sm:p-6">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {isCreating ? 'Создание слайда' : 'Редактирование слайда'}
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      {isCreating
+                        ? 'Заполните все необходимые поля для создания слайда'
+                        : 'Внесите изменения в слайд'
+                      }
+                    </p>
+                  </div>
+
+                  {/* Validation Status */}
+                  <div className="space-y-2 p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className={`w-2 h-2 rounded-full ${title ? 'bg-green-500' : 'bg-red-500'}`} />
+                      <span className={title ? 'text-green-700' : 'text-red-700'}>
+                        Заголовок {title ? 'заполнен' : 'обязателен'}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className={`w-2 h-2 rounded-full ${currentMedia ? 'bg-green-500' : 'bg-red-500'}`} />
+                      <span className={currentMedia ? 'text-green-700' : 'text-red-700'}>
+                        Медиа {currentMedia ? 'загружено' : 'обязательно'}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className={`w-2 h-2 rounded-full ${type === 'img' ? 'bg-blue-500' : 'bg-purple-500'}`} />
+                      <span className={type === 'img' ? 'text-blue-700' : 'text-purple-700'}>
+                        {type === 'img' ? 'Изображение' : 'Видео'}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className={`w-2 h-2 rounded-full ${overlay ? 'bg-yellow-500' : 'bg-gray-400'}`} />
+                      <span className={overlay ? 'text-yellow-700' : 'text-gray-600'}>
+                        Оверлей {overlay ? 'включен' : 'выключен'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Save Button */}
+                  <button
+                    onClick={handleSave}
+                    disabled={saving || !title || !currentMedia}
+                    className="w-full px-6 py-4 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base font-medium shadow-lg shadow-green-600/25"
+                  >
+                    {saving ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Сохранение...
+                      </>
+                    ) : (
+                      <>
+                        <Save className="w-5 h-5" />
+                        {isCreating ? 'Создать слайд' : 'Сохранить изменения'}
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    onClick={handleCancel}
+                    className="w-full px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all text-sm sm:text-base"
+                  >
+                    Отмена
+                  </button>
+
+                  {/* Quick Stats */}
+                  <div className="pt-4 border-t border-gray-200">
+                    <div className="grid grid-cols-2 gap-3 text-xs text-gray-600">
+                      <div className="flex items-center gap-1">
+                        <Type className="w-3 h-3" />
+                        <span>{type === 'img' ? 'Изобр.' : 'Видео'}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Tag className="w-3 h-3" />
+                        <span>{tags.length} тегов</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <ExternalLink className="w-3 h-3" />
+                        <span>{sourseUrl ? 'Кнопка' : 'Нет кн.'}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className={`w-3 h-3 rounded-full ${overlay ? 'bg-black' : 'bg-gray-400'}`} />
+                        <span>Оверлей</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -545,8 +618,9 @@ export default function AdminSliderMain() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gray-50 p-3 sm:p-4 md:p-6">
       <div className="max-w-6xl mx-auto">
+        {/* Header */}
         <div className="mb-6">
           <Link href={`/admin`}>
             <Button
@@ -558,22 +632,22 @@ export default function AdminSliderMain() {
             </Button>
           </Link>
         </div>
-        <div className="flex justify-between items-center mb-8">
+
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Главный слайдер</h1>
-            <p className="text-gray-600 mt-2">Управление слайдами на главной странице</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Главный слайдер</h1>
+            <p className="text-gray-600 mt-2 text-sm sm:text-base">Управление слайдами на главной странице</p>
           </div>
-          <div className="flex gap-3">
-            <button
-              onClick={handleNew}
-              className="px-6 py-3 bg-[#2b7de0] text-white rounded-xl hover:bg-[#1e5fb0] transition-all flex items-center gap-2"
-            >
-              <Plus className="w-4 h-4" />
-              Новый слайд
-            </button>
-          </div>
+          <button
+            onClick={handleNew}
+            className="px-4 sm:px-6 py-3 bg-[#2b7de0] text-white rounded-xl hover:bg-[#1e5fb0] transition-all flex items-center gap-2 w-full sm:w-auto justify-center text-sm sm:text-base"
+          >
+            <Plus className="w-4 h-4" />
+            Новый слайд
+          </button>
         </div>
 
+        {/* Sliders Grid */}
         {loading ? (
           <div className="flex justify-center items-center h-64">
             <div className="text-center">
@@ -582,26 +656,26 @@ export default function AdminSliderMain() {
             </div>
           </div>
         ) : sliders.length === 0 ? (
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-12 text-center">
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-8 sm:p-12 text-center">
             <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <EyeOff className="w-8 h-8 text-gray-400" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Слайдов пока нет</h3>
-            <p className="text-gray-600 mb-6">Создайте первый слайд чтобы он отобразился здесь</p>
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Слайдов пока нет</h3>
+            <p className="text-gray-600 mb-6 text-sm sm:text-base">Создайте первый слайд чтобы он отобразился здесь</p>
             <button
               onClick={handleNew}
-              className="px-6 py-3 bg-[#2b7de0] text-white rounded-xl hover:bg-[#1e5fb0] transition-all flex items-center gap-2 mx-auto"
+              className="px-6 py-3 bg-[#2b7de0] text-white rounded-xl hover:bg-[#1e5fb0] transition-all flex items-center gap-2 mx-auto text-sm sm:text-base"
             >
               <Plus className="w-4 h-4" />
               Создать слайд
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {sliders.map((slider) => (
               <div
                 key={slider._id}
-                className="bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all overflow-hidden"
+                className="bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all overflow-hidden flex flex-col"
               >
                 <div className="relative">
                   {slider.type === 'img' ? (
@@ -619,16 +693,19 @@ export default function AdminSliderMain() {
                     <div className="absolute inset-0 bg-black bg-opacity-30" />
                   )}
                   <div className="absolute top-3 right-3">
-                    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${slider.type === 'img' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
-                      }`}>
+                    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
+                      slider.type === 'img' 
+                        ? 'bg-blue-100 text-blue-800' 
+                        : 'bg-purple-100 text-purple-800'
+                    }`}>
                       {getTypeIcon(slider.type)}
                       {getTypeLabel(slider.type)}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+                <div className="p-4 sm:p-6 flex-1">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
                     {slider.title}
                   </h3>
 
@@ -674,20 +751,21 @@ export default function AdminSliderMain() {
                     <span>Создан: {new Date(slider.createdAt).toLocaleDateString('ru-RU')}</span>
                   </div>
                 </div>
-                <div className="border-t border-gray-200 bg-gray-50 px-6 py-4">
-                  <div className="flex justify-between items-center">
+                
+                <div className="border-t border-gray-200 bg-gray-50 px-4 sm:px-6 py-4">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleEdit(slider)}
-                        className="px-4 py-2 bg-[#2b7de0] text-white rounded-xl hover:bg-[#1e5fb0] transition-all flex items-center gap-2"
+                        className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-[#2b7de0] text-white rounded-xl hover:bg-[#1e5fb0] transition-all flex items-center gap-2 justify-center text-xs sm:text-sm"
                       >
-                        <Edit3 className="w-4 h-4" />
-                        Редактировать
+                        <Edit3 className="w-3 h-3 sm:w-4 sm:h-4" />
+                        Редакт.
                       </button>
                     </div>
                     <button
                       onClick={() => handleDelete(slider._id)}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-all"
+                      className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-all self-end sm:self-auto"
                       title="Удалить"
                     >
                       <Trash2 className="w-4 h-4" />

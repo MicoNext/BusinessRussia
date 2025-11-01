@@ -5,7 +5,6 @@ import ssgApiService from '@/shared/api/ssg.api.service'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { Crown, Users, UserCheck, User } from 'lucide-react'
 
 export const revalidate = 1690
 
@@ -113,7 +112,6 @@ export default async function TeamPage() {
                                 }}
                               />
                             </div>
-                            
                             <div className="hidden sm:block w-full h-full">
                               <Card
                                 link={`/organization/team/${item._id}`}
