@@ -163,7 +163,27 @@ export default async function MemberPage({
               <Button
                 variant="outline"
                 leftSection={<ArrowLeft size={16} />}
-                className="border-blue-600 text-blue-600 hover:bg-blue-50"
+                className="
+                      border-blue-600 
+                      text-blue-600 
+                      hover:bg-blue-50 
+                      text-sm 
+                      sm:text-base 
+                      w-full 
+                      sm:w-auto
+                      px-4 
+                      sm:px-6
+                      py-2.5
+                      font-medium
+                      rounded-lg
+                      transition-colors
+                      duration-200
+                      flex           
+                      items-center   
+                      justify-center 
+                      gap-2      
+                "
+
               >
                 Вернуться к списку участников
               </Button>

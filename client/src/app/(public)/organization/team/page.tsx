@@ -1,20 +1,21 @@
-import { Grid } from '@/components/ui/Grid/Grid';
-import { Card } from '@/components/ui/Card/Card';
-import { Headline } from '@/components/ui/Headline';
-import ssgApiService from '@/shared/api/ssg.api.service';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Grid } from '@/components/ui/Grid/Grid'
+import { Card } from '@/components/ui/Card/Card'
+import { Headline } from '@/components/ui/Headline'
+import ssgApiService from '@/shared/api/ssg.api.service'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { Crown, Users, UserCheck } from 'lucide-react'
 
-export const revalidate = 1690;
+export const revalidate = 1690
 
 async function getAllParticipants() {
   try {
-    const participants = await ssgApiService.getParticipants(1, 10000);
-    return participants;
+    const participants = await ssgApiService.getParticipants(1, 10000)
+    return participants
   } catch (error) {
-    console.error('Failed to fetch participants:', error);
-    return [];
+    console.error('Failed to fetch participants:', error)
+    return []
   }
 }
 
@@ -26,14 +27,40 @@ export async function generateMetadata() {
       title: 'Лица регионального отделения',
       description: 'Команда и участники регионального отделения «Деловой России»',
     },
-  };
+  }
+}
+
+const getRoleLabel = (role: string) => {
+  switch (role) {
+    case 'manager':
+      return 'Руководитель'
+    case 'boardMember':
+      return 'Член совета'
+    case 'invited':
+      return 'Приглашенный'
+    default:
+      return 'Участник'
+  }
+}
+
+const getRoleIcon = (role: string) => {
+  switch (role) {
+    case 'manager':
+      return <Crown size={14} />
+    case 'boardMember':
+      return <Users size={14} />
+    case 'invited':
+      return <UserCheck size={14} />
+    default:
+      return <Users size={14} />
+  }
 }
 
 export default async function TeamPage() {
   const [participants, companyInfo] = await Promise.all([
     getAllParticipants(),
     ssgApiService.getCompanyInfo()
-  ]);
+  ])
 
   return (
     <>
@@ -61,46 +88,64 @@ export default async function TeamPage() {
                     <Grid
                       cols={1}
                       classNames={{ 
-                        root: 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                        root: 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6'
                       }}
                     >
-                      {participants.map(item => (
-                        <Grid.Col key={item._id} className="w-full">
-                          {/* Мобильная версия - горизонтальная карточка */}
-                          <div className="block sm:hidden w-full">
-                            <Card
-                              link={`/organization/team/${item._id}`}
-                              image={item.media?.imagesUrl?.[0]}
-                              title={item.name}
-                              subtitle={`${item.organization ? item.organization + ": " : ""}${item.jobTitle || ''}`}
-                              classNames={{
-                                container: 'h-full border-0 shadow-sm bg-white flex flex-row',
-                                image: 'w-20 h-20 min-w-20 rounded-lg object-cover',
-                                title: 'text-base font-semibold leading-tight line-clamp-2 hover:text-brand-primary transition-colors',
-                                subtitle: 'text-sm text-gray-600 leading-relaxed line-clamp-2',
-                                textbox: 'p-3 flex-1 flex flex-col justify-center'
-                              }}
-                            />
+                      {participants.map(item => {
+                        const roleIcon = getRoleIcon(item.role)
+                        const roleLabel = getRoleLabel(item.role)
+                        
+                        const subtitleContent = (
+                          <div className="flex flex-col gap-1">
+                            {item.jobTitle && (
+                              <span className="text-sm font-medium">{item.jobTitle}</span>
+                            )}
+                            {item.organization && (
+                              <span className="text-xs text-gray-600">{item.organization}</span>
+                            )}
+                            <div className="flex items-center gap-1 text-xs text-blue-600 font-semibold mt-1">
+                              {roleIcon}
+                              <span>{roleLabel}</span>
+                            </div>
                           </div>
-                          
-                          {/* Десктопная версия - вертикальная карточка */}
-                          <div className="hidden sm:block w-full h-full transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg">
-                            <Card
-                              link={`/organization/team/${item._id}`}
-                              image={item.media?.imagesUrl?.[0]}
-                              title={item.name}
-                              subtitle={`${item.organization ? item.organization + ": " : ""}${item.jobTitle || ''}`}
-                              classNames={{
-                                container: 'h-full border-0 shadow-sm bg-white',
-                                image: 'aspect-[4/3] sm:aspect-[4/3]',
-                                title: 'text-sm sm:text-base font-semibold leading-tight line-clamp-2 hover:text-brand-primary transition-colors',
-                                subtitle: 'text-xs sm:text-sm text-gray-600 leading-relaxed line-clamp-3',
-                                textbox: 'p-3 sm:p-4 gap-1 sm:gap-2'
-                              }}
-                            />
-                          </div>
-                        </Grid.Col>
-                      ))}
+                        )
+
+                        return (
+                          <Grid.Col key={item._id} className="w-full">
+                            <div className="block sm:hidden w-full">
+                              <Card
+                                link={`/organization/team/${item._id}`}
+                                image={item.media?.imagesUrl?.[0]}
+                                title={item.name}
+                                direction="row"
+                                classNames={{
+                                  container: 'border-gray-200 bg-white hover:shadow-lg',
+                                  image: 'w-1/3 min-h-[140px]',
+                                  title: 'text-base font-semibold !text-gray-900',
+                                  subtitle: '!text-xs !text-gray-600 !font-normal',
+                                  textbox: '!p-4 !gap-3 justify-center'
+                                }}
+                              />
+                            </div>
+                            
+                            <div className="hidden sm:block w-full h-full">
+                              <Card
+                                link={`/organization/team/${item._id}`}
+                                image={item.media?.imagesUrl?.[0]}
+                                title={item.name}
+                                time={item.createdAt}
+                                classNames={{
+                                  container: 'border-gray-200 bg-white hover:shadow-lg',
+                                  image: 'aspect-[4/3]',
+                                  title: '!text-lg !font-bold !text-gray-900 hover:!text-brand-primary',
+                                  subtitle: '!text-sm !text-gray-700 !font-normal',
+                                  textbox: '!p-5 !gap-4'
+                                }}
+                              />
+                            </div>
+                          </Grid.Col>
+                        )
+                      })}
                     </Grid>
                   )}
                 </div>
@@ -111,5 +156,5 @@ export default async function TeamPage() {
       </section>
       <Footer companyInfo={companyInfo} />
     </>
-  );
+  )
 }
