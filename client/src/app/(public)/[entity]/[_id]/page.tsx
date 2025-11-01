@@ -161,28 +161,29 @@ export default async function EntityDetailsPage({ params }: { params: Promise<TP
           <Link href={`/${entity}`} className="block sm:inline-block">
             <Button
               variant='outline'
-              leftSection={<ArrowLeft size={16} className='m-3' />}
+              leftSection={<ArrowLeft size={16} />}
               className="
-                        border-blue-600 
-                        text-blue-600 
-                        hover:bg-blue-50 
-                        text-sm 
-                        sm:text-base 
-                        w-full 
-                        sm:w-auto
-                        px-4 
-                        sm:px-6
-                        py-2.5
-                        sm:py-2
-                        font-medium
-                        rounded-lg
-                        transition-colors
-                        duration-200
-                        justify-center
-                        sm:justify-start
-                      "
+                      border-blue-600 
+                      text-blue-600 
+                      hover:bg-blue-50 
+                      text-sm 
+                      sm:text-base 
+                      w-full 
+                      sm:w-auto
+                      px-4 
+                      sm:px-6
+                      py-2.5
+                      font-medium
+                      rounded-lg
+                      transition-colors
+                      duration-200
+                      flex           
+                      items-center   
+                      justify-center 
+                      gap-2         
+                    "
             >
-                Вернуться к списку
+              Вернуться к списку
             </Button>
           </Link>
         </div>

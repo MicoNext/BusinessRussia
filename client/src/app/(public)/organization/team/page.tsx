@@ -66,7 +66,25 @@ export default async function TeamPage() {
                     >
                       {participants.map(item => (
                         <Grid.Col key={item._id} className="w-full">
-                          <div className="w-full h-full transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg">
+                          {/* Мобильная версия - горизонтальная карточка */}
+                          <div className="block sm:hidden w-full">
+                            <Card
+                              link={`/organization/team/${item._id}`}
+                              image={item.media?.imagesUrl?.[0]}
+                              title={item.name}
+                              subtitle={`${item.organization ? item.organization + ": " : ""}${item.jobTitle || ''}`}
+                              classNames={{
+                                container: 'h-full border-0 shadow-sm bg-white flex flex-row',
+                                image: 'w-20 h-20 min-w-20 rounded-lg object-cover',
+                                title: 'text-base font-semibold leading-tight line-clamp-2 hover:text-brand-primary transition-colors',
+                                subtitle: 'text-sm text-gray-600 leading-relaxed line-clamp-2',
+                                textbox: 'p-3 flex-1 flex flex-col justify-center'
+                              }}
+                            />
+                          </div>
+                          
+                          {/* Десктопная версия - вертикальная карточка */}
+                          <div className="hidden sm:block w-full h-full transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg">
                             <Card
                               link={`/organization/team/${item._id}`}
                               image={item.media?.imagesUrl?.[0]}
@@ -76,7 +94,7 @@ export default async function TeamPage() {
                                 container: 'h-full border-0 shadow-sm bg-white',
                                 image: 'aspect-[4/3] sm:aspect-[4/3]',
                                 title: 'text-sm sm:text-base font-semibold leading-tight line-clamp-2 hover:text-brand-primary transition-colors',
-                                subtitle: 'text-xs sm:text-sm text-gray-600 leading-relaxed line-clamp-2',
+                                subtitle: 'text-xs sm:text-sm text-gray-600 leading-relaxed line-clamp-3',
                                 textbox: 'p-3 sm:p-4 gap-1 sm:gap-2'
                               }}
                             />

@@ -233,7 +233,7 @@ export default function AdminCommittee() {
                   />
                 </div>
               </div>
-
+{/* 
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -278,10 +278,12 @@ export default function AdminCommittee() {
                   </div>
                 </div>
               </div>
+
+ */}
+
             </div>
           </div>
 
-          {/* Менеджер медиа */}
           <div className="mb-6">
             <NewsMediaManager
               handleSave={(images: string[], videos: string[]) => {
@@ -295,13 +297,11 @@ export default function AdminCommittee() {
             />
           </div>
 
-          {/* Редактор контента */}
           <TextEditor
             html={selectedCommittee?.html || ''}
             onSave={handleEditorSave}
           />
 
-          {/* Кнопка сохранения */}
           <div className="sticky bottom-6 mt-8 bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
             <div className="flex justify-between items-center">
               <div>
