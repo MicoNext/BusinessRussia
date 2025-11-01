@@ -5,6 +5,8 @@ import { ContactusCardGrid } from './ContactusCardGrid';
 import { ContactusCardSlider } from './ContactusCardSlider';
 import Image from 'next/image';
 import { ICompanyInfo } from '../../../../../package/types/models/companyInfo';
+import { WaIcon } from '@/components/ui/socialIcons/WaIcon';
+import { TelegramIcon } from '@/components/ui/socialIcons';
 
 type PropsType = {
 	companyInfo: ICompanyInfo
@@ -25,12 +27,9 @@ export function ContactusCards({ companyInfo }: PropsType) {
 	},
 	{
 		icon: (
-			<Image
-				src='/social/wa-icon.svg'
-				alt=''
+			<WaIcon
 				width={24}
 				height={24}
-				aria-hidden='true'
 			/>
 		),
 		title: 'WhatsApp',
@@ -38,19 +37,15 @@ export function ContactusCards({ companyInfo }: PropsType) {
 	},
 	{
 		icon: (
-			<Image
-				src='/social/tg-icon.svg'
-				alt=''
+			<TelegramIcon
 				width={24}
 				height={24}
-				aria-hidden='true'
 			/>
 		),
 		title: 'Telegram',
 		href: companyInfo.telegramUrl || 'https://t.me/example',
 	},
 ];
-
 
 	return (
 		<>

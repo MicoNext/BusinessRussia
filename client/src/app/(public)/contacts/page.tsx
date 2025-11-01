@@ -1,5 +1,6 @@
 import { SectionBar } from '@/components/ui/SectionBar/SectionBar';
 import { Headline } from '@/components/ui/Headline/Headline';
+import { Сontactus } from '@/components/Сontactus'
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import ssgApiService from '@/shared/api/ssg.api.service';
 import Header from '@/components/Header';
@@ -48,8 +49,8 @@ export default async function ContactsPage() {
   return (
     <>
       <Header companyInfo={companyInfo} />
-      <section className='px-4 md:px-8 lg:px-12 py-6'>
-        <div className='container mx-auto'>
+      <section className='text-gray-900 flex flex-col gap-8 md:gap-14 lg:gap-16 xl:gap-20 flex-1 relative overflow-hidden'>
+        <div className='container mx-auto px-4 md:px-8 lg:px-12 py-6'>
           <Breadcrumbs className='mb-4' />
           <SectionBar
             leftSection={
@@ -95,6 +96,7 @@ export default async function ContactsPage() {
             </div>
           </div>
         </div>
+      <Сontactus companyInfo={companyInfo} />
       </section>
       <Footer companyInfo={companyInfo} />
     </>

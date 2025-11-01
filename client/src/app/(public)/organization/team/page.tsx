@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Grid } from '@/components/ui/Grid/Grid';
 import { Card } from '@/components/ui/Card/Card';
 import { Headline } from '@/components/ui/Headline';
@@ -36,48 +35,63 @@ export default async function TeamPage() {
     ssgApiService.getCompanyInfo()
   ]);
 
-  return <>
-    <Header companyInfo={companyInfo} />
-    <section className='flex-1 px-4 md:px-8 lg:px-12 py-6'>
-      <div className='container mx-auto'>
-        <section className="px-4 md:px-8 lg:px-12 py-6">
-          <div className="container mx-auto">
-            <Breadcrumbs className="mb-6" />
-            <main>
-              <Headline
-                title={'Лица регионального отделения'}
-                order={1}
-                classNames={{ container: 'mb-6' }}
-              />
-              <div className='space-y-8'>
-                {participants.length === 0 ? (
-                  <div className="text-center py-8">
-                    <p className="text-gray-500">Нет данных для отображения</p>
-                  </div>
-                ) : (
-                  <Grid
-                    cols={1}
-                    gap={8}
-                    classNames={{ root: 'md:grid-cols-2 lg:grid-cols-3' }}
-                  >
-                    {participants.map(item => (
-                      <Grid.Col key={item._id}>
-                        <Card
-                          link={`/organization/team/${item._id}`}
-                          image={item.media?.imagesUrl?.[0]}
-                          title={item.name}
-                          subtitle={`${item.organization ? item.organization + ": " : ""}${item.jobTitle || ''}`}
-                        />
-                      </Grid.Col>
-                    ))}
-                  </Grid>
-                )}
-              </div>
-            </main>
-          </div>
-        </section>
-      </div>
-    </section>
-    <Footer companyInfo={companyInfo} />
-  </>
+  return (
+    <>
+      <Header companyInfo={companyInfo} />
+      <section className='flex-1 px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6'>
+        <div className='container mx-auto max-w-7xl'>
+          <section className="px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6">
+            <div className="container mx-auto">
+              <Breadcrumbs className="mb-4 sm:mb-6" />
+              <main>
+                <Headline
+                  title={'Лица регионального отделения'}
+                  order={1}
+                  classNames={{ 
+                    container: 'mb-4 sm:mb-6',
+                    title: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl'
+                  }}
+                />
+                <div className='space-y-3 sm:space-y-4 md:space-y-6'>
+                  {participants.length === 0 ? (
+                    <div className="text-center py-8 sm:py-12">
+                      <p className="text-gray-500 text-sm sm:text-base">Нет данных для отображения</p>
+                    </div>
+                  ) : (
+                    <Grid
+                      cols={1}
+                      classNames={{ 
+                        root: 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                      }}
+                    >
+                      {participants.map(item => (
+                        <Grid.Col key={item._id} className="w-full">
+                          <div className="w-full h-full transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg">
+                            <Card
+                              link={`/organization/team/${item._id}`}
+                              image={item.media?.imagesUrl?.[0]}
+                              title={item.name}
+                              subtitle={`${item.organization ? item.organization + ": " : ""}${item.jobTitle || ''}`}
+                              classNames={{
+                                container: 'h-full border-0 shadow-sm bg-white',
+                                image: 'aspect-[4/3] sm:aspect-[4/3]',
+                                title: 'text-sm sm:text-base font-semibold leading-tight line-clamp-2 hover:text-brand-primary transition-colors',
+                                subtitle: 'text-xs sm:text-sm text-gray-600 leading-relaxed line-clamp-2',
+                                textbox: 'p-3 sm:p-4 gap-1 sm:gap-2'
+                              }}
+                            />
+                          </div>
+                        </Grid.Col>
+                      ))}
+                    </Grid>
+                  )}
+                </div>
+              </main>
+            </div>
+          </section>
+        </div>
+      </section>
+      <Footer companyInfo={companyInfo} />
+    </>
+  );
 }

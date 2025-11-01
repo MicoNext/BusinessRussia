@@ -1,4 +1,5 @@
 import { Headline } from '@/components/ui/Headline';
+import { Сontactus } from '@/components/Сontactus'
 import { HtmlContent } from '@/components/ui/HtmlContent';
 import ssgApiService from '@/shared/api/ssg.api.service';
 import Header from '@/components/Header';
@@ -45,8 +46,8 @@ export default async function AboutPage() {
   return (
     <>
       <Header companyInfo={companyInfo} />
-      <section className='flex-1 px-4 md:px-8 lg:px-12 py-6'>
-        <div className='container mx-auto'>
+      <section className='flex-1 overflow-hidden'>
+        <div className='container mx-auto px-4 md:px-8 lg:px-12 py-6'>
           <Breadcrumbs className="mb-6" />
           <article className='flex flex-col gap-4 md:gap-6 leading-relaxed'>
             <Headline
@@ -57,6 +58,7 @@ export default async function AboutPage() {
             <HtmlContent html={aboutHtml} />
           </article>
         </div>
+      <Сontactus companyInfo={companyInfo} />
       </section>
       <Footer companyInfo={companyInfo} />
     </>

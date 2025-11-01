@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/Badge'
 import ssgApiService from '@/shared/api/ssg.api.service'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { MediaGallery } from '@/components/ui/MediaGallery/MediaGallery'
 
 export const revalidate = 1690
 
@@ -28,84 +29,6 @@ export async function generateMetadata({ params }: { params: Promise<{ _id: stri
       ? `${participant.jobTitle} в ${participant.organization}`
       : participant.jobTitle
   }
-}
-
-function MediaGallery({ media }: { media: IParticipant['media'] }) {
-  const { imagesUrl = [], videoUrl = [] } = media || {}
-
-  if (imagesUrl.length === 0 && videoUrl.length === 0) {
-    return null
-  }
-
-  return (
-    <div className="space-y-8">
-      {imagesUrl.length > 0 && (
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-3">
-            <ImageIcon className="w-6 h-6 text-blue-600" />
-            Фотогалерея ({imagesUrl.length})
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {imagesUrl.map((image, index) => (
-              <div
-                key={index}
-                className="relative group overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 transition-all duration-300 hover:shadow-lg hover:border-blue-300"
-              >
-                <div className="relative aspect-square w-full">
-                  <img
-                    src={image}
-                    alt={`Фото участника ${index + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white text-sm font-medium">
-                    Фото {index + 1}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {videoUrl.length > 0 && (
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-3">
-            <Video className="w-6 h-6 text-purple-600" />
-            Видеоматериалы ({videoUrl.length})
-          </h3>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {videoUrl.map((video, index) => (
-              <div
-                key={index}
-                className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100"
-              >
-                <video
-                  controls
-                  className="w-full h-full aspect-video rounded-2xl object-cover"
-                  poster={imagesUrl[0]}
-                >
-                  <source src={video} type="video/mp4" />
-                  <source src={video} type="video/webm" />
-                  <source src={video} type="video/ogg" />
-                  Ваш браузер не поддерживает видео тег
-                </video>
-                <div className="absolute top-3 left-3">
-                  <Badge className="bg-purple-600 text-white">
-                    <Video className="w-3 h-3 mr-1" />
-                    Видео {index + 1}
-                  </Badge>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  )
 }
 
 function ParticipantSidebar({ participant }: { participant: IParticipant }) {

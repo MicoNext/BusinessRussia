@@ -7,7 +7,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ssgApiService from '@/shared/api/ssg.api.service'
 
-export const revalidate = 3600;
+export const revalidate = 1690;
 
 export default async function HomePage() {
   const [companyInfo, sliderMain, news, projects, events] = await Promise.all([
