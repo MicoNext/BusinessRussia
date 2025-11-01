@@ -5,7 +5,7 @@ import ssgApiService from '@/shared/api/ssg.api.service'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { Crown, Users, UserCheck } from 'lucide-react'
+import { Crown, Users, UserCheck, User } from 'lucide-react'
 
 export const revalidate = 1690
 
@@ -40,19 +40,6 @@ const getRoleLabel = (role: string) => {
       return 'Приглашенный'
     default:
       return 'Участник'
-  }
-}
-
-const getRoleIcon = (role: string) => {
-  switch (role) {
-    case 'manager':
-      return <Crown size={14} />
-    case 'boardMember':
-      return <Users size={14} />
-    case 'invited':
-      return <UserCheck size={14} />
-    default:
-      return <Users size={14} />
   }
 }
 
@@ -92,23 +79,21 @@ export default async function TeamPage() {
                       }}
                     >
                       {participants.map(item => {
-                        const roleIcon = getRoleIcon(item.role)
                         const roleLabel = getRoleLabel(item.role)
                         
-                        const subtitleContent = (
-                          <div className="flex flex-col gap-1">
-                            {item.jobTitle && (
-                              <span className="text-sm font-medium">{item.jobTitle}</span>
-                            )}
-                            {item.organization && (
-                              <span className="text-xs text-gray-600">{item.organization}</span>
-                            )}
-                            <div className="flex items-center gap-1 text-xs text-blue-600 font-semibold mt-1">
-                              {roleIcon}
-                              <span>{roleLabel}</span>
-                            </div>
-                          </div>
-                        )
+                        const subtitleParts = []
+                        
+                        if (item.jobTitle) {
+                          subtitleParts.push(item.jobTitle)
+                        }
+                        
+                        if (item.organization) {
+                          subtitleParts.push(item.organization)
+                        }
+                        
+                        subtitleParts.push(roleLabel)
+                        
+                        const subtitle = subtitleParts.join(' • ')
 
                         return (
                           <Grid.Col key={item._id} className="w-full">
@@ -117,12 +102,13 @@ export default async function TeamPage() {
                                 link={`/organization/team/${item._id}`}
                                 image={item.media?.imagesUrl?.[0]}
                                 title={item.name}
+                                subtitle={subtitle}
                                 direction="row"
                                 classNames={{
                                   container: 'border-gray-200 bg-white hover:shadow-lg',
                                   image: 'w-1/3 min-h-[140px]',
                                   title: 'text-base font-semibold !text-gray-900',
-                                  subtitle: '!text-xs !text-gray-600 !font-normal',
+                                  subtitle: '!text-xs !text-gray-600 !font-normal leading-relaxed line-clamp-3',
                                   textbox: '!p-4 !gap-3 justify-center'
                                 }}
                               />
@@ -133,12 +119,13 @@ export default async function TeamPage() {
                                 link={`/organization/team/${item._id}`}
                                 image={item.media?.imagesUrl?.[0]}
                                 title={item.name}
+                                subtitle={subtitle}
                                 time={item.createdAt}
                                 classNames={{
                                   container: 'border-gray-200 bg-white hover:shadow-lg',
                                   image: 'aspect-[4/3]',
                                   title: '!text-lg !font-bold !text-gray-900 hover:!text-brand-primary',
-                                  subtitle: '!text-sm !text-gray-700 !font-normal',
+                                  subtitle: '!text-sm !text-gray-700 !font-normal leading-relaxed line-clamp-3',
                                   textbox: '!p-5 !gap-4'
                                 }}
                               />
