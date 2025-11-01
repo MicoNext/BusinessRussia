@@ -1,6 +1,7 @@
 import { Calendar, Clock, MapPin, Tag } from "lucide-react"
+import { IEvent } from "../../../../../../../../package/types/models/events"
 
-export function EventMetaInfo({ event }: { event: any }) {
+export function EventMetaInfo({ event }: { event: IEvent }) {
   const hasMetaInfo = event.startDate || event.location || event.time || event.category
   
   if (!hasMetaInfo) return null
@@ -9,6 +10,15 @@ export function EventMetaInfo({ event }: { event: any }) {
     <div className="bg-blue-50 border border-blue-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6">
       <h3 className="text-lg font-semibold text-blue-900 mb-4">Информация о событии</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        {event.url && (
+          <div className="flex-shrink-0">
+            <img
+              src={event.url}
+              alt={event.title + event._id}
+              className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 object-cover rounded-xl sm:rounded-2xl border-4 border-white shadow-lg"
+            />
+          </div>
+        )}
         {event.startDate && (
           <div className="flex items-center gap-3 p-3 bg-white rounded-lg sm:rounded-xl border border-blue-100">
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">

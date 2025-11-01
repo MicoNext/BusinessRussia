@@ -52,7 +52,7 @@ async function getData(entity: EntitySlug) {
         title: e.title,
         subtitle: formatEventDateRange(e.startDate, e.endDate),
         time: undefined as string | Date | undefined,
-        image: undefined as string | undefined,
+        image: e.url,
         href: `/events/${e._id}`,
       }));
     }

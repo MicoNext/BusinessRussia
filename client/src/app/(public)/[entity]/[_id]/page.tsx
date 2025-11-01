@@ -49,6 +49,10 @@ export async function generateMetadata({ params }: { params: Promise<TParams> })
     }
   }
 
+  let images: string[] = []
+  if(item.media?.imagesUrl?.[0]) images = [item.media.imagesUrl[0]]
+  if(entity === "events" && item.url) images = [item.url]
+
   return {
     title: item.title || 'Детальная страница',
     description: `Детальная информация о ${item.title}`,
