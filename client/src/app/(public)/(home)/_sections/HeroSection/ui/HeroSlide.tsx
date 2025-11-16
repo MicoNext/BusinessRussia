@@ -20,9 +20,8 @@ export function HeroSlide({ slide }: { slide: ISliderMain }) {
 					<img
 						src={slide.url}
 						alt={slide.title || 'slide image'}
-						className='w-full h-full object-fill'
-						loading='eager'
-						decoding='async'
+						className='w-full h-full object-cover'
+						sizes='(max-width: 768px) 100vw, 100vw'
 					/>
 				</div>
 			)}
@@ -39,7 +38,7 @@ export function HeroSlide({ slide }: { slide: ISliderMain }) {
 
 			{isVideo && (
 				<video
-					className='absolute inset-0 w-full h-full object-fill -z-0'
+					className='absolute inset-0 w-full h-full object-cover -z-0'
 					autoPlay
 					loop
 					muted
