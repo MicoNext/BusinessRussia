@@ -10,7 +10,6 @@ import Footer from '@/components/Footer';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import ssgApiService from '@/shared/api/ssg.api.service';
 
-const PAGE_SIZE = 9;
 export const revalidate = 1690;
 
 function formatEventDateRange(startDate: Date, endDate?: Date): string {
@@ -119,11 +118,7 @@ export default async function EntityListPage({
 
   const companyInfo = await ssgApiService.getCompanyInfo()
   const currentPage = Math.max(1, Number(page ?? 1));
-  const all = await getData(entity);
-  const total = all.length;
-  const start = (currentPage - 1) * PAGE_SIZE;
-  const items = all.slice(start, start + PAGE_SIZE);
-  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const items = await getData(entity);
 
   return <>
     <Header companyInfo={companyInfo} />
@@ -161,25 +156,6 @@ export default async function EntityListPage({
                     </Grid.Col>
                   ))}
                 </Grid>
-
-                {totalPages > 1 && (
-                  <div className='flex items-center justify-center gap-2'>
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
-                      <Link
-                        key={p}
-                        href={`/${entity}?page=${p}`}
-                        className={
-                          'px-3 py-1.5 rounded border text-sm ' +
-                          (p === currentPage
-                            ? 'border-gray-900 text-gray-900'
-                            : 'border-gray-200 text-gray-600 hover:border-gray-300')
-                        }
-                      >
-                        {p}
-                      </Link>
-                    ))}
-                  </div>
-                )}
               </>
             )}
           </div>
