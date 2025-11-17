@@ -1,13 +1,13 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Plus, Edit3, Trash2, EyeOff, Image as ImageIcon, Video, Tag, ExternalLink, Save, ArrowLeft, Link } from 'lucide-react'
+import { Plus, Edit3, Trash2, EyeOff, Image as ImageIcon, Video, Tag, ExternalLink, Save, ArrowLeft, Link, Calendar } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import TextEditor from '@/components/Admin/components/TextEditor'
 import adminApiService from '@/shared/api/admin.api.service'
 import type { INews } from "../../../../../package/types/models/news"
 import NewsMediaManager from '../components/ViewFile/NewsMediaManager'
 import { Button } from '@/components/ui/buttons'
-
+import { toast } from 'react-hot-toast'
 
 export default function AdminNews() {
   const router = useRouter()
@@ -24,6 +24,15 @@ export default function AdminNews() {
   const [saving, setSaving] = useState(false)
   const [images, setImages] = useState<string[]>([])
   const [videos, setVideos] = useState<string[]>([])
+  const [createdAt, setCreatedAt] = useState('')
+
+  const showNotification = (message: string, type: 'success' | 'error' = 'success') => {
+    if (type === 'success') {
+      toast.success(message)
+    } else {
+      toast.error(message)
+    }
+  }
 
   const handleFind = async () => {
     try {
@@ -35,6 +44,7 @@ export default function AdminNews() {
       setNews(response.data || [])
     } catch (error) {
       console.error('Ошибка загрузки новостей:', error)
+      showNotification('Ошибка загрузки новостей', 'error')
     } finally {
       setLoading(false)
     }
@@ -47,9 +57,11 @@ export default function AdminNews() {
         method: "post",
         body: { data }
       })
+      showNotification('Новость успешно создана')
       return response
     } catch (error) {
       console.error('Ошибка создания новости:', error)
+      showNotification('Ошибка создания новости', 'error')
       throw error
     }
   }
@@ -61,9 +73,11 @@ export default function AdminNews() {
         method: "put",
         body: { data }
       })
+      showNotification('Новость успешно сохранена')
       return response
     } catch (error) {
       console.error('Ошибка обновления новости:', error)
+      showNotification('Ошибка сохранения новости', 'error')
       throw error
     }
   }
@@ -79,8 +93,10 @@ export default function AdminNews() {
         setSelectedNews(null)
         setIsEditing(false)
       }
+      showNotification('Новость успешно удалена')
     } catch (error) {
       console.error('Ошибка удаления новости:', error)
+      showNotification('Ошибка удаления новости', 'error')
     }
   }
 
@@ -98,7 +114,7 @@ export default function AdminNews() {
           imagesUrl: images,
           videoUrl: videos
         },
-        createdAt: new Date()
+        createdAt: createdAt ? new Date(createdAt) : new Date()
       }
 
       let result
@@ -135,6 +151,7 @@ export default function AdminNews() {
     setEditorHtml(newsItem.html || '')
     setImages(newsItem.media?.imagesUrl || [])
     setVideos(newsItem.media?.videoUrl || [])
+    setCreatedAt(newsItem.createdAt ? new Date(newsItem.createdAt).toISOString().split('T')[0] : '')
     setIsEditing(true)
     setIsCreating(false)
   }
@@ -154,6 +171,7 @@ export default function AdminNews() {
     setEditorHtml('')
     setImages([])
     setVideos([])
+    setCreatedAt('')
   }
 
   const handleCancel = () => {
@@ -197,7 +215,6 @@ export default function AdminNews() {
     return (
       <div className="min-h-screen bg-gray-50 p-3 sm:p-4 md:p-6">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
           <div className="mb-6">
             <button
               onClick={handleCancel}
@@ -209,9 +226,7 @@ export default function AdminNews() {
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 sm:gap-6">
-            {/* Left Column - Main Content */}
             <div className="xl:col-span-3 space-y-4 sm:space-y-6">
-              {/* News Info Card */}
               <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-4 sm:p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4 sm:mb-6">
                   Основная информация о новости
@@ -247,6 +262,21 @@ export default function AdminNews() {
                   </div>
 
                   <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Пост создан
+                      </label>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-gray-400" />
+                        <input
+                          type="date"
+                          value={createdAt}
+                          onChange={(e) => setCreatedAt(e.target.value)}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all text-sm"
+                        />
+                      </div>
+                    </div>
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Теги
@@ -291,7 +321,6 @@ export default function AdminNews() {
                 </div>
               </div>
 
-              {/* Media Manager */}
               <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-4 sm:p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4 sm:mb-6">
                   Медиафайлы
@@ -305,7 +334,6 @@ export default function AdminNews() {
                 />
               </div>
 
-              {/* Content Editor */}
               <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-4 sm:p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4 sm:mb-6">
                   Содержание новости
@@ -317,7 +345,6 @@ export default function AdminNews() {
               </div>
             </div>
 
-            {/* Right Column - Save Panel */}
             <div className="xl:col-span-1">
               <div className="sticky top-6 bg-white rounded-2xl border border-gray-200 shadow-lg p-4 sm:p-6">
                 <div className="space-y-4">
@@ -333,7 +360,6 @@ export default function AdminNews() {
                     </p>
                   </div>
 
-                  {/* Validation Status */}
                   <div className="space-y-2 p-3 bg-gray-50 rounded-lg">
                     <div className="flex items-center gap-2 text-sm">
                       <div className={`w-2 h-2 rounded-full ${title ? 'bg-green-500' : 'bg-red-500'}`} />
@@ -359,9 +385,14 @@ export default function AdminNews() {
                         Контент {editorHtml ? 'добавлен' : 'не добавлен'}
                       </span>
                     </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className={`w-2 h-2 rounded-full ${createdAt ? 'bg-green-500' : 'bg-blue-500'}`} />
+                      <span className={createdAt ? 'text-green-700' : 'text-blue-700'}>
+                        Дата {createdAt ? 'установлена' : 'автоматически'}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Save Button */}
                   <button
                     onClick={() => handleSave()}
                     disabled={saving || !title}
@@ -387,7 +418,6 @@ export default function AdminNews() {
                     Отмена
                   </button>
 
-                  {/* Quick Stats */}
                   <div className="pt-4 border-t border-gray-200">
                     <div className="grid grid-cols-2 gap-3 text-xs text-gray-600">
                       <div className="flex items-center gap-1">
@@ -403,8 +433,8 @@ export default function AdminNews() {
                         <span>{tags.length} тегов</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <div className="w-3 h-3 bg-blue-500 rounded-sm" />
-                        <span>HTML контент</span>
+                        <Calendar className="w-3 h-3" />
+                        <span>Дата</span>
                       </div>
                     </div>
                     <div className="mt-3 pt-3 border-t border-gray-200">
@@ -426,7 +456,6 @@ export default function AdminNews() {
   return (
     <div className="min-h-screen bg-gray-50 p-3 sm:p-4 md:p-6">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <div className="mb-6">
           <Link href={`/admin`}>
             <Button
@@ -453,7 +482,6 @@ export default function AdminNews() {
           </button>
         </div>
 
-        {/* News Grid */}
         {loading ? (
           <div className="flex justify-center items-center h-64">
             <div className="text-center">
@@ -514,7 +542,10 @@ export default function AdminNews() {
                   </div>
                   
                   <div className="flex items-center justify-between text-xs text-gray-500">
-                    <span>{new Date(newsItem.createdAt).toLocaleDateString('ru-RU')}</span>
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
+                      <span>{new Date(newsItem.createdAt).toLocaleDateString('ru-RU')}</span>
+                    </div>
                     <div className="flex gap-2">
                       <span className="flex items-center gap-1">
                         <ImageIcon className="w-3 h-3" />
