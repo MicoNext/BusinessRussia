@@ -24,7 +24,7 @@ export default function AdminNews() {
   const [saving, setSaving] = useState(false)
   const [images, setImages] = useState<string[]>([])
   const [videos, setVideos] = useState<string[]>([])
-  const [createdAt, setCreatedAt] = useState('')
+  const [createdAt, setCreatedAt] = useState<Date>(new Date())
 
   const showNotification = (message: string, type: 'success' | 'error' = 'success') => {
     if (type === 'success') {
@@ -114,7 +114,7 @@ export default function AdminNews() {
           imagesUrl: images,
           videoUrl: videos
         },
-        createdAt: createdAt ? new Date(createdAt) : new Date()
+        createdAt
       }
 
       let result
@@ -151,7 +151,7 @@ export default function AdminNews() {
     setEditorHtml(newsItem.html || '')
     setImages(newsItem.media?.imagesUrl || [])
     setVideos(newsItem.media?.videoUrl || [])
-    setCreatedAt(newsItem.createdAt ? new Date(newsItem.createdAt).toISOString().split('T')[0] : '')
+    setCreatedAt(newsItem.createdAt ? new Date(newsItem.createdAt) : new Date())
     setIsEditing(true)
     setIsCreating(false)
   }
@@ -171,7 +171,7 @@ export default function AdminNews() {
     setEditorHtml('')
     setImages([])
     setVideos([])
-    setCreatedAt('')
+    setCreatedAt(new Date())
   }
 
   const handleCancel = () => {
@@ -205,6 +205,13 @@ export default function AdminNews() {
   const handleMediaSave = (newImages: string[], newVideos: string[]) => {
     setImages(newImages)
     setVideos(newVideos)
+  }
+
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const dateValue = e.target.value
+    if (dateValue) {
+      setCreatedAt(new Date(dateValue))
+    }
   }
 
   useEffect(() => {
@@ -270,8 +277,8 @@ export default function AdminNews() {
                         <Calendar className="w-4 h-4 text-gray-400" />
                         <input
                           type="date"
-                          value={createdAt}
-                          onChange={(e) => setCreatedAt(e.target.value)}
+                          value={createdAt.toISOString().split('T')[0]}
+                          onChange={handleDateChange}
                           className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2b7de0] focus:border-[#2b7de0] transition-all text-sm"
                         />
                       </div>
