@@ -61,7 +61,6 @@ a.html-link:hover {
   text-decoration-color: #2563eb !important;
 }
 
-/* Выравнивание текста */
 .html-content [style*="text-align: left"] {
   text-align: left;
 }

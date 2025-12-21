@@ -6,6 +6,7 @@ import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
 import Link from '@tiptap/extension-link'
+import Placeholder from '@tiptap/extension-placeholder'
 import { 
   AlignLeft, 
   AlignCenter, 
@@ -32,7 +33,7 @@ interface TextEditorProps {
   showLinkControls?: boolean
 }
 
-const TextEditor: React.FC<TextEditorProps> = ({
+export const TextEditor: React.FC<TextEditorProps> = ({
   initialContent = '',
   onSave,
   editable = true,
@@ -100,6 +101,10 @@ const TextEditor: React.FC<TextEditorProps> = ({
           target: '_blank',
         },
         validate: href => /^https?:\/\//.test(href),
+      }),
+      Placeholder.configure({
+        placeholder: 'Начните редактировать ваш контент здесь...',
+        emptyEditorClass: 'is-editor-empty',
       }),
     ],
     content: initialContent,
@@ -530,5 +535,3 @@ const TextEditor: React.FC<TextEditorProps> = ({
     </div>
   )
 }
-
-export default TextEditor

@@ -1,5 +1,5 @@
 'use client'
-import TextEditor from '@/components/Admin/components/TextEditor/TextEditorInput'
+import { TextEditor } from '@/components/Admin/components/TextEditor/TextEditorInput'
 
 interface IProps {
   html: string 
@@ -15,7 +15,7 @@ export default function TextEditorWrapper({ html, onSave }: IProps) {
     <div className="h-full flex flex-col">
       <div className="flex-1 min-h-[500px]">
         <TextEditor
-          initialContent={html || "<p>Начните редактировать ваш контент здесь...</p>"}
+          initialContent={html || ""}
           onSave={handleSave}
           editable={true}
           className="h-full"
