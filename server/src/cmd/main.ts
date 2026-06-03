@@ -30,7 +30,7 @@ const startServer = async () => {
   await server.register(fastifyMultipart, {
     attachFieldsToBody: false,
     limits: {
-      fileSize: 100 * 1024 * 1024,
+      fileSize: 500 * 1024 * 1024,
       files: 10
     }
   })
